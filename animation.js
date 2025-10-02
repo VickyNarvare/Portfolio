@@ -51,7 +51,7 @@ gsap.from(".about-text p", {
     opacity: 0,
     duration: 1,
     stagger: 0.2,
-    ease: "power4.out"
+  ease: "bounce.out"
 });
 
 gsap.from(".skill-tag", {
@@ -96,9 +96,9 @@ gsap.from("#contact .section-title", {
         trigger: "#contact",
         start: "top 80%",
     },
-    y: 50,
+    y: 100,
     opacity: 0,
-    duration: 1,
+    duration: 1.5,
     ease: "power4.out"
 });
 
@@ -107,7 +107,7 @@ gsap.from(".contact-info", {
         trigger: "#contact",
         start: "top 70%",
     },
-    x: -50,
+    x: -100,
     opacity: 0,
     duration: 1,
     ease: "power4.out"
@@ -118,7 +118,7 @@ gsap.from(".contact-form", {
         trigger: "#contact",
         start: "top 70%",
     },
-    x: 50,
+    x: 100,
     opacity: 0,
     duration: 1,
     ease: "power4.out"
