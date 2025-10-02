@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="The portfolio of Vicky, a frontend developer who creates beautiful and functional web experiences.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚙️</text></svg>">
     <!-- ===== CSS ===== -->
     <link rel="stylesheet" href="main.css" />
     <!-- ===== Boxicons CSS ===== -->
@@ -14,6 +16,7 @@
     <title>Portfoliyo</title>
   </head>
   <body>
+    <div class="theme-transition-overlay"></div>
     <nav>
       <div class="scroll-progress"></div>
       <div class="nav-bar">
@@ -70,12 +73,12 @@
                   <span class="skill-tag" data-level="95">HTML5</span>
                   <span class="skill-tag" data-level="95">CSS3</span>
                   <span class="skill-tag" data-level="85">JavaScript</span>
-                  <span class="skill-tag" data-level="65">React</span>
+                  <span class="skill-tag" data-level="76">Gsap</span>
                   <span class="skill-tag" data-level="75">Tailwind</span>
+                  <span class="skill-tag" data-level="65">React</span>
                   <span class="skill-tag" data-level="90">SASS</span>
                   <span class="skill-tag" data-level="60">Java</span>
                   <span class="skill-tag" data-level="40">Python</span>
-                  <span class="skill-tag" data-level="76">Gsap</span>
                 </div>
               </div>
             </div>
@@ -90,7 +93,7 @@
           <div class="works-grid">
             <div class="work-item">
               <div class="work-image">
-                <img src="Images/project1.png" alt="this is my first project number one ">
+                <img src="Images/project1.png" alt="Screenshot of a weather application interface showing the current weather for a city, including temperature and weather icons.">
               </div>
               <div class="work-content">
                 <h3>Weather Application</h3>
@@ -114,7 +117,7 @@
             </div>
             <div class="work-item">
               <div class="work-image">
-               <img src="Images/project2.png" alt="this is my first project number Two ">
+               <img src="Images/project2.png" alt="Screenshot of the ElectraX website homepage, showcasing a futuristic design with vibrant colors and smooth animations.">
               </div>
               <div class="work-content">
                 <h3>ElectraX Website</h3>
@@ -139,7 +142,7 @@
             </div>
             <div class="work-item">
               <div class="work-image">
-                  <img src="Images/project3.png" alt="this is my first project number three ">
+                  <img src="Images/project3.png" alt="Screenshot of the Kalika Construction company website homepage, displaying a professional layout with construction-related imagery.">
               </div>
               <div class="work-content">
                 <h3>Kalika Construction</h3>
@@ -163,7 +166,7 @@
             </div>
             <div class="work-item ">
               <div class="work-image">
-                  <img src="Images/project4.png" alt="this is my first project number Four ">
+                  <img src="Images/project4.png" alt="Screenshot of a JARVIS AI demo platform interface, featuring a modern, dark-themed UI with voice command visualization.">
               </div>
               <div class="work-content">
                 <h3>JARVIS AI</h3>
@@ -213,24 +216,24 @@
                 </div>
               </div>
               <div class="social-links">
-                <a href="#" class="social-link"><i class="bx bxl-github"></i></a>
-                <a href="#" class="social-link"><i class="bx bxl-linkedin"></i></a>
-                <a href="#" class="social-link"><i class="bx bxl-whatsapp"></i></a>
-                <a href="#" class="social-link"><i class="bx bxl-facebook"></i></a>
+                <a href="#" class="social-link" aria-label="GitHub"><i class="bx bxl-github"></i></a>
+                <a href="#" class="social-link" aria-label="LinkedIn"><i class="bx bxl-linkedin"></i></a>
+                <a href="#" class="social-link" aria-label="WhatsApp"><i class="bx bxl-whatsapp"></i></a>
+                <a href="#" class="social-link" aria-label="Facebook"><i class="bx bxl-facebook"></i></a>
               </div>
             </div>
-            <form class="contact-form">
+            <form class="contact-form" method="POST">
               <div class="form-group">
-                <input type="text" placeholder="Your Name" required>
+                <input type="text" name="name" placeholder="Your Name" required>
               </div>
               <div class="form-group">
-                <input type="email" placeholder="Your Email" required>
+                <input type="email" name="email" placeholder="Your Email" required>
               </div>
               <div class="form-group">
-                <input type="text" placeholder="Subject" required>
+                <input type="text" name="subject" placeholder="Subject" required>
               </div>
               <div class="form-group">
-                <textarea placeholder="Your Message" rows="5" required></textarea>
+                <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
               </div>
               <button type="submit" class="btn btn-primary contect_btn">Send Message</button>
             </form>
@@ -238,6 +241,9 @@
         </div>
       </section>
     </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="script.js"></script>
+    <script src="animation.js"></script>
   </body>
 </html>
