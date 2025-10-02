@@ -1,5 +1,5 @@
 gsap.registerPlugin(ScrollTrigger);
-
+// Hero Section Animation
 gsap.from(".hero-title", {
     duration: 1,
     y: 50,
@@ -7,6 +7,7 @@ gsap.from(".hero-title", {
     ease: "power4.out",
     delay: 0.5
 });
+
 gsap.from(".hero-subtitle", {
     duration: 1,
     y: 50,
