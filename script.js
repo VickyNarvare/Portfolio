@@ -1,3 +1,59 @@
+// ===============================
+// NAVIGATION ACTIVE LINK SYSTEM
+// ===============================
+const navLinks = document.querySelectorAll('.nav-links a');
+const sections = Array.from(navLinks).map(link => document.querySelector(link.getAttribute('href'))).filter(Boolean);
+
+// Restore active link from localStorage on load
+window.addEventListener('DOMContentLoaded', () => {
+  const savedActiveHref = localStorage.getItem('activeNavHref');
+  if (savedActiveHref) {
+    navLinks.forEach(link => {
+      if (link.getAttribute('href') === savedActiveHref) {
+        link.classList.add('active');
+      } else {
+        link.classList.remove('active');
+      }
+    });
+  }
+  setActiveLink();
+});
+
+function setActiveLink() {
+  let index = sections.length - 1;
+  for (let i = 0; i < sections.length; i++) {
+    const section = sections[i];
+    if (section && window.scrollY + 80 < section.offsetTop) {
+      index = i - 1;
+      break;
+    }
+  }
+  navLinks.forEach((link, i) => {
+    if (i === index && index >= 0) {
+      link.classList.add('active');
+      localStorage.setItem('activeNavHref', link.getAttribute('href'));
+    } else {
+      link.classList.remove('active');
+    }
+  });
+}
+
+window.addEventListener('scroll', setActiveLink);
+navLinks.forEach(link => {
+  link.addEventListener('click', function () {
+    navLinks.forEach(l => l.classList.remove('active'));
+    this.classList.add('active');
+    localStorage.setItem('activeNavHref', this.getAttribute('href'));
+    // Close sidebar on mobile after click
+    if (window.innerWidth < 900 && nav.classList.contains('active')) {
+      nav.classList.remove('active');
+    }
+  });
+});
+
+// ===============================
+// SIDEBAR, DARK MODE, AND TOGGLES
+// ===============================
 const body = document.querySelector("body");
 const nav = document.querySelector("nav");
 const modeToggle = document.querySelector(".dark-light");
@@ -43,6 +99,7 @@ if (sidebarOpen && nav) {
   console.warn("Sidebar elements not found");
 }
 
+// Close sidebar when clicking outside or on close button
 body.addEventListener("click", (e) => {
   if (
     !e.target.classList.contains("sidebarOpen") &&

@@ -52,7 +52,7 @@ gsap.from(".about-text p", {
     opacity: 0,
     duration: 1,
     stagger: 0.2,
-  ease: "bounce.out"
+    ease: "bounce.out"
 });
 
 gsap.from(".skill-tag", {
@@ -137,44 +137,44 @@ document.querySelectorAll(".btn-primary").forEach(btn => {
 
 document.querySelectorAll(".btn-secondary").forEach(btn => {
     btn.addEventListener("mouseenter", () => {
-        gsap.to(btn, { 
-            backgroundColor: "var(--text-color)", 
-            color: "var(--body-color)", 
-            duration: 0.3, 
-            ease: "power2.out" 
+        gsap.to(btn, {
+            backgroundColor: "var(--text-color)",
+            color: "var(--body-color)",
+            duration: 0.3,
+            ease: "power2.out"
         });
     });
     btn.addEventListener("mouseleave", () => {
-        gsap.to(btn, { 
-            backgroundColor: "transparent", 
-            color: "var(--text-color)", 
-            duration: 0.3, 
-            ease: "power2.out" 
+        gsap.to(btn, {
+            backgroundColor: "transparent",
+            color: "var(--text-color)",
+            duration: 0.3,
+            ease: "power2.out"
         });
     });
 });
 
 document.querySelectorAll(".skill-tag").forEach(tag => {
     tag.addEventListener("mouseenter", () => {
-        gsap.to(tag, { 
-            y: -2, 
-            boxShadow: "0 4px 12px rgba(64, 112, 244, 0.3)", 
+        gsap.to(tag, {
+            y: -2,
+            boxShadow: "0 4px 12px rgba(64, 112, 244, 0.3)",
             "--tooltip-opacity": 1,
             "--tooltip-visibility": "visible",
             "--tooltip-y": "-10px",
-            duration: 0.3, 
-            ease: "power2.out" 
+            duration: 0.3,
+            ease: "power2.out"
         });
     });
     tag.addEventListener("mouseleave", () => {
-        gsap.to(tag, { 
-            y: 0, 
-            boxShadow: "none", 
+        gsap.to(tag, {
+            y: 0,
+            boxShadow: "none",
             "--tooltip-opacity": 0,
             "--tooltip-visibility": "hidden",
             "--tooltip-y": "0px",
-            duration: 0.3, 
-            ease: "power2.out" 
+            duration: 0.3,
+            ease: "power2.out"
         });
     });
 });
@@ -221,5 +221,25 @@ if (sidebarCloseButton) {
     });
     sidebarCloseButton.addEventListener("mouseleave", () => {
         gsap.to(sidebarCloseButton, { rotation: 0, scale: 1, duration: 0.3, ease: "power2.out" });
+    });
+}
+
+// Development Process Section Animation
+if (document.querySelectorAll('.devSection .card').length) {
+    const cards = document.querySelectorAll('.devSection .card');
+    cards.forEach((card, i) => {
+        const fromX = (i % 2 === 0) ? -80 : 80;
+        gsap.from(card, {
+            scrollTrigger: {
+                trigger: card,
+                start: 'top 90%',
+            },
+            x: fromX,
+            y: 10,
+            opacity: 0,
+            duration: 0.8,
+            delay: i * 0.05,
+            ease: 'power3.out'
+        });
     });
 }

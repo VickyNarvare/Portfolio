@@ -6,8 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="The portfolio of Vicky, a frontend developer who creates beautiful and functional web experiences.">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚙️</text></svg>">
-    <!-- ===== CSS ===== -->
-    <link rel="stylesheet" href="main.css" />
+  <!-- ===== CSS ===== -->
+  <link rel="stylesheet" href="main.css" />
+  <link rel="stylesheet" href="new.css" />
     <!-- ===== Boxicons CSS ===== -->
     <link
       href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css"
@@ -20,7 +21,7 @@
     <nav>
       <div class="scroll-progress"></div>
       <div class="nav-bar">
-        <span class="logo navLogo"><a href="#"><span style="color: #4070f4;">&lt;/</span>ViCKY<span  style="color: #4070f4;">&gt;</span></a></span>
+  <span class="logo navLogo"><a href="#"><span style="color: var(--accent)">&lt;/</span>ViCKY<span  style="color: var(--accent);">&gt;</span></a></span>
         <i class="bx bx-menu sidebarOpen"></i>
         <div class="menu">
           <div class="logo-toggle">
@@ -57,12 +58,13 @@
             </div>
           </div>
         </div>
+        <hr style="color: aqua;">
       </section>
 
       <!-- About Section -->
       <section id="about" class="section">
         <div class="container">
-          <h2 class="section-title">About Me</h2>
+          <h2 class="section-title">About <span style="color: var(--accent)">Me</span></h2>
           <div class="about-content">
             <div class="about-text">
               <p>I'm a passionate frontend developer with a love for creating engaging user experiences. With expertise in modern web technologies, I bring ideas to life through clean, efficient code and thoughtful design.</p>
@@ -86,10 +88,96 @@
         </div>
       </section>
 
+      <!-- Development Process Section -->
+             <section id="DevelopmentProcess" class="section devSection">
+               <div class="section-title">
+        <h2>
+          My Development <span style="color: var(--accent)">Process</span>
+        </h2>
+        <p class="lead">
+          A structured approach to deliver high-quality solutions efficiently
+          and transparently.
+        </p>
+      </div>
+      <div class="process-grid">
+        <article class="card" tabindex="0">
+          <div class="step">1</div>
+          <div class="divider"></div>
+          <div class="icon-wrap" aria-hidden="true">
+            <i
+              class="bx bx-search"
+              style="font-size: 36px; color: var(--accent)"
+            ></i>
+          </div>
+          <h3>Discovery</h3>
+          <p>
+            Understanding your requirements, goals, and business needs in
+            detail.
+          </p>
+        </article>
+
+        <article class="card" tabindex="0">
+          <div class="step">2</div>
+          <div class="divider"></div>
+          <div class="icon-wrap" aria-hidden>
+            <i
+              class="bx bx-clipboard"
+              style="font-size: 36px; color: var(--accent)"
+            ></i>
+          </div>
+          <h3>Planning</h3>
+          <p>
+            Creating technical specifications and planning the development
+            approach.
+          </p>
+        </article>
+
+        <article class="card" tabindex="0">
+          <div class="step">3</div>
+          <div class="divider"></div>
+          <div class="icon-wrap" aria-hidden>
+            <i
+              class="bx bx-code-alt"
+              style="font-size: 36px; color: var(--accent)"
+            ></i>
+          </div>
+          <h3>Development</h3>
+          <p>
+            Building the solution with regular updates and transparent
+            communication.
+          </p>
+        </article>
+
+        <article class="card" tabindex="0">
+          <div class="step">4</div>
+          <div class="divider"></div>
+          <div class="icon-wrap" aria-hidden>
+            <i
+              class="bx bx-rocket"
+              style="font-size: 36px; color: var(--accent)"
+            ></i>
+          </div>
+          <h3>Deployment</h3>
+          <p>Launching your solution and ensuring optimal performance.</p>
+        </article>
+      </div>
+<div class="cta-container">
+          <div class="cta-card">
+            <h2 class="cta-title">Ready to Start Your Project?</h2>
+            <p class="cta-lead">Let's discuss how I can help bring your ideas to life with tailored solutions that match your specific requirements and business goals.</p>
+            <div class="cta-buttons">
+              <a href="#contact" class="btn btn-cta-primary">Get In Touch</a>
+              <a href="#works" class="btn btn-cta-secondary">View My Work</a>
+            </div>
+          </div>
+        </div>
+             </section>
+        
+      </section>
       <!-- Works Section -->
-      <section id="works" class="section">
+      <section id="works" class="section" style="padding-top: 50px;">
         <div class="container">
-          <h2 class="section-title">My Works</h2>
+          <h2 class="section-title">My <span style="color: var(--accent)">Works</span></h2>
           <div class="works-grid">
             <div class="work-item">
               <div class="work-image">
@@ -196,7 +284,7 @@
       <!-- Contact Section -->
       <section id="contact" class="section">
         <div class="container">
-          <h2 class="section-title">Get In Touch</h2>
+          <h2 class="section-title">Get In <span style="color: var(--accent)">Touch</span></h2>
           <div class="contact-content">
             <div class="contact-info">
               <h3>Let's work together!</h3>
@@ -235,7 +323,7 @@
               <div class="form-group">
                 <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
               </div>
-              <button type="submit" class="btn btn-primary contect_btn">Send Message</button>
+              <button type="submit" class="btn btn-primary contact_btn">Send Message</button>
             </form>
           </div>
         </div>
@@ -244,6 +332,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="script.js"></script>
+     <!-- <script src="main.js"></script> -->
     <script src="animation.js"></script>
   </body>
 </html>
