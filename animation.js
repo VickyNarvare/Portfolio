@@ -95,7 +95,7 @@ gsap.from(".work-item", {
 gsap.from("#contact .section-title", {
     scrollTrigger: {
         trigger: "#contact",
-        start: "top 80%",
+        start: "top 70%",
     },
     y: 100,
     opacity: 0,
@@ -125,93 +125,111 @@ gsap.from(".contact-form", {
     ease: "power4.out"
 });
 
-// Hover Animations
+// Hover Animations with error handling
 document.querySelectorAll(".btn-primary").forEach(btn => {
-    btn.addEventListener("mouseenter", () => {
-        gsap.to(btn, { y: -2, duration: 0.3, ease: "power2.out" });
-    });
-    btn.addEventListener("mouseleave", () => {
-        gsap.to(btn, { y: 0, duration: 0.3, ease: "power2.out" });
-    });
+    if (btn) {
+        btn.addEventListener("mouseenter", () => {
+            gsap.to(btn, { y: -2, duration: 0.3, ease: "power2.out" });
+        });
+        btn.addEventListener("mouseleave", () => {
+            gsap.to(btn, { y: 0, duration: 0.3, ease: "power2.out" });
+        });
+    }
 });
 
 document.querySelectorAll(".btn-secondary").forEach(btn => {
-    btn.addEventListener("mouseenter", () => {
-        gsap.to(btn, {
-            backgroundColor: "var(--text-color)",
-            color: "var(--body-color)",
-            duration: 0.3,
-            ease: "power2.out"
+    if (btn) {
+        btn.addEventListener("mouseenter", () => {
+            gsap.to(btn, {
+                backgroundColor: "var(--text-color)",
+                color: "var(--body-color)",
+                duration: 0.3,
+                ease: "power2.out"
+            });
         });
-    });
-    btn.addEventListener("mouseleave", () => {
-        gsap.to(btn, {
-            backgroundColor: "transparent",
-            color: "var(--text-color)",
-            duration: 0.3,
-            ease: "power2.out"
+        btn.addEventListener("mouseleave", () => {
+            gsap.to(btn, {
+                backgroundColor: "transparent",
+                color: "var(--text-color)",
+                duration: 0.3,
+                ease: "power2.out"
+            });
         });
-    });
+    }
 });
 
 document.querySelectorAll(".skill-tag").forEach(tag => {
-    tag.addEventListener("mouseenter", () => {
-        gsap.to(tag, {
-            y: -2,
-            boxShadow: "0 4px 12px rgba(64, 112, 244, 0.3)",
-            "--tooltip-opacity": 1,
-            "--tooltip-visibility": "visible",
-            "--tooltip-y": "-10px",
-            duration: 0.3,
-            ease: "power2.out"
+    if (tag) {
+        tag.addEventListener("mouseenter", () => {
+            gsap.to(tag, {
+                y: -2,
+                boxShadow: "0 4px 12px rgba(64, 112, 244, 0.3)",
+                "--tooltip-opacity": 1,
+                "--tooltip-visibility": "visible",
+                "--tooltip-y": "-10px",
+                duration: 0.3,
+                ease: "power2.out"
+            });
         });
-    });
-    tag.addEventListener("mouseleave", () => {
-        gsap.to(tag, {
-            y: 0,
-            boxShadow: "none",
-            "--tooltip-opacity": 0,
-            "--tooltip-visibility": "hidden",
-            "--tooltip-y": "0px",
-            duration: 0.3,
-            ease: "power2.out"
+        tag.addEventListener("mouseleave", () => {
+            gsap.to(tag, {
+                y: 0,
+                boxShadow: "none",
+                "--tooltip-opacity": 0,
+                "--tooltip-visibility": "hidden",
+                "--tooltip-y": "0px",
+                duration: 0.3,
+                ease: "power2.out"
+            });
         });
-    });
+    }
 });
 
 document.querySelectorAll(".work-item").forEach(item => {
-    item.addEventListener("mouseenter", () => {
-        gsap.to(item, { y: -8, scale: 1.02, duration: 0.3, ease: "power2.out" });
-    });
-    item.addEventListener("mouseleave", () => {
-        gsap.to(item, { y: 0, scale: 1, duration: 0.3, ease: "power2.out" });
-    });
+    if (item) {
+        item.addEventListener("mouseenter", () => {
+            gsap.to(item, { y: -8, scale: 1.02, duration: 0.3, ease: "power2.out" });
+        });
+        item.addEventListener("mouseleave", () => {
+            gsap.to(item, { y: 0, scale: 1, duration: 0.3, ease: "power2.out" });
+        });
+    }
 });
 
 document.querySelectorAll(".work-link").forEach(link => {
-    link.addEventListener("mouseenter", () => {
-        gsap.to(link, { y: -2, duration: 0.3, ease: "power2.out" });
-        gsap.to(link.querySelector("i"), { scale: 1.1, duration: 0.3, ease: "power2.out" });
-    });
-    link.addEventListener("mouseleave", () => {
-        gsap.to(link, { y: 0, duration: 0.3, ease: "power2.out" });
-        gsap.to(link.querySelector("i"), { scale: 1, duration: 0.3, ease: "power2.out" });
-    });
-    link.addEventListener("mousedown", () => {
-        gsap.to(link, { y: 0, duration: 0.1, ease: "power2.out" });
-    });
-    link.addEventListener("mouseup", () => {
-        gsap.to(link, { y: -2, duration: 0.1, ease: "power2.out" });
-    });
+    if (link) {
+        link.addEventListener("mouseenter", () => {
+            gsap.to(link, { y: -2, duration: 0.3, ease: "power2.out" });
+            const icon = link.querySelector("i");
+            if (icon) {
+                gsap.to(icon, { scale: 1.1, duration: 0.3, ease: "power2.out" });
+            }
+        });
+        link.addEventListener("mouseleave", () => {
+            gsap.to(link, { y: 0, duration: 0.3, ease: "power2.out" });
+            const icon = link.querySelector("i");
+            if (icon) {
+                gsap.to(icon, { scale: 1, duration: 0.3, ease: "power2.out" });
+            }
+        });
+        link.addEventListener("mousedown", () => {
+            gsap.to(link, { y: 0, duration: 0.1, ease: "power2.out" });
+        });
+        link.addEventListener("mouseup", () => {
+            gsap.to(link, { y: -2, duration: 0.1, ease: "power2.out" });
+        });
+    }
 });
 
 document.querySelectorAll(".social-link").forEach(link => {
-    link.addEventListener("mouseenter", () => {
-        gsap.to(link, { y: -2, duration: 0.3, ease: "power2.out" });
-    });
-    link.addEventListener("mouseleave", () => {
-        gsap.to(link, { y: 0, duration: 0.3, ease: "power2.out" });
-    });
+    if (link) {
+        link.addEventListener("mouseenter", () => {
+            gsap.to(link, { y: -2, duration: 0.3, ease: "power2.out" });
+        });
+        link.addEventListener("mouseleave", () => {
+            gsap.to(link, { y: 0, duration: 0.3, ease: "power2.out" });
+        });
+    }
 });
 
 const sidebarCloseButton = document.querySelector(".logo-toggle .sidebarClose");

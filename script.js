@@ -1,8 +1,9 @@
 // ===============================
 // NAVIGATION ACTIVE LINK SYSTEM
 // ===============================
-const navLinks = document.querySelectorAll('.nav-links a');
+const navLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
 const sections = Array.from(navLinks).map(link => document.querySelector(link.getAttribute('href'))).filter(Boolean);
+
 
 // Restore active link from localStorage on load
 window.addEventListener('DOMContentLoaded', () => {
@@ -20,16 +21,44 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 function setActiveLink() {
-  let index = sections.length - 1;
-  for (let i = 0; i < sections.length; i++) {
-    const section = sections[i];
-    if (section && window.scrollY + 80 < section.offsetTop) {
-      index = i - 1;
-      break;
+  const scrollPosition = window.scrollY;
+  const windowHeight = window.innerHeight;
+  const documentHeight = document.documentElement.scrollHeight;
+  let activeIndex = 0;
+  let maxVisibleArea = 0;
+  
+  // Find the section with the most visible area
+  sections.forEach((section, index) => {
+    if (section) {
+      const sectionTop = section.offsetTop;
+      const sectionBottom = sectionTop + section.offsetHeight;
+      
+      // Calculate visible area of this section
+      const visibleTop = Math.max(scrollPosition, sectionTop);
+      const visibleBottom = Math.min(scrollPosition + windowHeight, sectionBottom);
+      const visibleHeight = Math.max(0, visibleBottom - visibleTop);
+      
+      // If this section has more visible area, make it active
+      if (visibleHeight > maxVisibleArea) {
+        maxVisibleArea = visibleHeight;
+        activeIndex = index;
+      }
+      
+      // Special case: if we're at the very top of the page
+      if (scrollPosition < 100) {
+        activeIndex = 0;
+      }
+      
+      // Special case: if we're near the bottom of the page, activate last section
+      if (scrollPosition + windowHeight >= documentHeight - 100) {
+        activeIndex = sections.length - 1;
+      }
     }
-  }
-  navLinks.forEach((link, i) => {
-    if (i === index && index >= 0) {
+  });
+  
+  // Update active class for navigation links
+  navLinks.forEach((link, index) => {
+    if (index === activeIndex) {
       link.classList.add('active');
       localStorage.setItem('activeNavHref', link.getAttribute('href'));
     } else {
@@ -38,7 +67,25 @@ function setActiveLink() {
   });
 }
 
-window.addEventListener('scroll', setActiveLink);
+// Throttle scroll event for better performance
+let scrollTimeout;
+let isScrolling = false;
+
+window.addEventListener('scroll', () => {
+  if (!isScrolling) {
+    requestAnimationFrame(() => {
+      setActiveLink();
+      isScrolling = false;
+    });
+    isScrolling = true;
+  }
+  
+  // Also use timeout as backup for very fast scrolling
+  if (scrollTimeout) {
+    clearTimeout(scrollTimeout);
+  }
+  scrollTimeout = setTimeout(setActiveLink, 50);
+});
 navLinks.forEach(link => {
   link.addEventListener('click', function () {
     navLinks.forEach(l => l.classList.remove('active'));
@@ -52,13 +99,14 @@ navLinks.forEach(link => {
 });
 
 // ===============================
-// SIDEBAR, DARK MODE, AND TOGGLES
+// MOBILE MENU, DARK MODE, AND TOGGLES
 // ===============================
 const body = document.querySelector("body");
-const nav = document.querySelector("nav");
-const modeToggle = document.querySelector(".dark-light");
-const sidebarOpen = document.querySelector(".sidebarOpen");
-const sidebarClose = document.querySelector(".sidebarClose");
+const navbar = document.querySelector(".navbar");
+const modeToggle = document.querySelector(".theme-toggle");
+const mobileMenuToggle = document.querySelector(".mobile-menu-toggle");
+const mobileMenuOverlay = document.querySelector(".mobile-menu-overlay");
+const mobileMenuClose = document.querySelector(".mobile-menu-close");
 
 // Initialize dark mode with error handling
 try {
@@ -72,11 +120,10 @@ try {
   console.warn("LocalStorage not available:", error);
 }
 
-// Mode toggle with error handling
+// Theme toggle with error handling
 if (modeToggle) {
   modeToggle.addEventListener("click", () => {
     try {
-      modeToggle.classList.toggle("active");
       body.classList.toggle("dark");
       localStorage.setItem(
         "mode",
@@ -87,30 +134,121 @@ if (modeToggle) {
     }
   });
 } else {
-  console.warn("Dark mode toggle button not found");
+  console.warn("Theme toggle button not found");
 }
 
-// Sidebar open with error handling
-if (sidebarOpen && nav) {
-  sidebarOpen.addEventListener("click", () => {
-    nav.classList.add("active");
+// Mobile menu toggle
+if (mobileMenuToggle && mobileMenuOverlay) {
+  mobileMenuToggle.addEventListener("click", () => {
+    mobileMenuToggle.classList.toggle("active");
+    mobileMenuOverlay.classList.toggle("active");
+    body.style.overflow = mobileMenuOverlay.classList.contains("active") ? "hidden" : "";
   });
 } else {
-  console.warn("Sidebar elements not found");
+  console.warn("Mobile menu elements not found");
 }
 
-// Close sidebar when clicking outside or on close button
-body.addEventListener("click", (e) => {
-  if (
-    !e.target.classList.contains("sidebarOpen") &&
-    !e.target.closest(".menu")
-  ) {
-    nav.classList.remove("active");
-  }
-});
-
-if (sidebarClose) {
-  sidebarClose.addEventListener("click", () => {
-    nav.classList.remove("active");
+// Close mobile menu
+if (mobileMenuClose) {
+  mobileMenuClose.addEventListener("click", () => {
+    mobileMenuToggle.classList.remove("active");
+    mobileMenuOverlay.classList.remove("active");
+    body.style.overflow = "";
   });
 }
+
+// Close mobile menu when clicking overlay
+if (mobileMenuOverlay) {
+  mobileMenuOverlay.addEventListener("click", (e) => {
+    if (e.target === mobileMenuOverlay) {
+      mobileMenuToggle.classList.remove("active");
+      mobileMenuOverlay.classList.remove("active");
+      body.style.overflow = "";
+    }
+  });
+}
+
+// Close mobile menu when clicking nav links
+navLinks.forEach(link => {
+  link.addEventListener("click", () => {
+    if (mobileMenuOverlay.classList.contains("active")) {
+      mobileMenuToggle.classList.remove("active");
+      mobileMenuOverlay.classList.remove("active");
+      body.style.overflow = "";
+    }
+  });
+});
+
+// ===============================
+// FORM SUBMISSION HANDLING
+// ===============================
+const contactForm = document.querySelector('.contact-form');
+if (contactForm) {
+  contactForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Get form data
+    const formData = new FormData(this);
+    const name = formData.get('name');
+    const email = formData.get('email');
+    const subject = formData.get('subject');
+    const message = formData.get('message');
+    
+    // Basic validation
+    if (!name || !email || !subject || !message) {
+      alert('Please fill in all fields.');
+      return;
+    }
+    
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      alert('Please enter a valid email address.');
+      return;
+    }
+    
+    // Simulate form submission (replace with actual form handling)
+    const submitBtn = this.querySelector('.contact_btn');
+    const originalText = submitBtn.textContent;
+    
+    submitBtn.textContent = 'Sending...';
+    submitBtn.disabled = true;
+    
+    // Simulate API call
+    setTimeout(() => {
+      alert('Thank you for your message! I\'ll get back to you soon.');
+      this.reset();
+      submitBtn.textContent = originalText;
+      submitBtn.disabled = false;
+    }, 2000);
+  });
+}
+
+// ===============================
+// SCROLL PROGRESS BAR
+// ===============================
+const scrollProgress = document.querySelector('.scroll-progress');
+if (scrollProgress) {
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.pageYOffset;
+    const docHeight = document.body.offsetHeight - window.innerHeight;
+    const scrollPercent = (scrollTop / docHeight) * 100;
+    scrollProgress.style.width = scrollPercent + '%';
+  });
+}
+
+// ===============================
+// SMOOTH SCROLLING FOR ANCHOR LINKS
+// ===============================
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  });
+});

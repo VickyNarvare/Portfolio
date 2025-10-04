@@ -18,26 +18,115 @@
   </head>
   <body>
     <div class="theme-transition-overlay"></div>
-    <nav>
+    <nav class="navbar">
       <div class="scroll-progress"></div>
-      <div class="nav-bar">
-  <span class="logo navLogo"><a href="#"><span style="color: var(--accent)">&lt;/</span>ViCKY<span  style="color: var(--accent);">&gt;</span></a></span>
-        <i class="bx bx-menu sidebarOpen"></i>
-        <div class="menu">
-          <div class="logo-toggle">
-            <i class="bx bx-x sidebarClose"></i>
-          </div>
-          <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#works">Works</a></li>
-            <li><a href="#contact">Contact</a></li>
+      <div class="nav-container">
+        <!-- Logo -->
+        <div class="nav-logo">
+          <a href="#home" class="logo-link">
+            <span class="logo-text">
+              <span class="logo-bracket">&lt;/</span>
+              <span class="logo-name">ViCKY</span>
+              <span class="logo-bracket">&gt;</span>
+            </span>
+          </a>
+        </div>
+        
+        <!-- Desktop Navigation -->
+        <div class="nav-menu desktop-menu">
+          <ul class="nav-list">
+            <li class="nav-item">
+              <a href="#home" class="nav-link">
+                <span class="nav-text">Home</span>
+                <span class="nav-indicator"></span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#about" class="nav-link">
+                <span class="nav-text">About</span>
+                <span class="nav-indicator"></span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#works" class="nav-link">
+                <span class="nav-text">Works</span>
+                <span class="nav-indicator"></span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#contact" class="nav-link">
+                <span class="nav-text">Contact</span>
+                <span class="nav-indicator"></span>
+              </a>
+            </li>
           </ul>
         </div>
-          <div class="dark-light">
-            <i class="bx bx-moon moon"></i>
-            <i class="bx bx-sun sun"></i>
+        
+        <!-- Nav Controls -->
+        <div class="nav-controls">
+          <!-- Theme Toggle -->
+          <button class="theme-toggle" aria-label="Toggle theme">
+            <div class="theme-icon">
+              <i class="bx bx-moon moon-icon"></i>
+              <i class="bx bx-sun sun-icon"></i>
+            </div>
+          </button>
+          
+          <!-- Mobile Menu Toggle -->
+          <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
+            <span class="hamburger">
+              <span class="hamburger-line"></span>
+              <span class="hamburger-line"></span>
+              <span class="hamburger-line"></span>
+            </span>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Mobile Menu Overlay -->
+      <div class="mobile-menu-overlay">
+        <div class="mobile-menu">
+          <div class="mobile-menu-header">
+            <div class="mobile-logo">
+              <span class="logo-text">
+                <span class="logo-bracket">&lt;/</span>
+                <span class="logo-name">ViCKY</span>
+                <span class="logo-bracket">&gt;</span>
+              </span>
+            </div>
+            <button class="mobile-menu-close" aria-label="Close mobile menu">
+              <i class="bx bx-x"></i>
+            </button>
           </div>
+          
+          <nav class="mobile-nav">
+            <ul class="mobile-nav-list">
+              <li class="mobile-nav-item">
+                <a href="#home" class="mobile-nav-link">
+                  <i class="bx bx-home"></i>
+                  <span>Home</span>
+                </a>
+              </li>
+              <li class="mobile-nav-item">
+                <a href="#about" class="mobile-nav-link">
+                  <i class="bx bx-user"></i>
+                  <span>About</span>
+                </a>
+              </li>
+              <li class="mobile-nav-item">
+                <a href="#works" class="mobile-nav-link">
+                  <i class="bx bx-briefcase"></i>
+                  <span>Works</span>
+                </a>
+              </li>
+              <li class="mobile-nav-item">
+                <a href="#contact" class="mobile-nav-link">
+                  <i class="bx bx-envelope"></i>
+                  <span>Contact</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
         </div>
       </div>
     </nav>
@@ -119,7 +208,7 @@
         <article class="card" tabindex="0">
           <div class="step">2</div>
           <div class="divider"></div>
-          <div class="icon-wrap" aria-hidden>
+          <div class="icon-wrap" aria-hidden="true">
             <i
               class="bx bx-clipboard"
               style="font-size: 36px; color: var(--accent)"
@@ -135,7 +224,7 @@
         <article class="card" tabindex="0">
           <div class="step">3</div>
           <div class="divider"></div>
-          <div class="icon-wrap" aria-hidden>
+          <div class="icon-wrap" aria-hidden="true">
             <i
               class="bx bx-code-alt"
               style="font-size: 36px; color: var(--accent)"
@@ -151,7 +240,7 @@
         <article class="card" tabindex="0">
           <div class="step">4</div>
           <div class="divider"></div>
-          <div class="icon-wrap" aria-hidden>
+          <div class="icon-wrap" aria-hidden="true">
             <i
               class="bx bx-rocket"
               style="font-size: 36px; color: var(--accent)"
@@ -172,8 +261,6 @@
           </div>
         </div>
              </section>
-        
-      </section>
       <!-- Works Section -->
       <section id="works" class="section" style="padding-top: 50px;">
         <div class="container">
