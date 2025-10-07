@@ -4,10 +4,16 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="The portfolio of Vicky, a frontend developer who creates beautiful and functional web experiences.">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚙️</text></svg>">
-  <!-- ===== CSS ===== -->
-  <link rel="stylesheet" href="main.css" />
+    <meta
+      name="description"
+      content="The portfolio of Vicky, a frontend developer who creates beautiful and functional web experiences."
+    />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚙️</text></svg>"
+    />
+    <!-- ===== CSS ===== -->
+    <link rel="stylesheet" href="main.css" />
     <!-- ===== Boxicons CSS ===== -->
     <link
       href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css"
@@ -30,7 +36,7 @@
             </span>
           </a>
         </div>
-        
+
         <!-- Desktop Navigation -->
         <div class="nav-menu desktop-menu">
           <ul class="nav-list">
@@ -60,7 +66,7 @@
             </li>
           </ul>
         </div>
-        
+
         <!-- Nav Controls -->
         <div class="nav-controls">
           <!-- Theme Toggle -->
@@ -70,7 +76,7 @@
               <i class="bx bx-sun sun-icon"></i>
             </div>
           </button>
-          
+
           <!-- Mobile Menu Toggle -->
           <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
             <span class="hamburger">
@@ -81,7 +87,7 @@
           </button>
         </div>
       </div>
-      
+
       <!-- Mobile Menu Overlay -->
       <div class="mobile-menu-overlay">
         <div class="mobile-menu">
@@ -97,7 +103,7 @@
               <i class="bx bx-x"></i>
             </button>
           </div>
-          
+
           <nav class="mobile-nav">
             <ul class="mobile-nav-list">
               <li class="mobile-nav-item">
@@ -132,31 +138,72 @@
 
     <main>
       <div class="grid"></div>
-      
+
       <!-- Home Section -->
       <section id="home" class="section">
         <div class="container">
           <div class="hero-content">
-            <h1 class="hero-title">Hello, I'm <span class="highlight">&lt;/V<span class="i">i</span>CKY&gt;</span></h1>
+            <h1 class="hero-title">
+              Hello, I'm
+              <span class="highlight"
+                >&lt;/V<span class="i">i</span>CKY&gt;</span
+              >
+            </h1>
             <p class="hero-subtitle">Frontend Developer</p>
-            <p class="hero-description">I create beautiful and functional web experiences that users love.</p>
+            <p class="hero-description">
+              I create beautiful and functional web experiences that users love.
+            </p>
             <div class="hero-buttons">
               <a href="#works" class="btn btn-primary">View My Work</a>
               <a href="#contact" class="btn btn-secondary">Get In Touch</a>
             </div>
           </div>
         </div>
-        <hr style="color: aqua;">
+        <!-- Marquee -->
+        <div class="marquee" aria-label="Scrolling marquee">
+          <div class="marquee__track">
+            <span class="marquee__item">HTML5</span>
+            <span class="marquee__item">CSS3</span>
+            <span class="marquee__item">JavaScript</span>
+            <span class="marquee__item">GSAP</span>
+            <span class="marquee__item">React</span>
+            <span class="marquee__item">Tailwind</span>
+            <span class="marquee__item">SASS</span>
+            <span class="marquee__item">JAVA</span>
+            <span class="marquee__item">Python</span>
+            <!-- duplicate set for seamless loop -->
+            <span class="marquee__item">HTML5</span>
+            <span class="marquee__item">CSS3</span>
+            <span class="marquee__item">JavaScript</span>
+            <span class="marquee__item">GSAP</span>
+            <span class="marquee__item">React</span>
+            <span class="marquee__item">Tailwind</span>
+            <span class="marquee__item">SASS</span>
+            <span class="marquee__item">JAVA</span>
+            <span class="marquee__item">Python</span>
+          </div>
+        </div>
       </section>
 
       <!-- About Section -->
       <section id="about" class="section">
         <div class="container">
-          <h2 class="section-title">About <span style="color: var(--accent)">Me</span></h2>
+          <h2 class="section-title">
+            About <span style="color: var(--accent)">Me</span>
+          </h2>
           <div class="about-content">
             <div class="about-text">
-              <p>I'm a passionate frontend developer with a love for creating engaging user experiences. With expertise in modern web technologies, I bring ideas to life through clean, efficient code and thoughtful design.</p>
-              <p>When I'm not coding, you can find me exploring new technologies, contributing to open source projects, or enjoying a good cup of coffee while sketching out new ideas.</p>
+              <p>
+                I'm a passionate frontend developer with a love for creating
+                engaging user experiences. With expertise in modern web
+                technologies, I bring ideas to life through clean, efficient
+                code and thoughtful design.
+              </p>
+              <p>
+                When I'm not coding, you can find me exploring new technologies,
+                contributing to open source projects, or enjoying a good cup of
+                coffee while sketching out new ideas.
+              </p>
               <div class="skills">
                 <h3>Skills</h3>
                 <div class="skill-tags">
@@ -177,108 +224,124 @@
       </section>
 
       <!-- Development Process Section -->
-             <section id="DevelopmentProcess" class="section devSection">
-               <div class="section-title">
-        <h2>
-          My Development <span style="color: var(--accent)">Process</span>
-        </h2>
-        <p class="lead">
-          A structured approach to deliver high-quality solutions efficiently
-          and transparently.
-        </p>
-      </div>
-      <div class="process-grid">
-        <article class="card" tabindex="0">
-          <div class="step">1</div>
-          <div class="divider"></div>
-          <div class="icon-wrap" aria-hidden="true">
-            <i
-              class="bx bx-search"
-              style="font-size: 36px; color: var(--accent)"
-            ></i>
-          </div>
-          <h3>Discovery</h3>
-          <p>
-            Understanding your requirements, goals, and business needs in
-            detail.
+      <section id="DevelopmentProcess" class="section devSection">
+        <div class="section-title">
+          <h2>
+            My Development <span style="color: var(--accent)">Process</span>
+          </h2>
+          <p class="lead">
+            A structured approach to deliver high-quality solutions efficiently
+            and transparently.
           </p>
-        </article>
+        </div>
+        <div class="process-grid">
+          <article class="card" tabindex="0">
+            <div class="step">1</div>
+            <div class="divider"></div>
+            <div class="icon-wrap" aria-hidden="true">
+              <i
+                class="bx bx-search"
+                style="font-size: 36px; color: var(--accent)"
+              ></i>
+            </div>
+            <h3>Discovery</h3>
+            <p>
+              Understanding your requirements, goals, and business needs in
+              detail.
+            </p>
+          </article>
 
-        <article class="card" tabindex="0">
-          <div class="step">2</div>
-          <div class="divider"></div>
-          <div class="icon-wrap" aria-hidden="true">
-            <i
-              class="bx bx-clipboard"
-              style="font-size: 36px; color: var(--accent)"
-            ></i>
-          </div>
-          <h3>Planning</h3>
-          <p>
-            Creating technical specifications and planning the development
-            approach.
-          </p>
-        </article>
+          <article class="card" tabindex="0">
+            <div class="step">2</div>
+            <div class="divider"></div>
+            <div class="icon-wrap" aria-hidden="true">
+              <i
+                class="bx bx-clipboard"
+                style="font-size: 36px; color: var(--accent)"
+              ></i>
+            </div>
+            <h3>Planning</h3>
+            <p>
+              Creating technical specifications and planning the development
+              approach.
+            </p>
+          </article>
 
-        <article class="card" tabindex="0">
-          <div class="step">3</div>
-          <div class="divider"></div>
-          <div class="icon-wrap" aria-hidden="true">
-            <i
-              class="bx bx-code-alt"
-              style="font-size: 36px; color: var(--accent)"
-            ></i>
-          </div>
-          <h3>Development</h3>
-          <p>
-            Building the solution with regular updates and transparent
-            communication.
-          </p>
-        </article>
+          <article class="card" tabindex="0">
+            <div class="step">3</div>
+            <div class="divider"></div>
+            <div class="icon-wrap" aria-hidden="true">
+              <i
+                class="bx bx-code-alt"
+                style="font-size: 36px; color: var(--accent)"
+              ></i>
+            </div>
+            <h3>Development</h3>
+            <p>
+              Building the solution with regular updates and transparent
+              communication.
+            </p>
+          </article>
 
-        <article class="card" tabindex="0">
-          <div class="step">4</div>
-          <div class="divider"></div>
-          <div class="icon-wrap" aria-hidden="true">
-            <i
-              class="bx bx-rocket"
-              style="font-size: 36px; color: var(--accent)"
-            ></i>
-          </div>
-          <h3>Deployment</h3>
-          <p>Launching your solution and ensuring optimal performance.</p>
-        </article>
-      </div>
-<div class="cta-container">
+          <article class="card" tabindex="0">
+            <div class="step">4</div>
+            <div class="divider"></div>
+            <div class="icon-wrap" aria-hidden="true">
+              <i
+                class="bx bx-rocket"
+                style="font-size: 36px; color: var(--accent)"
+              ></i>
+            </div>
+            <h3>Deployment</h3>
+            <p>Launching your solution and ensuring optimal performance.</p>
+          </article>
+        </div>
+        <div class="cta-container">
           <div class="cta-card">
             <h2 class="cta-title">Ready to Start Your Project?</h2>
-            <p class="cta-lead">Let's discuss how I can help bring your ideas to life with tailored solutions that match your specific requirements and business goals.</p>
+            <p class="cta-lead">
+              Let's discuss how I can help bring your ideas to life with
+              tailored solutions that match your specific requirements and
+              business goals.
+            </p>
             <div class="cta-buttons">
               <a href="#contact" class="btn btn-cta-primary">Get In Touch</a>
-              <a href="#works" class="btn btn-cta-secondary">View My Work</a>
+              <a href="#works" class="btn btn-secondary">View My Work</a>
             </div>
           </div>
         </div>
-             </section>
+      </section>
       <!-- Works Section -->
-      <section id="works" class="section" style="padding-top: 50px;">
+      <section id="works" class="section" style="padding-top: 50px">
         <div class="container">
-          <h2 class="section-title">My <span style="color: var(--accent)">Works</span></h2>
+          <h2 class="section-title">
+            My <span style="color: var(--accent)">Works</span>
+          </h2>
           <div class="works-grid">
             <div class="work-item">
               <div class="work-image">
-                <img src="Images/project1.png" alt="Screenshot of a weather application interface showing the current weather for a city, including temperature and weather icons.">
+                <img
+                  src="Images/project1.png"
+                  alt="Screenshot of a weather application interface showing the current weather for a city, including temperature and weather icons."
+                />
               </div>
               <div class="work-content">
                 <h3>Weather Application</h3>
-                <p>A modern Weather Application built with HTML5 , CSS3, JavaScript</p>
+                <p>
+                  A modern Weather Application built with HTML5 , CSS3,
+                  JavaScript
+                </p>
                 <div class="work-tech">
                   <span>HTML5</span>
                   <span>CSS3</span>
                   <span>JavaScript</span>
                 </div>
                 <div class="work-links">
-                  <a href="https://weatherappbyvicky.netlify.app" class="work-link" target="_blank">
+                  <a
+                    href="https://weatherappbyvicky.netlify.app"
+                    class="work-link"
+                    target="_blank"
+                  >
                     <i class="bx bx-link-external"></i>
                     Live Demo
                   </a>
@@ -291,7 +354,10 @@
             </div>
             <div class="work-item">
               <div class="work-image">
-               <img src="Images/project2.png" alt="Screenshot of the ElectraX website homepage, showcasing a futuristic design with vibrant colors and smooth animations.">
+                <img
+                  src="Images/project2.png"
+                  alt="Screenshot of the ElectraX website homepage, showcasing a futuristic design with vibrant colors and smooth animations."
+                />
               </div>
               <div class="work-content">
                 <h3>ElectraX Website</h3>
@@ -303,7 +369,11 @@
                   <span>Gsap</span>
                 </div>
                 <div class="work-links">
-                  <a href="https://electraxbyvicky.netlify.app" class="work-link" target="_blank">
+                  <a
+                    href="https://electraxbyvicky.netlify.app"
+                    class="work-link"
+                    target="_blank"
+                  >
                     <i class="bx bx-link-external"></i>
                     Live Demo
                   </a>
@@ -316,18 +386,28 @@
             </div>
             <div class="work-item">
               <div class="work-image">
-                  <img src="Images/project3.png" alt="Screenshot of the Kalika Construction company website homepage, displaying a professional layout with construction-related imagery.">
+                <img
+                  src="Images/project3.png"
+                  alt="Screenshot of the Kalika Construction company website homepage, displaying a professional layout with construction-related imagery."
+                />
               </div>
               <div class="work-content">
                 <h3>Kalika Construction</h3>
-                <p>An Kalika Construction website built in HTML5 ,CSS3 and JavaScript</p>
+                <p>
+                  An Kalika Construction website built in HTML5 ,CSS3 and
+                  JavaScript
+                </p>
                 <div class="work-tech">
                   <span>HTML5</span>
                   <span>CSS3</span>
                   <span>JavaScript</span>
                 </div>
                 <div class="work-links">
-                  <a href="https://kalikaconstruction2.netlify.app" class="work-link" target="_blank">
+                  <a
+                    href="https://kalikaconstruction2.netlify.app"
+                    class="work-link"
+                    target="_blank"
+                  >
                     <i class="bx bx-link-external"></i>
                     Live Demo
                   </a>
@@ -338,13 +418,16 @@
                 </div>
               </div>
             </div>
-            <div class="work-item ">
+            <div class="work-item">
               <div class="work-image">
-                  <img src="Images/project4.png" alt="Screenshot of a JARVIS AI demo platform interface, featuring a modern, dark-themed UI with voice command visualization.">
+                <img
+                  src="Images/project4.png"
+                  alt="Screenshot of a JARVIS AI demo platform interface, featuring a modern, dark-themed UI with voice command visualization."
+                />
               </div>
               <div class="work-content">
                 <h3>JARVIS AI</h3>
-                <p>A modern Jarvis AI demo platform built in Firebase studio </p>
+                <p>A modern Jarvis AI demo platform built in Firebase studio</p>
                 <div class="work-tech">
                   <span>HTML5</span>
                   <span>CSS3</span>
@@ -352,7 +435,11 @@
                   <span>Firebase Studio</span>
                 </div>
                 <div class="work-links">
-                  <a href="https://jarvisbyvicky.netlify.app" class="work-link" target="_blank">
+                  <a
+                    href="https://jarvisbyvicky.netlify.app"
+                    class="work-link"
+                    target="_blank"
+                  >
                     <i class="bx bx-link-external"></i>
                     Live Demo
                   </a>
@@ -370,11 +457,16 @@
       <!-- Contact Section -->
       <section id="contact" class="section">
         <div class="container">
-          <h2 class="section-title">Get In <span style="color: var(--accent)">Touch</span></h2>
+          <h2 class="section-title">
+            Get In <span style="color: var(--accent)">Touch</span>
+          </h2>
           <div class="contact-content">
             <div class="contact-info">
               <h3>Let's work together!</h3>
-              <p>I'm always interested in new opportunities and exciting projects. Feel free to reach out!</p>
+              <p>
+                I'm always interested in new opportunities and exciting
+                projects. Feel free to reach out!
+              </p>
               <div class="contact-details">
                 <div class="contact-item">
                   <i class="bx bx-envelope"></i>
@@ -390,26 +482,68 @@
                 </div>
               </div>
               <div class="social-links">
-                <a href="https://github.com/VickyNarvare" class="social-link" aria-label="GitHub"><i class="bx bxl-github"></i></a>
-                <a href="https://linkedin.com" class="social-link" aria-label="LinkedIn"><i class="bx bxl-linkedin"></i></a>
-                <a href="https://whatsapp.com" class="social-link" aria-label="WhatsApp"><i class="bx bxl-whatsapp"></i></a>
-                <a href="https://facebook.com" class="social-link" aria-label="Facebook"><i class="bx bxl-facebook"></i></a>
+                <a
+                  href="https://github.com/VickyNarvare"
+                  class="social-link"
+                  aria-label="GitHub"
+                  ><i class="bx bxl-github"></i
+                ></a>
+                <a
+                  href="https://linkedin.com"
+                  class="social-link"
+                  aria-label="LinkedIn"
+                  ><i class="bx bxl-linkedin"></i
+                ></a>
+                <a
+                  href="https://whatsapp.com"
+                  class="social-link"
+                  aria-label="WhatsApp"
+                  ><i class="bx bxl-whatsapp"></i
+                ></a>
+                <a
+                  href="https://facebook.com"
+                  class="social-link"
+                  aria-label="Facebook"
+                  ><i class="bx bxl-facebook"></i
+                ></a>
               </div>
             </div>
             <form class="contact-form" method="POST">
               <div class="form-group">
-                <input type="text" name="name" placeholder="Your Name" required>
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Your Name"
+                  required
+                />
               </div>
               <div class="form-group">
-                <input type="email" name="email" placeholder="Your Email" required>
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Your Email"
+                  required
+                />
               </div>
               <div class="form-group">
-                <input type="text" name="subject" placeholder="Subject" required>
+                <input
+                  type="text"
+                  name="subject"
+                  placeholder="Subject"
+                  required
+                />
               </div>
               <div class="form-group">
-                <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+                <textarea
+                  name="message"
+                  placeholder="Your Message"
+                  rows="5"
+                  required
+                ></textarea>
               </div>
-              <button type="submit" class="btn btn-primary contact_btn">Send Message</button>
+              <button type="submit" class="btn btn-primary contact_btn">
+                Send Message
+              </button>
             </form>
           </div>
         </div>
@@ -418,7 +552,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="script.js"></script>
-     <!-- <script src="main.js"></script> -->
+    <!-- <script src="main.js"></script> -->
     <script src="animation.js"></script>
   </body>
 </html>

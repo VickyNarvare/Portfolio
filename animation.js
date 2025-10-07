@@ -31,6 +31,55 @@ gsap.from(".hero-buttons .btn", {
     delay: 1.4
 });
 
+// Simple GSAP marquee: leftward loop
+window.addEventListener('load', function () {
+    const tracks = document.querySelectorAll('.marquee .marquee__track');
+    if (!tracks.length) return;
+
+    const SPEED = 80; // px per second
+    const tweens = [];
+
+    function init() {
+        // kill old tweens
+        while (tweens.length) {
+            const t = tweens.pop();
+            t && t.kill && t.kill();
+        }
+
+        tracks.forEach(track => {
+            // start from 0 each build
+            gsap.set(track, { x: 0 });
+
+            // requires duplicated items in HTML for seamless loop
+            const distance = track.scrollWidth / 2;
+            if (!distance) return;
+
+            const duration = distance / SPEED;
+            const tween = gsap.to(track, {
+                x: -distance,
+                duration,
+                ease: 'none',
+                repeat: -1
+            });
+            tweens.push(tween);
+
+            const wrapper = track.closest('.marquee');
+            if (wrapper) {
+                wrapper.addEventListener('mouseenter', () => tween.pause());
+                wrapper.addEventListener('mouseleave', () => tween.resume());
+            }
+        });
+    }
+
+    init();
+
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(init, 150);
+    });
+});
+
 // About Section Animation
 gsap.from("#about .section-title", {
     scrollTrigger: {
