@@ -710,7 +710,6 @@ body.dark .dot-mask {
 .marquee {
   position: relative;
   overflow: hidden;
-  width: 70%;
   margin: 28px auto 0;
   mask-image: linear-gradient(
     90deg,
