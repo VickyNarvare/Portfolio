@@ -707,9 +707,11 @@ body.dark .dot-mask {
 }
 
 /*! =====  Marquee base===== */
+/* ===== INFINITE MARQUEE ===== */
 .marquee {
   position: relative;
   overflow: hidden;
+  width: 100%;
   margin: 28px auto 0;
   mask-image: linear-gradient(
     90deg,
@@ -726,30 +728,38 @@ body.dark .dot-mask {
     transparent
   );
 }
-
 .marquee__track {
+  /* height: 100px; */
   display: inline-flex;
   align-items: center;
   gap: 36px;
   white-space: nowrap;
   will-change: transform;
 }
-
 .marquee__item {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   padding: 12px 22px;
   border-radius: 999px;
-  background: rgba(64, 112, 244, 0.06); /* accent rgba */
-  border: 1px solid rgba(64, 112, 244, 0.12);
-  color: #4070f4; /* accent */
+  background: linear-gradient(
+    180deg,
+    var(--accent-rgba-06),
+    var(--accent-rgba-1)
+  );
+  border: 1px solid var(--accent-rgba-12);
+  color: var(--accent);
   font-weight: 800;
   text-transform: uppercase;
-  font-size: 0.9rem;
+  font-size: var(--font-sm);
   letter-spacing: 1.2px;
-  text-shadow: 0 8px 24px rgba(64, 112, 244, 0.08);
+  text-shadow: 0 8px 24px var(--accent-rgba-08);
 }
+/* .marquee--alt removed */
+body.dark .marquee__item {
+  box-shadow: 0 6px 16px var(--accent-rgba-08);
+}
+
 
 @media (max-width: 768px) {
   .marquee__item {
