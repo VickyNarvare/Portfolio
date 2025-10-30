@@ -104,7 +104,7 @@ body.dark {
   top: 0;
   left: 0;
   width: 100%;
-  height: 80px;
+  height: 60px;
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(20px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -187,7 +187,7 @@ body.dark .navbar {
   position: relative;
   display: flex;
   align-items: center;
-  padding: 0.75rem 1.5rem;
+  padding: 0.60rem 1.5rem;
   text-decoration: none;
   color: var(--text-color);
   font-weight: 500;
@@ -706,13 +706,12 @@ body.dark .dot-mask {
   border: 2px solid var(--text-color);
 }
 
-/*! =====  Marquee base===== */
-/* ===== INFINITE MARQUEE ===== */
+/*! ===== INFINITE MARQUEE ===== */
 .marquee {
   position: relative;
   overflow: hidden;
   width: 100%;
-  margin: 28px auto 0;
+  margin: 100px auto 0;
   mask-image: linear-gradient(
     90deg,
     transparent,
@@ -1453,13 +1452,14 @@ body.dark .skill-tag::after {
     width: 18px;
   }
     .footer-content {
-    grid-template-columns: 1fre;
+    grid-template-columns: 1fr;
     gap: var(--spacing-lg);
   }
 
   .footer-links {
     grid-template-columns: 1fr;
     gap: 1.5rem;
+    margin-top: 50px;
   }
 
   .footer-bottom {
@@ -1614,3 +1614,6 @@ body.dark .skill-tag::after {
     padding: 60px 0;
   }
 }
+
+
+
