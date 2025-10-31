@@ -1,4 +1,115 @@
 // ===============================
+// LOADING SCREEN WITH GSAP
+// ===============================
+document.addEventListener('DOMContentLoaded', () => {
+  const body = document.body;
+  const loadingScreen = document.getElementById('loadingScreen');
+  
+  if (!loadingScreen) return;
+  
+  // Add loading class to body
+  body.classList.add('loading');
+  
+  // Get loading elements
+  const loadingIcons = loadingScreen.querySelectorAll('.loading-icon-circle');
+  const loadingName = loadingScreen.querySelector('.loading-name');
+  const loadingTitle = loadingScreen.querySelector('.loading-title');
+  const loadingUrl = loadingScreen.querySelector('.loading-url');
+  
+  // Set initial states for GSAP animation
+  gsap.set([loadingIcons, loadingName, loadingTitle, loadingUrl], {
+    opacity: 0,
+    y: 30
+  });
+  
+  // Create loading animation timeline
+  const loadingTL = gsap.timeline();
+  
+  // Animate icons with stagger
+  loadingTL.to(loadingIcons, {
+    opacity: 1,
+    y: 0,
+    duration: 0.6,
+    stagger: 0.15,
+    ease: 'power3.out'
+  })
+  // Animate name
+  .to(loadingName, {
+    opacity: 1,
+    y: 0,
+    duration: 0.6,
+    ease: 'power3.out'
+  }, '-=0.3')
+  // Animate title
+  .to(loadingTitle, {
+    opacity: 1,
+    y: 0,
+    duration: 0.6,
+    ease: 'power3.out'
+  }, '-=0.4')
+  // Animate URL
+  .to(loadingUrl, {
+    opacity: 1,
+    y: 0,
+    duration: 0.5,
+    ease: 'power3.out'
+  }, '-=0.3');
+  
+  // Animate icons pulse with GSAP (using filter drop-shadow for better animation)
+  loadingIcons.forEach((icon, index) => {
+    // Create a timeline for each icon's pulse animation
+    const pulseTL = gsap.timeline({ repeat: -1, delay: index * 0.3 });
+    
+    pulseTL.to(icon, {
+      filter: 'drop-shadow(0 0 30px rgba(64, 112, 244, 0.8)) drop-shadow(0 0 60px rgba(48, 86, 211, 0.6))',
+      duration: 2,
+      ease: 'sine.inOut'
+    })
+    .to(icon, {
+      filter: 'drop-shadow(0 0 20px rgba(64, 112, 244, 0.6)) drop-shadow(0 0 40px rgba(48, 86, 211, 0.4))',
+      duration: 2,
+      ease: 'sine.inOut'
+    });
+    
+    // Also animate scale slightly for more dynamic effect
+    gsap.to(icon, {
+      scale: 1.05,
+      duration: 2,
+      repeat: -1,
+      yoyo: true,
+      ease: 'sine.inOut',
+      delay: index * 0.3
+    });
+  });
+  
+  // Wait for all resources to load
+  window.addEventListener('load', () => {
+    // Minimum display time for loading screen (1.5 seconds)
+    setTimeout(() => {
+      if (loadingScreen) {
+        // GSAP exit animation
+        gsap.to(loadingScreen, {
+          opacity: 0,
+          duration: 0.6,
+          ease: 'power2.inOut',
+          onComplete: () => {
+            loadingScreen.classList.add('hidden');
+            body.classList.remove('loading');
+            
+            // Remove loading screen from DOM after fade out
+            setTimeout(() => {
+              if (loadingScreen && loadingScreen.parentNode) {
+                loadingScreen.remove();
+              }
+            }, 100);
+          }
+        });
+      }
+    }, 1500);
+  });
+});
+
+// ===============================
 // NAVIGATION ACTIVE LINK SYSTEM
 // ===============================
 const navLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
@@ -250,5 +361,44 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         block: 'start'
       });
     }
+  });
+});
+
+// ===============================
+// SERVICE CARDS EXPAND/COLLAPSE
+// ===============================
+document.addEventListener('DOMContentLoaded', () => {
+  const serviceToggles = document.querySelectorAll('.service-toggle');
+  const serviceLinkToggles = document.querySelectorAll('.service-link-toggle');
+  const serviceLinkExpands = document.querySelectorAll('.service-link-expand');
+
+  // Toggle service details when clicking the arrow button
+  serviceToggles.forEach(toggle => {
+    toggle.addEventListener('click', () => {
+      const serviceCard = toggle.closest('.service-card');
+      if (serviceCard) {
+        serviceCard.classList.toggle('expanded');
+      }
+    });
+  });
+
+  // Expand service details when clicking "Click for details"
+  serviceLinkExpands.forEach(expand => {
+    expand.addEventListener('click', () => {
+      const serviceCard = expand.closest('.service-card');
+      if (serviceCard) {
+        serviceCard.classList.add('expanded');
+      }
+    });
+  });
+
+  // Collapse service details when clicking "Click to minimize"
+  serviceLinkToggles.forEach(toggle => {
+    toggle.addEventListener('click', () => {
+      const serviceCard = toggle.closest('.service-card');
+      if (serviceCard) {
+        serviceCard.classList.remove('expanded');
+      }
+    });
   });
 });

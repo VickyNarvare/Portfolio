@@ -80,6 +80,109 @@ window.addEventListener('load', function () {
     });
 });
 
+// Technologies Array
+const technologies = [
+    'CSS3',
+    'JAVASCRIPT',
+    'GSAP',
+    'REACT',
+    'TAILWIND',
+    'SASS',
+    'JAVA',
+    'PYTHON',
+    'HTML5'
+];
+
+// Function to populate marquee with technologies from array (infinite loop)
+function populateTechMarquee(trackElement) {
+    if (!trackElement) return;
+    
+    // Clear existing content
+    trackElement.innerHTML = '';
+    
+    // Create multiple sets for seamless infinite loop (at least 3 sets for smooth infinite effect)
+    for (let i = 0; i < 3; i++) {
+        technologies.forEach(tech => {
+            const span = document.createElement('span');
+            span.className = 'tech-marquee__item';
+            span.textContent = tech;
+            trackElement.appendChild(span);
+        });
+    }
+}
+
+// Technologies Marquee Animation with GSAP - Infinite Loop
+window.addEventListener('load', function () {
+    const techTracks = document.querySelectorAll('.tech-marquee .tech-marquee__track');
+    if (!techTracks.length) return;
+
+    // Populate marquee from array
+    techTracks.forEach(track => {
+        populateTechMarquee(track);
+    });
+
+    const TECH_SPEED = 60; // px per second
+    const techTweens = [];
+
+    function initTechMarquee() {
+        // kill old tweens
+        while (techTweens.length) {
+            const t = techTweens.pop();
+            t && t.kill && t.kill();
+        }
+
+        techTracks.forEach(track => {
+            // Reset position
+            gsap.set(track, { x: 0 });
+
+            // Calculate distance for seamless infinite loop
+            // We use 1/3 of the width since we have 3 sets of items
+            const itemsWidth = track.scrollWidth / 3;
+            if (!itemsWidth) return;
+
+            // Duration for smooth animation
+            const duration = itemsWidth / TECH_SPEED;
+
+            // Perfect infinite seamless loop animation
+            // repeat: -1 means infinite loop
+            const infiniteTween = gsap.to(track, {
+                x: -itemsWidth,
+                duration: duration,
+                ease: 'none',
+                repeat: -1, // Infinite repeat - never stops
+                immediateRender: true
+            });
+
+            techTweens.push(infiniteTween);
+
+            // Pause on hover
+            const wrapper = track.closest('.tech-marquee');
+            if (wrapper) {
+                wrapper.addEventListener('mouseenter', () => infiniteTween.pause());
+                wrapper.addEventListener('mouseleave', () => infiniteTween.resume());
+            }
+        });
+    }
+
+    // Wait for DOM to update after populating
+    setTimeout(() => {
+        initTechMarquee();
+    }, 100);
+
+    // Handle window resize
+    let techResizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(techResizeTimer);
+        techResizeTimer = setTimeout(() => {
+            // Repopulate and reinit on resize
+            techTracks.forEach(track => {
+                populateTechMarquee(track);
+            });
+            setTimeout(initTechMarquee, 50);
+        }, 150);
+    });
+});
+
 // About Section Animation
 gsap.from("#about .section-title", {
     scrollTrigger: {

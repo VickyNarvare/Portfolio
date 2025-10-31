@@ -22,6 +22,29 @@
     <title>Portfolio</title>
   </head>
   <body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+      <div class="loading-content">
+        <div class="loading-icons">
+          <div class="loading-icon-circle">
+            <i class="bx bx-code-alt"></i>
+          </div>
+          <div class="loading-icon-circle">
+            <i class="bx bx-user"></i>
+          </div>
+          <div class="loading-icon-circle">
+            <i class="bx bxl-github"></i>
+          </div>
+        </div>
+        <h1 class="loading-name">Hello, I'm Vicky,</h1>
+        <h2 class="loading-title">Frontend Developer</h2>
+        <div class="loading-url">
+          <i class="bx bx-globe"></i>
+          <span>www.vickynarvare.vercel.app</span>
+        </div>
+      </div>
+    </div>
+    
     <div class="theme-transition-overlay"></div>
     <nav class="navbar">
       <div class="scroll-progress"></div>
@@ -49,6 +72,12 @@
             <li class="nav-item">
               <a href="#about" class="nav-link">
                 <span class="nav-text">About</span>
+                <span class="nav-indicator"></span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#services" class="nav-link">
+                <span class="nav-text">Services</span>
                 <span class="nav-indicator"></span>
               </a>
             </li>
@@ -119,6 +148,12 @@
                 </a>
               </li>
               <li class="mobile-nav-item">
+                <a href="#services" class="mobile-nav-link">
+                  <i class="bx bx-cog"></i>
+                  <span>Services</span>
+                </a>
+              </li>
+              <li class="mobile-nav-item">
                 <a href="#works" class="mobile-nav-link">
                   <i class="bx bx-briefcase"></i>
                   <span>Works</span>
@@ -159,28 +194,14 @@
             </div>
           </div>
         </div>
-        <!-- Marquee -->
-        <div class="marquee" aria-label="Scrolling marquee">
-          <div class="marquee__track">
-            <span class="marquee__item">HTML5</span>
-            <span class="marquee__item">CSS3</span>
-            <span class="marquee__item">JavaScript</span>
-            <span class="marquee__item">GSAP</span>
-            <span class="marquee__item">React</span>
-            <span class="marquee__item">Tailwind</span>
-            <span class="marquee__item">SASS</span>
-            <span class="marquee__item">JAVA</span>
-            <span class="marquee__item">Python</span>
-            <!-- duplicate set for seamless loop -->
-            <span class="marquee__item">HTML5</span>
-            <span class="marquee__item">CSS3</span>
-            <span class="marquee__item">JavaScript</span>
-            <span class="marquee__item">GSAP</span>
-            <span class="marquee__item">React</span>
-            <span class="marquee__item">Tailwind</span>
-            <span class="marquee__item">SASS</span>
-            <span class="marquee__item">JAVA</span>
-            <span class="marquee__item">Python</span>
+        <!-- Technologies Marquee -->
+        <div class="tech-marquee-section">
+          <div class="tech-marquee-container">
+            <div class="tech-marquee" aria-label="Technologies marquee">
+              <div class="tech-marquee__track" id="homeTechMarquee">
+                <!-- Technologies will be populated from array via JavaScript -->
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -311,6 +332,145 @@
           </div>
         </div>
       </section>
+
+      <!-- Services Section -->
+      <section id="services" class="section services-section">
+        <div class="container">
+          <h2 class="services-title">
+            My <span>Services</span>
+          </h2>
+          <p class="services-description">
+            I'm a passionate frontend developer specializing in creating beautiful and functional web experiences. I bring ideas to life through clean, efficient code and thoughtful design, using modern web technologies to deliver engaging user experiences.
+          </p>
+          <div class="services-grid">
+            <div class="service-card">
+              <div class="service-header">
+                <div class="service-icon">
+                  <i class="bx bx-code-alt"></i>
+                </div>
+                <button class="service-toggle" aria-label="Toggle service details">
+                  <i class="bx bx-down-arrow-alt service-arrow"></i>
+                </button>
+              </div>
+              <h3 class="service-title">Frontend Development</h3>
+              <p class="service-description">
+                Responsive web apps using HTML, Tailwind CSS, React, and Next.js. Built for performance, accessibility, and modern design.
+              </p>
+              <div class="service-details">
+                <h4 class="services-include-title">Services Include:</h4>
+                <ul class="services-list">
+                  <li>Pixel-perfect implementation from Figma to code</li>
+                  <li>Responsive, mobile-first layouts</li>
+                  <li>Component-based architecture with React & Next.js</li>
+                  <li>Tailwind CSS & SCSS for clean, maintainable styles</li>
+                  <li>Cross-browser compatibility & performance testing</li>
+                  <li>SEO best practices with structured metadata</li>
+                </ul>
+              </div>
+              <div class="service-footer">
+                <button class="service-link-toggle">Click to minimize</button>
+                <button class="service-link-expand">Click for details</button>
+                <a href="#contact" class="service-btn">Custom Quote</a>
+              </div>
+            </div>
+
+            <div class="service-card">
+              <div class="service-header">
+                <div class="service-icon">
+                  <i class="bx bx-palette"></i>
+                </div>
+                <button class="service-toggle" aria-label="Toggle service details">
+                  <i class="bx bx-down-arrow-alt service-arrow"></i>
+                </button>
+              </div>
+              <h3 class="service-title">UI/UX Design</h3>
+              <p class="service-description">
+                Crafting user-first design systems with Figma and Adobe XD. From wireframes to full interactive prototypes.
+              </p>
+              <div class="service-details">
+                <h4 class="services-include-title">Services Include:</h4>
+                <ul class="services-list">
+                  <li>User research and persona development</li>
+                  <li>Wireframing and information architecture</li>
+                  <li>Interactive prototypes with Figma and Adobe XD</li>
+                  <li>Design systems and style guides</li>
+                  <li>Usability testing and user journey mapping</li>
+                  <li>Responsive design for all devices</li>
+                </ul>
+              </div>
+              <div class="service-footer">
+                <button class="service-link-toggle">Click to minimize</button>
+                <button class="service-link-expand">Click for details</button>
+                <a href="#contact" class="service-btn">Custom Quote</a>
+              </div>
+            </div>
+
+            <div class="service-card">
+              <div class="service-header">
+                <div class="service-icon">
+                  <i class="bx bx-grid-alt"></i>
+                </div>
+                <button class="service-toggle" aria-label="Toggle service details">
+                  <i class="bx bx-down-arrow-alt service-arrow"></i>
+                </button>
+              </div>
+              <h3 class="service-title">Web/App Layout Design</h3>
+              <p class="service-description">
+                Modern, intuitive web/app layouts designed to boost engagement and usability.
+              </p>
+              <div class="service-details">
+                <h4 class="services-include-title">Services Include:</h4>
+                <ul class="services-list">
+                  <li>Dashboard UI design with charts and data visualization</li>
+                  <li>Landing page design optimized for conversion</li>
+                  <li>Mobile-first structure and flow</li>
+                  <li>Custom icons and design components</li>
+                  <li>Style guides and typography systems</li>
+                  <li>Real-time feedback with design handoffs</li>
+                </ul>
+              </div>
+              <div class="service-footer">
+                <button class="service-link-toggle">Click to minimize</button>
+                <button class="service-link-expand">Click for details</button>
+                <a href="#contact" class="service-btn">Custom Quote</a>
+              </div>
+            </div>
+
+            <div class="service-card">
+              <div class="service-header">
+                <div class="service-icon">
+                  <i class="bx bx-code-block"></i>
+                </div>
+                <button class="service-toggle" aria-label="Toggle service details">
+                  <i class="bx bx-down-arrow-alt service-arrow"></i>
+                </button>
+              </div>
+              <h3 class="service-title">Web Development</h3>
+              <p class="service-description">
+                Full-stack web development using modern JavaScript frameworks, APIs, and cloud platforms.
+              </p>
+              <div class="service-details">
+                <h4 class="services-include-title">Services Include:</h4>
+                <ul class="services-list">
+                  <li>React, Next.js with Tailwind for fast front-end UIs</li>
+                  <li>RESTful API development and integration</li>
+                  <li>Authentication & authorization with JWT/Firebase</li>
+                  <li>Backend with Node.js/Express</li>
+                  <li>Cloud deployment (Vercel, Netlify, AWS)</li>
+                  <li>CI/CD workflows and GIT version control</li>
+                </ul>
+              </div>
+              <div class="service-footer">
+                <button class="service-link-toggle">Click to minimize</button>
+                <button class="service-link-expand">Click for details</button>
+                <a href="#contact" class="service-btn">Custom Quote</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
       <!-- Works Section -->
       <section id="works" class="section" style="padding-top: 50px">
         <div class="container">
@@ -571,6 +731,7 @@
               <ul>
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
                 <li><a href="#works">Works</a></li>
                 <li><a href="#contact">Contact</a></li>
               </ul>
