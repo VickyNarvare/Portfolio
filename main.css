@@ -640,6 +640,7 @@ body.dark .dot-mask {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-top: 130px;
 }
 .hero-content {
   text-align: center;
@@ -1811,7 +1812,7 @@ body:not(.loading) nav {
 
 .services-description {
   font-size: 18px;
-  color: var(--muted);
+  color: var(--text-color);
   text-align: center;
   max-width: 800px;
   margin: 0 auto 60px;
@@ -1904,7 +1905,7 @@ body:not(.loading) nav {
 
 .service-description {
   font-size: 16px;
-  color: var(--muted);
+  color: var(--text-color);
   line-height: 1.6;
   margin-bottom: 25px;
 }
@@ -1940,7 +1941,7 @@ body:not(.loading) nav {
 
 .services-list li {
   font-size: 15px;
-  color: var(--muted);
+  color: var(--text-color);
   line-height: 1.8;
   margin-bottom: 10px;
   padding-left: 20px;
