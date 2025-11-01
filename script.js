@@ -402,3 +402,34 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+
+// ===============================
+// VIEW MORE WORKS FUNCTIONALITY
+// ===============================
+document.addEventListener('DOMContentLoaded', () => {
+  const viewMoreBtn = document.getElementById('viewMoreBtn');
+  const hiddenWorkItems = document.querySelectorAll('.work-item-hidden');
+  const btnSpan = viewMoreBtn ? viewMoreBtn.querySelector('span') : null;
+
+  if (viewMoreBtn && hiddenWorkItems.length > 0) {
+    viewMoreBtn.addEventListener('click', () => {
+      const isExpanded = viewMoreBtn.classList.contains('expanded');
+      
+      if (isExpanded) {
+        // Hide the extra items
+        hiddenWorkItems.forEach(item => {
+          item.classList.remove('show');
+        });
+        viewMoreBtn.classList.remove('expanded');
+        if (btnSpan) btnSpan.textContent = 'View More';
+      } else {
+        // Show the hidden items
+        hiddenWorkItems.forEach(item => {
+          item.classList.add('show');
+        });
+        viewMoreBtn.classList.add('expanded');
+        if (btnSpan) btnSpan.textContent = 'View Less';
+      }
+    });
+  }
+});
