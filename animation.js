@@ -195,16 +195,27 @@ gsap.from("#about .section-title", {
     ease: "power4.out"
 });
 
+gsap.from(".about-image", {
+    scrollTrigger: {
+        trigger: "#about",
+        start: "top 75%",
+    },
+    x: 50,
+    opacity: 0,
+    duration: 1,
+    ease: "power4.out"
+});
+
 gsap.from(".about-text p", {
     scrollTrigger: {
         trigger: "#about",
         start: "top 70%",
     },
-    y: 50,
+    x: -50,
     opacity: 0,
     duration: 1,
     stagger: 0.2,
-    ease: "bounce.out"
+    ease: "power4.out"
 });
 
 gsap.from(".skill-tag", {
