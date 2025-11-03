@@ -716,9 +716,9 @@ body.dark .dot-mask {
   justify-content: center;
   flex-wrap: wrap;
 }
-.hero-buttons a {
+/* .hero-buttons a {
   text-shadow: 0px 4px 4px #000000;
-}
+} */
 
 .btn {
   padding: 12px 30px;
@@ -735,6 +735,7 @@ body.dark .dot-mask {
   color: white;
 }
 .btn-primary:hover {
+    transform: translateX(10px);
   background: var(--accent-2);
 }
 .btn-secondary {
@@ -742,7 +743,6 @@ body.dark .dot-mask {
   color: var(--text-color);
   border: 2px solid var(--text-color);
 }
-
 /*! ===== INFINITE MARQUEE ===== */
 .marquee {
   position: relative;
@@ -1373,10 +1373,10 @@ body.dark .skill-tag::after {
 }
 .form-group input,
 .form-group textarea {
-  padding: 8px 12px;
+  padding: 12px 18px;
   border: 2px solid rgba(64, 112, 244, 0.1);
   border-radius: 8px;
-  font-size: .8rem;
+  font-size: .9rem;
   background: rgba(255, 255, 255, 0.1);
   color: var(--text-color);
   backdrop-filter: blur(10px);
@@ -1395,7 +1395,7 @@ body.dark .skill-tag::after {
   font-weight: 600;
 }
 .contact_btn {
-  text-shadow: 0px 4px 4px #000000;
+  /* text-shadow: 0px 4px 4px #000000; */
   font-weight: 600;
 }
 /* ===== RESPONSIVE DESIGN ===== */
