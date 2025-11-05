@@ -99,15 +99,15 @@ document.addEventListener('DOMContentLoaded', () => {
 // ============================================
 // NAVIGATION ACTIVE LINK SYSTEM
 // ============================================
-const navLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
-const sections = Array.from(navLinks)
-  .map(link => document.querySelector(link.getAttribute('href')))
-  .filter(Boolean);
+let navLinks = [];
+let sections = [];
 
 /**
  * Set active navigation link based on scroll position
  */
 function setActiveLink() {
+  if (navLinks.length === 0 || sections.length === 0) return;
+  
   const scrollPosition = window.scrollY;
   const windowHeight = window.innerHeight;
   const documentHeight = document.documentElement.scrollHeight;
@@ -146,10 +146,17 @@ function setActiveLink() {
   });
 }
 
-// Restore active link from localStorage
+// Initialize navigation system
 window.addEventListener('DOMContentLoaded', () => {
+  // Initialize navLinks and sections after DOM is ready
+  navLinks = Array.from(document.querySelectorAll('.nav-link, .mobile-nav-link'));
+  sections = navLinks
+    .map(link => document.querySelector(link.getAttribute('href')))
+    .filter(Boolean);
+  
+  // Restore active link from localStorage
   const savedActiveHref = localStorage.getItem('activeNavHref');
-  if (savedActiveHref) {
+  if (savedActiveHref && navLinks.length > 0) {
     navLinks.forEach(link => {
       if (link.getAttribute('href') === savedActiveHref) {
         link.classList.add('active');
@@ -159,6 +166,25 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   }
   setActiveLink();
+  
+  // Handle nav link clicks
+  navLinks.forEach(link => {
+    link.addEventListener('click', function() {
+      navLinks.forEach(l => l.classList.remove('active'));
+      this.classList.add('active');
+      localStorage.setItem('activeNavHref', this.getAttribute('href'));
+      
+      // Close mobile menu
+      const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
+      const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+      const body = document.body;
+      if (window.innerWidth <= 768 && mobileMenuOverlay?.classList.contains('active')) {
+        mobileMenuOverlay.classList.remove('active');
+        if (mobileMenuToggle) mobileMenuToggle.classList.remove('active');
+        body.style.overflow = '';
+      }
+    });
+  });
 });
 
 // Throttle scroll event
@@ -176,25 +202,6 @@ window.addEventListener('scroll', () => {
   
   if (scrollTimeout) clearTimeout(scrollTimeout);
   scrollTimeout = setTimeout(setActiveLink, 50);
-});
-
-// Handle nav link clicks
-navLinks.forEach(link => {
-  link.addEventListener('click', function() {
-    navLinks.forEach(l => l.classList.remove('active'));
-    this.classList.add('active');
-    localStorage.setItem('activeNavHref', this.getAttribute('href'));
-    
-    // Close mobile menu
-    const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
-    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-    const body = document.body;
-    if (window.innerWidth <= 768 && mobileMenuOverlay?.classList.contains('active')) {
-      mobileMenuOverlay.classList.remove('active');
-      if (mobileMenuToggle) mobileMenuToggle.classList.remove('active');
-      body.style.overflow = '';
-    }
-  });
 });
 
 // ============================================
