@@ -6,7 +6,6 @@
 // Register GSAP plugins
 if (typeof gsap !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
-<<<<<<< HEAD
 }
 
 // ============================================
@@ -113,114 +112,6 @@ window.addEventListener('DOMContentLoaded', () => {
       repeat: -1
     });
   }
-=======
-}
-
-// ============================================
-// HERO SECTION ANIMATIONS
-// ============================================
-if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-  gsap.from(".hero-title", {
-    scrollTrigger: {
-      trigger: "#home",
-      start: "top center",
-    },
-    y: 50,
-    opacity: 0,
-    duration: 1,
-    ease: "power4.out"
-  });
-  
-  gsap.from(".hero-subtitle", {
-    scrollTrigger: {
-      trigger: "#home",
-      start: "top center",
-    },
-    y: 50,
-    opacity: 0,
-    duration: 1,
-    delay: 0.2,
-    ease: "power4.out"
-  });
-  
-  gsap.from(".hero-description", {
-    scrollTrigger: {
-      trigger: "#home",
-      start: "top center",
-    },
-    y: 50,
-    opacity: 0,
-    duration: 1,
-    delay: 0.4,
-    ease: "power4.out"
-  });
-  
-  gsap.from(".hero-buttons", {
-    scrollTrigger: {
-      trigger: "#home",
-      start: "top center",
-    },
-    y: 50,
-    opacity: 0,
-    duration: 1,
-    delay: 0.6,
-    ease: "power4.out"
-  });
-}
-
-// ============================================
-// TECHNOLOGIES MARQUEE ANIMATION
-// ============================================
-const technologies = [
-  'CSS3',
-  'JAVASCRIPT',
-  'GSAP',
-  'REACT',
-  'TAILWIND',
-  'SASS',
-  'JAVA',
-  'PYTHON',
-  'HTML5'
-];
-
-/**
- * Populate marquee with technologies
- * @param {HTMLElement} trackElement - The track element to populate
- */
-function populateTechMarquee(trackElement) {
-  if (!trackElement) return;
-  
-  trackElement.innerHTML = '';
-  
-  // Create 3 sets for seamless infinite loop
-  for (let i = 0; i < 3; i++) {
-    technologies.forEach(tech => {
-      const span = document.createElement('span');
-      span.className = 'tech-marquee__item';
-      span.textContent = tech;
-      trackElement.appendChild(span);
-    });
-  }
-}
-
-// Initialize marquee on load
-window.addEventListener('DOMContentLoaded', () => {
-  const homeMarquee = document.getElementById('homeTechMarquee');
-  if (homeMarquee && typeof gsap !== 'undefined') {
-    populateTechMarquee(homeMarquee);
-    
-    const items = homeMarquee.querySelectorAll('.tech-marquee__item');
-    const firstSetWidth = Array.from(items).slice(0, technologies.length)
-      .reduce((sum, el) => sum + el.offsetWidth + 36, 0);
-    
-    gsap.to(items, {
-      x: -firstSetWidth,
-      duration: 20,
-      ease: 'none',
-      repeat: -1
-    });
-  }
->>>>>>> 1809e206335008af322ea633fbebc9b5d2eb787c
   
   // Handle resize
   let resizeTimer;
@@ -246,128 +137,6 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 // ============================================
-<<<<<<< HEAD
-// SERVICES SECTION ANIMATIONS
-// ============================================
-if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-  // Services Title
-  gsap.from(".services-title", {
-    scrollTrigger: {
-      trigger: "#services",
-=======
-// SKILLS SECTION ANIMATIONS
-// ============================================
-if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-  // Skills Section Title
-  gsap.from(".skills-section-title", {
-    scrollTrigger: {
-      trigger: "#skills",
->>>>>>> 1809e206335008af322ea633fbebc9b5d2eb787c
-      start: "top 80%",
-    },
-    y: 50,
-    opacity: 0,
-    duration: 1,
-    ease: "power4.out"
-  });
-  
-<<<<<<< HEAD
-  // Services Description
-  gsap.from(".services-description", {
-    scrollTrigger: {
-      trigger: "#services",
-      start: "top 80%",
-    },
-=======
-  // Skills Title Underline
-  gsap.from(".skills-title-underline", {
-    scrollTrigger: {
-      trigger: "#skills",
-      start: "top 80%",
-    },
-    width: 0,
-    duration: 1,
-    delay: 0.3,
-    ease: "power4.out"
-  });
-  
-  // Skills Section Subtitle
-  gsap.from(".skills-section-subtitle", {
-    scrollTrigger: {
-      trigger: "#skills",
-      start: "top 80%",
-    },
->>>>>>> 1809e206335008af322ea633fbebc9b5d2eb787c
-    y: 30,
-    opacity: 0,
-    duration: 1,
-    delay: 0.2,
-    ease: "power4.out"
-  });
-  
-<<<<<<< HEAD
-  // Service Cards
-  gsap.from(".service-card", {
-    scrollTrigger: {
-      trigger: "#services",
-      start: "top 80%",
-    },
-    y: 50,
-    opacity: 0,
-    duration: 1,
-    stagger: 0.2,
-    ease: "power4.out"
-  });
-  
-  // Service Icons
-  gsap.from(".service-icon", {
-    scrollTrigger: {
-      trigger: "#services",
-=======
-  // Skills Cards
-  gsap.from(".skill-card", {
-    scrollTrigger: {
-      trigger: "#skills",
->>>>>>> 1809e206335008af322ea633fbebc9b5d2eb787c
-      start: "top 80%",
-    },
-    scale: 0,
-    opacity: 0,
-    duration: 1,
-    stagger: 0.15,
-    ease: "power4.out"
-  });
-  
-  // Skill Icons
-  gsap.from(".skill-icon", {
-    scrollTrigger: {
-      trigger: "#skills",
-      start: "top 80%",
-    },
-    scale: 0,
-    opacity: 0,
-    duration: 0.8,
-<<<<<<< HEAD
-=======
-    stagger: 0.1,
-    ease: "back.out(1.7)"
-  });
-  
-  // Skill Tags
-  gsap.from(".skill-tag", {
-    scrollTrigger: {
-      trigger: "#skills",
-      start: "top 80%",
-    },
-    y: 20,
-    opacity: 0,
-    duration: 0.6,
-    stagger: 0.05,
-    ease: "power2.out"
-  });
-}
-
-// ============================================
 // SERVICES SECTION ANIMATIONS
 // ============================================
 if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
@@ -418,7 +187,6 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
     scale: 0,
     opacity: 0,
     duration: 0.8,
->>>>>>> 1809e206335008af322ea633fbebc9b5d2eb787c
     stagger: 0.15,
     ease: "back.out(1.7)"
   });
@@ -516,29 +284,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
   
-<<<<<<< HEAD
-=======
-  // Skill Tags
-  document.querySelectorAll(".skill-tag").forEach(tag => {
-    if (tag) {
-      tag.addEventListener("mouseenter", () => {
-        gsap.to(tag, {
-          scale: 1.05,
-          duration: 0.3,
-          ease: "power2.out"
-        });
-      });
-      tag.addEventListener("mouseleave", () => {
-        gsap.to(tag, {
-          scale: 1,
-          duration: 0.3,
-          ease: "power2.out"
-        });
-      });
-    }
-  });
-  
->>>>>>> 1809e206335008af322ea633fbebc9b5d2eb787c
   // Work Items
   document.querySelectorAll(".work-item").forEach(item => {
     if (item) {
