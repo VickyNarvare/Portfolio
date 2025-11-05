@@ -340,6 +340,9 @@ body.dark .sun-icon {
   border-radius: 12px;
   cursor: pointer;
   transition: all 0.3s ease;
+  z-index: 1001;
+  position: relative;
+  pointer-events: auto;
 }
 
 .mobile-menu-toggle:hover {

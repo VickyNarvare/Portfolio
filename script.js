@@ -187,11 +187,12 @@ navLinks.forEach(link => {
     
     // Close mobile menu
     const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
-    if (window.innerWidth < 900 && mobileMenuOverlay?.classList.contains('active')) {
+    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+    const body = document.body;
+    if (window.innerWidth <= 768 && mobileMenuOverlay?.classList.contains('active')) {
       mobileMenuOverlay.classList.remove('active');
-      const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
       if (mobileMenuToggle) mobileMenuToggle.classList.remove('active');
-      document.body.style.overflow = '';
+      body.style.overflow = '';
     }
   });
 });
@@ -199,65 +200,80 @@ navLinks.forEach(link => {
 // ============================================
 // MOBILE MENU & DARK MODE TOGGLE
 // ============================================
-const body = document.querySelector("body");
-const modeToggle = document.querySelector(".theme-toggle");
-const mobileMenuToggle = document.querySelector(".mobile-menu-toggle");
-const mobileMenuOverlay = document.querySelector(".mobile-menu-overlay");
-const mobileMenuClose = document.querySelector(".mobile-menu-close");
+document.addEventListener('DOMContentLoaded', () => {
+  const body = document.querySelector("body");
+  const modeToggle = document.querySelector(".theme-toggle");
+  const mobileMenuToggle = document.querySelector(".mobile-menu-toggle");
+  const mobileMenuOverlay = document.querySelector(".mobile-menu-overlay");
+  const mobileMenuClose = document.querySelector(".mobile-menu-close");
 
-// Initialize dark mode
-try {
-  if (localStorage.getItem("mode") === "dark-mode") {
-    body.classList.add("dark");
-    if (modeToggle) modeToggle.classList.add("active");
-  }
-} catch (error) {
-  console.warn("LocalStorage not available:", error);
-}
-
-// Theme toggle
-if (modeToggle) {
-  modeToggle.addEventListener("click", () => {
-    try {
-      body.classList.toggle("dark");
-      localStorage.setItem(
-        "mode",
-        body.classList.contains("dark") ? "dark-mode" : "light-mode"
-      );
-    } catch (error) {
-      console.error("Error toggling dark mode:", error);
+  // Initialize dark mode
+  try {
+    if (localStorage.getItem("mode") === "dark-mode") {
+      body.classList.add("dark");
+      if (modeToggle) modeToggle.classList.add("active");
     }
-  });
-}
+  } catch (error) {
+    console.warn("LocalStorage not available:", error);
+  }
 
-// Mobile menu toggle
-if (mobileMenuToggle && mobileMenuOverlay) {
-  mobileMenuToggle.addEventListener("click", () => {
-    mobileMenuToggle.classList.toggle("active");
-    mobileMenuOverlay.classList.toggle("active");
-    body.style.overflow = mobileMenuOverlay.classList.contains("active") ? "hidden" : "";
-  });
-}
+  // Theme toggle
+  if (modeToggle) {
+    modeToggle.addEventListener("click", () => {
+      try {
+        body.classList.toggle("dark");
+        localStorage.setItem(
+          "mode",
+          body.classList.contains("dark") ? "dark-mode" : "light-mode"
+        );
+      } catch (error) {
+        console.error("Error toggling dark mode:", error);
+      }
+    });
+  }
 
-// Close mobile menu
-if (mobileMenuClose) {
-  mobileMenuClose.addEventListener("click", () => {
-    if (mobileMenuToggle) mobileMenuToggle.classList.remove("active");
-    if (mobileMenuOverlay) mobileMenuOverlay.classList.remove("active");
-    body.style.overflow = "";
-  });
-}
+  // Mobile menu toggle
+  if (mobileMenuToggle && mobileMenuOverlay) {
+    mobileMenuToggle.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      mobileMenuToggle.classList.toggle("active");
+      mobileMenuOverlay.classList.toggle("active");
+      body.style.overflow = mobileMenuOverlay.classList.contains("active") ? "hidden" : "";
+    });
+  }
 
-// Close mobile menu when clicking overlay
-if (mobileMenuOverlay) {
-  mobileMenuOverlay.addEventListener("click", (e) => {
-    if (e.target === mobileMenuOverlay) {
+  // Close mobile menu
+  if (mobileMenuClose) {
+    mobileMenuClose.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
       if (mobileMenuToggle) mobileMenuToggle.classList.remove("active");
-      mobileMenuOverlay.classList.remove("active");
+      if (mobileMenuOverlay) mobileMenuOverlay.classList.remove("active");
+      body.style.overflow = "";
+    });
+  }
+
+  // Close mobile menu when clicking overlay
+  if (mobileMenuOverlay) {
+    mobileMenuOverlay.addEventListener("click", (e) => {
+      if (e.target === mobileMenuOverlay) {
+        if (mobileMenuToggle) mobileMenuToggle.classList.remove("active");
+        mobileMenuOverlay.classList.remove("active");
+        body.style.overflow = "";
+      }
+    });
+  }
+
+  // Close mobile menu on window resize if screen becomes large
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 768) {
+      if (mobileMenuToggle) mobileMenuToggle.classList.remove("active");
+      if (mobileMenuOverlay) mobileMenuOverlay.classList.remove("active");
       body.style.overflow = "";
     }
   });
-}
+});
 
 // ============================================
 // FORM SUBMISSION HANDLING
