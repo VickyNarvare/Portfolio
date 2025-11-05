@@ -1304,9 +1304,9 @@ body.dark .skill-tag::after {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 3rem;
-  max-width: 1000px;
+  max-width: 1100px;
   margin: 0 auto;
-  position: relative;
+  position: relative; 
 }
 
 .contact-info {
@@ -2019,8 +2019,8 @@ body:not(.loading) nav {
 
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
   margin-top: 40px;
 }
 
@@ -2028,11 +2028,12 @@ body:not(.loading) nav {
   /* background: var(--card-bg); */
   border: 1px solid var(--card-border);
   border-radius: var(--radius);
-  padding: 30px;
+  padding: 25px 20px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: flex;
   flex-direction: column;
   backdrop-filter: blur(10px);
+  min-width: 0; /* Allow cards to shrink below content size */
 }
 
 .service-card:hover {
@@ -2049,15 +2050,15 @@ body:not(.loading) nav {
 }
 
 .service-icon {
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   background: linear-gradient(135deg, var(--accent), var(--accent-2));
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #ffffff;
-  font-size: 28px;
+  font-size: 24px;
 }
 
 .service-toggle {
@@ -2094,18 +2095,18 @@ body:not(.loading) nav {
 }
 
 .service-title {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 700;
   color: var(--text-color);
-  margin-bottom: 15px;
+  margin-bottom: 12px;
   font-family: ppfragment, sans-serif;
 }
 
 .service-description {
-  font-size: 16px;
+  font-size: 14px;
   color: var(--text-color);
   line-height: 1.6;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
 }
 
 .service-details {
@@ -2159,19 +2160,23 @@ body:not(.loading) nav {
   justify-content: space-between;
   align-items: center;
   margin-top: auto;
-  padding-top: 20px;
+  padding-top: 15px;
   border-top: 1px solid var(--card-border);
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
-.service-link-toggle {
+.service-link-toggle,
+.service-link-expand {
   background: none;
   border: none;
   color: var(--text-color);
-  font-size: 14px;
+  font-size: 11px;
   cursor: pointer;
   transition: color 0.3s ease;
   padding: 0;
   font-family: ppfragment, sans-serif;
+  white-space: nowrap;
 }
 
 .service-link-toggle:hover {
@@ -2180,17 +2185,6 @@ body:not(.loading) nav {
 
 .service-card:not(.expanded) .service-link-toggle {
   display: none;
-}
-
-.service-link-expand {
-  background: none;
-  border: none;
-  color: var(--text-color);
-  font-size: 14px;
-  cursor: pointer;
-  transition: color 0.3s ease;
-  padding: 0;
-  font-family: ppfragment, sans-serif;
 }
 
 .service-link-expand:hover {
@@ -2215,12 +2209,15 @@ body:not(.loading) nav {
 .service-btn {
   background: linear-gradient(135deg, var(--accent), var(--accent-2));
   color: #ffffff;
-  padding: 10px 20px;
+  padding: 8px 16px;
   border-radius: 8px;
   text-decoration: none;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 12px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  white-space: nowrap;
+  display: inline-block;
+  text-align: center;
 }
 
 .service-btn:hover {
