@@ -8,11 +8,11 @@
   "rewrites": [
     {
       "source": "/",
-      "destination": "/Index.html"
+      "destination": "/index.html"
     },
     {
       "source": "/(.*)",
-      "destination": "/Index.html"
+      "destination": "/index.html"
     }
   ],
   "headers": [
@@ -30,6 +30,14 @@
         {
           "key": "X-XSS-Protection",
           "value": "1; mode=block"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "geolocation=(), microphone=(), camera=()"
         }
       ]
     },

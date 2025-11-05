@@ -387,10 +387,20 @@ document.querySelectorAll(".work-link").forEach(link => {
 document.querySelectorAll(".social-link").forEach(link => {
     if (link) {
         link.addEventListener("mouseenter", () => {
-            gsap.to(link, { y: -2, duration: 0.3, ease: "power2.out" });
+            gsap.to(link, {
+                scale: 1.15,
+                rotate: 5,
+                duration: 0.3,
+                ease: "power2.out"
+            });
         });
         link.addEventListener("mouseleave", () => {
-            gsap.to(link, { y: 0, duration: 0.3, ease: "power2.out" });
+            gsap.to(link, {
+                scale: 1,
+                rotate: 0,
+                duration: 0.3,
+                ease: "power2.out"
+            });
         });
     }
 });

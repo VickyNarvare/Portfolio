@@ -243,7 +243,7 @@ window.addEventListener('scroll', () => {
   scrollTimeout = setTimeout(setActiveLink, 50);
 });
 navLinks.forEach(link => {
-  link.addEventListener('click', function () {
+  link.addEventListener('click', function() {
     navLinks.forEach(l => l.classList.remove('active'));
     this.classList.add('active');
     localStorage.setItem('activeNavHref', this.getAttribute('href'));
