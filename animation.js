@@ -137,87 +137,6 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 // ============================================
-// SKILLS SECTION ANIMATIONS
-// ============================================
-if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-  // Skills Section Title
-  gsap.from(".skills-section-title", {
-    scrollTrigger: {
-      trigger: "#skills",
-      start: "top 80%",
-    },
-    y: 50,
-    opacity: 0,
-    duration: 1,
-    ease: "power4.out"
-  });
-  
-  // Skills Title Underline
-  gsap.from(".skills-title-underline", {
-    scrollTrigger: {
-      trigger: "#skills",
-      start: "top 80%",
-    },
-    width: 0,
-    duration: 1,
-    delay: 0.3,
-    ease: "power4.out"
-  });
-  
-  // Skills Section Subtitle
-  gsap.from(".skills-section-subtitle", {
-    scrollTrigger: {
-      trigger: "#skills",
-      start: "top 80%",
-    },
-    y: 30,
-    opacity: 0,
-    duration: 1,
-    delay: 0.2,
-    ease: "power4.out"
-  });
-  
-  // Skills Cards
-  gsap.from(".skill-card", {
-    scrollTrigger: {
-      trigger: "#skills",
-      start: "top 80%",
-    },
-    y: 50,
-    opacity: 0,
-    duration: 1,
-    stagger: 0.15,
-    ease: "power4.out"
-  });
-  
-  // Skill Icons
-  gsap.from(".skill-icon", {
-    scrollTrigger: {
-      trigger: "#skills",
-      start: "top 80%",
-    },
-    scale: 0,
-    opacity: 0,
-    duration: 0.8,
-    stagger: 0.1,
-    ease: "back.out(1.7)"
-  });
-  
-  // Skill Tags
-  gsap.from(".skill-tag", {
-    scrollTrigger: {
-      trigger: "#skills",
-      start: "top 80%",
-    },
-    y: 20,
-    opacity: 0,
-    duration: 0.6,
-    stagger: 0.05,
-    ease: "power2.out"
-  });
-}
-
-// ============================================
 // SERVICES SECTION ANIMATIONS
 // ============================================
 if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
@@ -358,26 +277,6 @@ document.addEventListener('DOMContentLoaded', () => {
         gsap.to(btn, {
           backgroundColor: "transparent",
           color: "var(--text-color)",
-          duration: 0.3,
-          ease: "power2.out"
-        });
-      });
-    }
-  });
-  
-  // Skill Tags
-  document.querySelectorAll(".skill-tag").forEach(tag => {
-    if (tag) {
-      tag.addEventListener("mouseenter", () => {
-        gsap.to(tag, {
-          scale: 1.05,
-          duration: 0.3,
-          ease: "power2.out"
-        });
-      });
-      tag.addEventListener("mouseleave", () => {
-        gsap.to(tag, {
-          scale: 1,
           duration: 0.3,
           ease: "power2.out"
         });
