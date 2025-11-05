@@ -1,436 +1,457 @@
-gsap.registerPlugin(ScrollTrigger);
-// Hero Section Animation
-gsap.from(".hero-title", {
-    duration: 1,
-    y: 50,
-    opacity: 0,
-    ease: "power4.out",
-    delay: 0.5
-});
+/* ========================================
+   PORTFOLIO WEBSITE - GSAP ANIMATIONS
+   Author: Vicky Narvare
+   ======================================== */
 
-gsap.from(".hero-subtitle", {
-    duration: 1,
-    y: 50,
-    opacity: 0,
-    ease: "power4.out",
-    delay: 0.8
-});
-gsap.from(".hero-description", {
-    duration: 1,
-    y: 50,
-    opacity: 0,
-    ease: "power4.out",
-    delay: 1.1
-});
-gsap.from(".hero-buttons .btn", {
-    duration: 1,
-    y: 50,
-    opacity: 0,
-    ease: "power4.out",
-    stagger: 0.2,
-    delay: 1.4
-});
-
-// Simple GSAP marquee: leftward loop
-window.addEventListener('load', function () {
-    const tracks = document.querySelectorAll('.marquee .marquee__track');
-    if (!tracks.length) return;
-
-    const SPEED = 80; // px per second
-    const tweens = [];
-
-    function init() {
-        // kill old tweens
-        while (tweens.length) {
-            const t = tweens.pop();
-            t && t.kill && t.kill();
-        }
-
-        tracks.forEach(track => {
-            // start from 0 each build
-            gsap.set(track, { x: 0 });
-
-            // requires duplicated items in HTML for seamless loop
-            const distance = track.scrollWidth / 2;
-            if (!distance) return;
-
-            const duration = distance / SPEED;
-            const tween = gsap.to(track, {
-                x: -distance,
-                duration,
-                ease: 'none',
-                repeat: -1
-            });
-            tweens.push(tween);
-
-            const wrapper = track.closest('.marquee');
-            if (wrapper) {
-                wrapper.addEventListener('mouseenter', () => tween.pause());
-                wrapper.addEventListener('mouseleave', () => tween.resume());
-            }
-        });
-    }
-
-    init();
-
-    let resizeTimer;
-    window.addEventListener('resize', () => {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(init, 150);
-    });
-});
-
-// Technologies Array
-const technologies = [
-    'CSS3',
-    'JAVASCRIPT',
-    'GSAP',
-    'REACT',
-    'TAILWIND',
-    'SASS',
-    'JAVA',
-    'PYTHON',
-    'HTML5'
-];
-
-// Function to populate marquee with technologies from array (infinite loop)
-function populateTechMarquee(trackElement) {
-    if (!trackElement) return;
-    
-    // Clear existing content
-    trackElement.innerHTML = '';
-    
-    // Create multiple sets for seamless infinite loop (at least 3 sets for smooth infinite effect)
-    for (let i = 0; i < 3; i++) {
-        technologies.forEach(tech => {
-            const span = document.createElement('span');
-            span.className = 'tech-marquee__item';
-            span.textContent = tech;
-            trackElement.appendChild(span);
-        });
-    }
+// Register GSAP plugins
+if (typeof gsap !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
 }
 
-// Technologies Marquee Animation with GSAP - Infinite Loop
-window.addEventListener('load', function () {
-    const techTracks = document.querySelectorAll('.tech-marquee .tech-marquee__track');
-    if (!techTracks.length) return;
+// ============================================
+// HERO SECTION ANIMATIONS
+// ============================================
+if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+  gsap.from(".hero-title", {
+    scrollTrigger: {
+      trigger: "#home",
+      start: "top center",
+    },
+    y: 50,
+    opacity: 0,
+    duration: 1,
+    ease: "power4.out"
+  });
+  
+  gsap.from(".hero-subtitle", {
+    scrollTrigger: {
+      trigger: "#home",
+      start: "top center",
+    },
+    y: 50,
+    opacity: 0,
+    duration: 1,
+    delay: 0.2,
+    ease: "power4.out"
+  });
+  
+  gsap.from(".hero-description", {
+    scrollTrigger: {
+      trigger: "#home",
+      start: "top center",
+    },
+    y: 50,
+    opacity: 0,
+    duration: 1,
+    delay: 0.4,
+    ease: "power4.out"
+  });
+  
+  gsap.from(".hero-buttons", {
+    scrollTrigger: {
+      trigger: "#home",
+      start: "top center",
+    },
+    y: 50,
+    opacity: 0,
+    duration: 1,
+    delay: 0.6,
+    ease: "power4.out"
+  });
+}
 
-    // Populate marquee from array
-    techTracks.forEach(track => {
-        populateTechMarquee(track);
+// ============================================
+// TECHNOLOGIES MARQUEE ANIMATION
+// ============================================
+const technologies = [
+  'CSS3',
+  'JAVASCRIPT',
+  'GSAP',
+  'REACT',
+  'TAILWIND',
+  'SASS',
+  'JAVA',
+  'PYTHON',
+  'HTML5'
+];
+
+/**
+ * Populate marquee with technologies
+ * @param {HTMLElement} trackElement - The track element to populate
+ */
+function populateTechMarquee(trackElement) {
+  if (!trackElement) return;
+  
+  trackElement.innerHTML = '';
+  
+  // Create 3 sets for seamless infinite loop
+  for (let i = 0; i < 3; i++) {
+    technologies.forEach(tech => {
+      const span = document.createElement('span');
+      span.className = 'tech-marquee__item';
+      span.textContent = tech;
+      trackElement.appendChild(span);
     });
+  }
+}
 
-    const TECH_SPEED = 60; // px per second
-    const techTweens = [];
-
-    function initTechMarquee() {
-        // kill old tweens
-        while (techTweens.length) {
-            const t = techTweens.pop();
-            t && t.kill && t.kill();
-        }
-
-        techTracks.forEach(track => {
-            // Reset position
-            gsap.set(track, { x: 0 });
-
-            // Calculate distance for seamless infinite loop
-            // We use 1/3 of the width since we have 3 sets of items
-            const itemsWidth = track.scrollWidth / 3;
-            if (!itemsWidth) return;
-
-            // Duration for smooth animation
-            const duration = itemsWidth / TECH_SPEED;
-
-            // Perfect infinite seamless loop animation
-            // repeat: -1 means infinite loop
-            const infiniteTween = gsap.to(track, {
-                x: -itemsWidth,
-                duration: duration,
-                ease: 'none',
-                repeat: -1, // Infinite repeat - never stops
-                immediateRender: true
-            });
-
-            techTweens.push(infiniteTween);
-
-            // Pause on hover
-            const wrapper = track.closest('.tech-marquee');
-            if (wrapper) {
-                wrapper.addEventListener('mouseenter', () => infiniteTween.pause());
-                wrapper.addEventListener('mouseleave', () => infiniteTween.resume());
-            }
+// Initialize marquee on load
+window.addEventListener('DOMContentLoaded', () => {
+  const homeMarquee = document.getElementById('homeTechMarquee');
+  if (homeMarquee && typeof gsap !== 'undefined') {
+    populateTechMarquee(homeMarquee);
+    
+    const items = homeMarquee.querySelectorAll('.tech-marquee__item');
+    const firstSetWidth = Array.from(items).slice(0, technologies.length)
+      .reduce((sum, el) => sum + el.offsetWidth + 36, 0);
+    
+    gsap.to(items, {
+      x: -firstSetWidth,
+      duration: 20,
+      ease: 'none',
+      repeat: -1
+    });
+  }
+  
+  // Handle resize
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      if (homeMarquee) {
+        populateTechMarquee(homeMarquee);
+        const items = homeMarquee.querySelectorAll('.tech-marquee__item');
+        const firstSetWidth = Array.from(items).slice(0, technologies.length)
+          .reduce((sum, el) => sum + el.offsetWidth + 36, 0);
+        
+        gsap.killTweensOf(items);
+        gsap.to(items, {
+          x: -firstSetWidth,
+          duration: 20,
+          ease: 'none',
+          repeat: -1
         });
-    }
-
-    // Wait for DOM to update after populating
-    setTimeout(() => {
-        initTechMarquee();
-    }, 100);
-
-    // Handle window resize
-    let techResizeTimer;
-    window.addEventListener('resize', () => {
-        clearTimeout(techResizeTimer);
-        techResizeTimer = setTimeout(() => {
-            // Repopulate and reinit on resize
-            techTracks.forEach(track => {
-                populateTechMarquee(track);
-            });
-            setTimeout(initTechMarquee, 50);
-        }, 150);
-    });
+      }
+    }, 150);
+  });
 });
 
-// About Section Animation
-gsap.from("#about .section-title", {
+// ============================================
+// SKILLS SECTION ANIMATIONS
+// ============================================
+if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+  // Skills Section Title
+  gsap.from(".skills-section-title", {
     scrollTrigger: {
-        trigger: "#about",
-        start: "top 80%",
+      trigger: "#skills",
+      start: "top 80%",
     },
     y: 50,
     opacity: 0,
     duration: 1,
     ease: "power4.out"
-});
-
-gsap.from(".about-image", {
+  });
+  
+  // Skills Title Underline
+  gsap.from(".skills-title-underline", {
     scrollTrigger: {
-        trigger: "#about",
-        start: "top 75%",
+      trigger: "#skills",
+      start: "top 80%",
     },
-    x: 50,
+    width: 0,
+    duration: 1,
+    delay: 0.3,
+    ease: "power4.out"
+  });
+  
+  // Skills Section Subtitle
+  gsap.from(".skills-section-subtitle", {
+    scrollTrigger: {
+      trigger: "#skills",
+      start: "top 80%",
+    },
+    y: 30,
     opacity: 0,
     duration: 1,
+    delay: 0.2,
     ease: "power4.out"
-});
-
-gsap.from(".about-text p", {
+  });
+  
+  // Skills Cards
+  gsap.from(".skill-card", {
     scrollTrigger: {
-        trigger: "#about",
-        start: "top 70%",
-    },
-    x: -50,
-    opacity: 0,
-    duration: 1,
-    stagger: 0.2,
-    ease: "power4.out"
-});
-
-gsap.from(".skill-tag", {
-    scrollTrigger: {
-        trigger: ".skills",
-        start: "top 80%",
+      trigger: "#skills",
+      start: "top 80%",
     },
     y: 50,
+    opacity: 0,
+    duration: 1,
+    stagger: 0.15,
+    ease: "power4.out"
+  });
+  
+  // Skill Icons
+  gsap.from(".skill-icon", {
+    scrollTrigger: {
+      trigger: "#skills",
+      start: "top 80%",
+    },
+    scale: 0,
     opacity: 0,
     duration: 0.8,
     stagger: 0.1,
-    ease: "power4.out"
-});
-
-// Works Section Animation
-gsap.from("#works .section-title", {
+    ease: "back.out(1.7)"
+  });
+  
+  // Skill Tags
+  gsap.from(".skill-tag", {
     scrollTrigger: {
-        trigger: "#works",
-        start: "top 80%",
+      trigger: "#skills",
+      start: "top 80%",
+    },
+    y: 20,
+    opacity: 0,
+    duration: 0.6,
+    stagger: 0.05,
+    ease: "power2.out"
+  });
+}
+
+// ============================================
+// SERVICES SECTION ANIMATIONS
+// ============================================
+if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+  // Services Title
+  gsap.from(".services-title", {
+    scrollTrigger: {
+      trigger: "#services",
+      start: "top 80%",
     },
     y: 50,
     opacity: 0,
     duration: 1,
     ease: "power4.out"
-});
-
-gsap.from(".work-item", {
+  });
+  
+  // Services Description
+  gsap.from(".services-description", {
     scrollTrigger: {
-        trigger: "#works",
-        start: "top 70%",
+      trigger: "#services",
+      start: "top 80%",
+    },
+    y: 30,
+    opacity: 0,
+    duration: 1,
+    delay: 0.2,
+    ease: "power4.out"
+  });
+  
+  // Service Cards
+  gsap.from(".service-card", {
+    scrollTrigger: {
+      trigger: "#services",
+      start: "top 80%",
     },
     y: 50,
     opacity: 0,
     duration: 1,
     stagger: 0.2,
     ease: "power4.out"
-});
-
-// Contact Section Animation
-gsap.from("#contact .section-title", {
+  });
+  
+  // Service Icons
+  gsap.from(".service-icon", {
     scrollTrigger: {
-        trigger: "#contact",
-        start: "top 70%",
+      trigger: "#services",
+      start: "top 80%",
     },
-    y: 100,
+    scale: 0,
     opacity: 0,
-    duration: 1.5,
-    ease: "power4.out"
-});
+    duration: 0.8,
+    stagger: 0.15,
+    ease: "back.out(1.7)"
+  });
+}
 
-gsap.from(".contact-info", {
+// ============================================
+// CTA SECTION ANIMATIONS
+// ============================================
+if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+  gsap.from(".cta-card", {
     scrollTrigger: {
-        trigger: "#contact",
-        start: "top 70%",
+      trigger: ".cta-container",
+      start: "top 80%",
     },
-    x: -100,
-    opacity: 0,
-    duration: 1,
-    ease: "power4.out"
-});
-
-gsap.from(".contact-form", {
-    scrollTrigger: {
-        trigger: "#contact",
-        start: "top 70%",
-    },
-    x: 100,
+    y: 50,
     opacity: 0,
     duration: 1,
     ease: "power4.out"
-});
+  });
+  
+  gsap.from(".cta-title", {
+    scrollTrigger: {
+      trigger: ".cta-container",
+      start: "top 80%",
+    },
+    y: 30,
+    opacity: 0,
+    duration: 1,
+    delay: 0.2,
+    ease: "power4.out"
+  });
+  
+  gsap.from(".cta-lead", {
+    scrollTrigger: {
+      trigger: ".cta-container",
+      start: "top 80%",
+    },
+    y: 30,
+    opacity: 0,
+    duration: 1,
+    delay: 0.4,
+    ease: "power4.out"
+  });
+  
+  gsap.from(".cta-buttons", {
+    scrollTrigger: {
+      trigger: ".cta-container",
+      start: "top 80%",
+    },
+    y: 30,
+    opacity: 0,
+    duration: 1,
+    delay: 0.6,
+    ease: "power4.out"
+  });
+}
 
-// Hover Animations with error handling
-document.querySelectorAll(".btn-primary").forEach(btn => {
+// ============================================
+// HOVER ANIMATIONS
+// ============================================
+document.addEventListener('DOMContentLoaded', () => {
+  if (typeof gsap === 'undefined') return;
+  
+  // Primary Buttons
+  document.querySelectorAll(".btn-primary").forEach(btn => {
     if (btn) {
-        btn.addEventListener("mouseenter", () => {
-            gsap.to(btn, { y: -2, duration: 0.3, ease: "power2.out" });
-        });
-        btn.addEventListener("mouseleave", () => {
-            gsap.to(btn, { y: 0, duration: 0.3, ease: "power2.out" });
-        });
+      btn.addEventListener("mouseenter", () => {
+        gsap.to(btn, { y: -2, duration: 0.3, ease: "power2.out" });
+      });
+      btn.addEventListener("mouseleave", () => {
+        gsap.to(btn, { y: 0, duration: 0.3, ease: "power2.out" });
+      });
     }
-});
-
-document.querySelectorAll(".btn-secondary").forEach(btn => {
+  });
+  
+  // Secondary Buttons
+  document.querySelectorAll(".btn-secondary").forEach(btn => {
     if (btn) {
-        btn.addEventListener("mouseenter", () => {
-            gsap.to(btn, {
-                backgroundColor: "var(--text-color)",
-                color: "var(--body-color)",
-                duration: 0.3,
-                ease: "power2.out"
-            });
+      btn.addEventListener("mouseenter", () => {
+        gsap.to(btn, {
+          backgroundColor: "var(--text-color)",
+          color: "var(--body-color)",
+          duration: 0.3,
+          ease: "power2.out"
         });
-        btn.addEventListener("mouseleave", () => {
-            gsap.to(btn, {
-                backgroundColor: "transparent",
-                color: "var(--text-color)",
-                duration: 0.3,
-                ease: "power2.out"
-            });
+      });
+      btn.addEventListener("mouseleave", () => {
+        gsap.to(btn, {
+          backgroundColor: "transparent",
+          color: "var(--text-color)",
+          duration: 0.3,
+          ease: "power2.out"
         });
+      });
     }
-});
-
-document.querySelectorAll(".skill-tag").forEach(tag => {
+  });
+  
+  // Skill Tags
+  document.querySelectorAll(".skill-tag").forEach(tag => {
     if (tag) {
-        tag.addEventListener("mouseenter", () => {
-            gsap.to(tag, {
-                y: -2,
-                boxShadow: "0 4px 12px rgba(64, 112, 244, 0.3)",
-                "--tooltip-opacity": 1,
-                "--tooltip-visibility": "visible",
-                "--tooltip-y": "-10px",
-                duration: 0.3,
-                ease: "power2.out"
-            });
+      tag.addEventListener("mouseenter", () => {
+        gsap.to(tag, {
+          scale: 1.05,
+          duration: 0.3,
+          ease: "power2.out"
         });
-        tag.addEventListener("mouseleave", () => {
-            gsap.to(tag, {
-                y: 0,
-                boxShadow: "none",
-                "--tooltip-opacity": 0,
-                "--tooltip-visibility": "hidden",
-                "--tooltip-y": "0px",
-                duration: 0.3,
-                ease: "power2.out"
-            });
+      });
+      tag.addEventListener("mouseleave", () => {
+        gsap.to(tag, {
+          scale: 1,
+          duration: 0.3,
+          ease: "power2.out"
         });
+      });
     }
-});
-
-document.querySelectorAll(".work-item").forEach(item => {
+  });
+  
+  // Work Items
+  document.querySelectorAll(".work-item").forEach(item => {
     if (item) {
-        item.addEventListener("mouseenter", () => {
-            gsap.to(item, { y: -8, scale: 1.02, duration: 0.3, ease: "power2.out" });
+      item.addEventListener("mouseenter", () => {
+        gsap.to(item, {
+          y: -8,
+          scale: 1.02,
+          duration: 0.3,
+          ease: "power2.out"
         });
-        item.addEventListener("mouseleave", () => {
-            gsap.to(item, { y: 0, scale: 1, duration: 0.3, ease: "power2.out" });
+      });
+      item.addEventListener("mouseleave", () => {
+        gsap.to(item, {
+          y: 0,
+          scale: 1,
+          duration: 0.3,
+          ease: "power2.out"
         });
+      });
     }
-});
-
-document.querySelectorAll(".work-link").forEach(link => {
+  });
+  
+  // Work Links
+  document.querySelectorAll(".work-link").forEach(link => {
     if (link) {
-        link.addEventListener("mouseenter", () => {
-            gsap.to(link, { y: -2, duration: 0.3, ease: "power2.out" });
-            const icon = link.querySelector("i");
-            if (icon) {
-                gsap.to(icon, { scale: 1.1, duration: 0.3, ease: "power2.out" });
-            }
-        });
-        link.addEventListener("mouseleave", () => {
-            gsap.to(link, { y: 0, duration: 0.3, ease: "power2.out" });
-            const icon = link.querySelector("i");
-            if (icon) {
-                gsap.to(icon, { scale: 1, duration: 0.3, ease: "power2.out" });
-            }
-        });
-        link.addEventListener("mousedown", () => {
-            gsap.to(link, { y: 0, duration: 0.1, ease: "power2.out" });
-        });
-        link.addEventListener("mouseup", () => {
-            gsap.to(link, { y: -2, duration: 0.1, ease: "power2.out" });
-        });
+      link.addEventListener("mouseenter", () => {
+        gsap.to(link, { y: -2, duration: 0.3, ease: "power2.out" });
+        const icon = link.querySelector("i");
+        if (icon) {
+          gsap.to(icon, { scale: 1.1, duration: 0.3, ease: "power2.out" });
+        }
+      });
+      link.addEventListener("mouseleave", () => {
+        gsap.to(link, { y: 0, duration: 0.3, ease: "power2.out" });
+        const icon = link.querySelector("i");
+        if (icon) {
+          gsap.to(icon, { scale: 1, duration: 0.3, ease: "power2.out" });
+        }
+      });
+      link.addEventListener("mousedown", () => {
+        gsap.to(link, { y: 0, duration: 0.1, ease: "power2.out" });
+      });
+      link.addEventListener("mouseup", () => {
+        gsap.to(link, { y: -2, duration: 0.1, ease: "power2.out" });
+      });
     }
-});
-
-document.querySelectorAll(".social-link").forEach(link => {
+  });
+  
+  // Social Links
+  document.querySelectorAll(".social-link").forEach(link => {
     if (link) {
-        link.addEventListener("mouseenter", () => {
-            gsap.to(link, {
-                scale: 1.15,
-                rotate: 5,
-                duration: 0.3,
-                ease: "power2.out"
-            });
+      link.addEventListener("mouseenter", () => {
+        gsap.to(link, {
+          scale: 1.15,
+          rotate: 5,
+          duration: 0.3,
+          ease: "power2.out"
         });
-        link.addEventListener("mouseleave", () => {
-            gsap.to(link, {
-                scale: 1,
-                rotate: 0,
-                duration: 0.3,
-                ease: "power2.out"
-            });
+      });
+      link.addEventListener("mouseleave", () => {
+        gsap.to(link, {
+          scale: 1,
+          rotate: 0,
+          duration: 0.3,
+          ease: "power2.out"
         });
+      });
     }
+  });
 });
-
-const sidebarCloseButton = document.querySelector(".logo-toggle .sidebarClose");
-if (sidebarCloseButton) {
-    sidebarCloseButton.addEventListener("mouseenter", () => {
-        gsap.to(sidebarCloseButton, { rotation: 90, scale: 1.1, duration: 0.3, ease: "power2.out" });
-    });
-    sidebarCloseButton.addEventListener("mouseleave", () => {
-        gsap.to(sidebarCloseButton, { rotation: 0, scale: 1, duration: 0.3, ease: "power2.out" });
-    });
-}
-
-// Development Process Section Animation
-if (document.querySelectorAll('.devSection .card').length) {
-    const cards = document.querySelectorAll('.devSection .card');
-    cards.forEach((card, i) => {
-        const fromX = (i % 2 === 0) ? -80 : 80;
-        gsap.from(card, {
-            scrollTrigger: {
-                trigger: card,
-                start: 'top 90%',
-            },
-            x: fromX,
-            y: 10,
-            opacity: 0,
-            duration: 0.8,
-            delay: i * 0.05,
-            ease: 'power3.out'
-        });
-    });
-}
