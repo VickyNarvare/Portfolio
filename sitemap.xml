@@ -42,4 +42,12 @@
     <priority>0.7</priority>
   </url>
   
+  <!-- Skills Section -->
+  <url>
+    <loc>https://vickynarvare.vercel.app/#skills</loc>
+    <lastmod>2024-12-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
 </urlset>
