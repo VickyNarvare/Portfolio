@@ -560,23 +560,187 @@ document.addEventListener('DOMContentLoaded', () => {
 // VIEW MORE WORKS FUNCTIONALITY
 // ============================================
 document.addEventListener('DOMContentLoaded', () => {
-  const viewMoreBtn = document.getElementById('viewMoreBtn');
-  const hiddenWorkItems = document.querySelectorAll('.work-item-hidden');
-  const btnSpan = viewMoreBtn?.querySelector('span');
+  // Projects Carousel Functionality
+  const allCards = document.querySelectorAll('.projects-carousel-wrapper .project-preview-card');
+  const sidePrevCard = document.querySelector('.projects-carousel-wrapper > .project-preview-card.prev');
+  const sideNextCard = document.querySelector('.projects-carousel-wrapper > .project-preview-card.next');
+  const activeCard = document.querySelector('.projects-carousel-wrapper > .project-preview-card.active');
+  const projectDetails = document.querySelectorAll('.project-detail');
+  const projectsContainer = document.querySelector('.projects-carousel-wrapper');
   
-  if (viewMoreBtn && hiddenWorkItems.length > 0) {
-    viewMoreBtn.addEventListener('click', () => {
-      const isExpanded = viewMoreBtn.classList.contains('expanded');
+  // All project images data
+  const projectImages = [
+    { src: 'Images/project1.webp', alt: 'Weather Application by Vicky Narvare' },
+    { src: 'Images/project2.webp', alt: 'ElectraX Website by Vicky Narvare' },
+    { src: 'Images/project3.webp', alt: 'Kalika Construction Website by Vicky Narvare' },
+    { src: 'Images/project4.webp', alt: 'JARVIS AI Platform by Vicky Narvare' }
+  ];
+  
+  let currentProjectIndex = 0; // Start with first project (index 0)
+  let autoPlayInterval;
+  const autoPlayDelay =  3000; // 3 seconds between slides
+  const totalProjects = projectImages.length;
+  
+  // Preload all images for smooth switching
+  function preloadImages() {
+    projectImages.forEach((imgData) => {
+      const img = new Image();
+      img.src = imgData.src;
+    });
+  }
+  
+  // Preload images on page load
+  preloadImages();
+  
+  function updateCards() {
+    const prevIndex = (currentProjectIndex - 1 + totalProjects) % totalProjects;
+    const nextIndex = (currentProjectIndex + 1) % totalProjects;
+    
+    // Helper function to switch image
+    function switchImage(imgElement, newSrc, newAlt) {
+      if (!imgElement) return;
       
-      if (isExpanded) {
-        hiddenWorkItems.forEach(item => item.classList.remove('show'));
-        viewMoreBtn.classList.remove('expanded');
-        if (btnSpan) btnSpan.textContent = 'View More';
+      // Create new image to preload
+      const newImg = new Image();
+      newImg.onload = () => {
+        // Image loaded, now switch
+        imgElement.src = newSrc;
+        imgElement.alt = newAlt;
+      };
+      newImg.src = newSrc;
+    }
+    
+    // Update prev card
+    if (sidePrevCard) {
+      const prevImg = sidePrevCard.querySelector('img');
+      switchImage(prevImg, projectImages[prevIndex].src, projectImages[prevIndex].alt);
+      sidePrevCard.setAttribute('data-project', prevIndex);
+      sidePrevCard.classList.add('prev');
+      sidePrevCard.classList.remove('active', 'next');
+    }
+    
+    // Update active card
+    if (activeCard) {
+      const activeImg = activeCard.querySelector('img');
+      switchImage(activeImg, projectImages[currentProjectIndex].src, projectImages[currentProjectIndex].alt);
+      activeCard.setAttribute('data-project', currentProjectIndex);
+      activeCard.classList.add('active');
+      activeCard.classList.remove('prev', 'next');
+    }
+    
+    // Update next card
+    if (sideNextCard) {
+      const nextImg = sideNextCard.querySelector('img');
+      switchImage(nextImg, projectImages[nextIndex].src, projectImages[nextIndex].alt);
+      sideNextCard.setAttribute('data-project', nextIndex);
+      sideNextCard.classList.add('next');
+      sideNextCard.classList.remove('active', 'prev');
+    }
+    
+    // No animations - instant switch
+  }
+  
+  function switchProject(index) {
+    if (index < 0 || index >= totalProjects) {
+      console.error('Invalid project index:', index);
+      return;
+    }
+    currentProjectIndex = index;
+    updateCards();
+    
+    // Update project details - no animations
+    projectDetails.forEach((detail, i) => {
+      if (i === index) {
+        detail.classList.add('active');
       } else {
-        hiddenWorkItems.forEach(item => item.classList.add('show'));
-        viewMoreBtn.classList.add('expanded');
-        if (btnSpan) btnSpan.textContent = 'View Less';
+        detail.classList.remove('active');
       }
+    });
+    
+    currentProjectIndex = index;
+  }
+  
+  function nextProject() {
+    const nextIndex = (currentProjectIndex + 1) % totalProjects;
+    switchProject(nextIndex);
+  }
+  
+  function prevProject() {
+    const prevIndex = (currentProjectIndex - 1 + totalProjects) % totalProjects;
+    switchProject(prevIndex);
+  }
+  
+  function startAutoPlay() {
+    // Clear any existing interval first
+    stopAutoPlay();
+    autoPlayInterval = setInterval(() => {
+      nextProject();
+    }, autoPlayDelay);
+  }
+  
+  function stopAutoPlay() {
+    if (autoPlayInterval) {
+      clearInterval(autoPlayInterval);
+      autoPlayInterval = null;
+    }
+  }
+  
+  // Card click handlers
+  if (sideNextCard) {
+    sideNextCard.addEventListener('click', () => {
+      nextProject();
+      stopAutoPlay();
+      startAutoPlay();
+    });
+  }
+  
+  if (sidePrevCard) {
+    sidePrevCard.addEventListener('click', () => {
+      prevProject();
+      stopAutoPlay();
+      startAutoPlay();
+    });
+  }
+  
+  if (activeCard) {
+    activeCard.addEventListener('click', () => {
+      // Could add functionality here if needed
+    });
+  }
+  
+  // Pause auto-play on hover, resume on mouse leave
+  if (projectsContainer) {
+    projectsContainer.addEventListener('mouseenter', stopAutoPlay);
+    projectsContainer.addEventListener('mouseleave', startAutoPlay);
+  }
+  
+  // Keyboard navigation
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') {
+      prevProject();
+      stopAutoPlay();
+      startAutoPlay();
+    } else if (e.key === 'ArrowRight') {
+      nextProject();
+      stopAutoPlay();
+      startAutoPlay();
+    }
+  });
+  
+  // Initialize cards on page load
+  if (sidePrevCard && activeCard && sideNextCard && totalProjects > 0) {
+    updateCards();
+    
+    // Start auto-play when page loads
+    startAutoPlay();
+    
+    console.log('Carousel initialized with', totalProjects, 'projects');
+  } else {
+    console.error('Carousel elements not found:', {
+      sidePrevCard: !!sidePrevCard,
+      activeCard: !!activeCard,
+      sideNextCard: !!sideNextCard,
+      totalProjects: totalProjects
     });
   }
 });
