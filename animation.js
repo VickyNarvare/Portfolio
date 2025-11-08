@@ -9,22 +9,34 @@ if (typeof gsap !== 'undefined') {
 }
 
 // ============================================
-// TECHNOLOGIES MARQUEE DATA
+// TECHNOLOGIES DATA FOR MARQUEE
 // ============================================
 const technologies = [
-  'CSS3',
-  'JAVASCRIPT',
-  'GSAP',
-  'REACT',
-  'TAILWIND',
-  'SASS',
-  'JAVA',
-  'PYTHON',
-  'HTML5'
+  {name: 'HTML5', color: '#E34F26'},
+  { name: 'CSS3', color: '#1572B6' },
+  { name: 'JavaScript', color: '#F7DF1E' },
+  { name: 'SCSS', color: '#CC6699' },
+  { name: 'Tailwind', color: '#06B6D4' },
+  { name: 'Git', color: '#F05032' },
+  { name: 'GitHub', color: '#181717' },
+  { name: 'React', color: '#61DAFB' },
+  { name: 'Next.js', color: '#000000' },
+  {name: 'MySQL', color: '#4479A1'},
+  {name: 'SQL', color: '#4479A1'},
+  {name: 'GSAP', color: '#D9B310'},
+  {name: 'CSS Animations', color: '#000000'},
+  {name: 'UI/UX Design', color: '#000000'},
+  {name: 'Responsive Design', color: '#000000'},
+  {name: 'Figma', color: '#007AFF'},
+  {name: 'Canva', color: '#000000'},  
+  {name: 'VS Code', color: '#007ACC'},
+  {name: 'Sublime Text', color: '#000000'},
+  {name: 'Chrome DevTools', color: '#000000'},
+  {name: 'NPM/Yarn', color: '#000000'}
 ];
 
 /**
- * Populate marquee with technologies
+ * Populate marquee with technology tags
  * @param {HTMLElement} trackElement - The track element to populate
  */
 function populateTechMarquee(trackElement) {
@@ -35,10 +47,21 @@ function populateTechMarquee(trackElement) {
   // Create 3 sets for seamless infinite loop
   for (let i = 0; i < 3; i++) {
     technologies.forEach(tech => {
-      const span = document.createElement('span');
-      span.className = 'tech-marquee__item';
-      span.textContent = tech;
-      trackElement.appendChild(span);
+      const tag = document.createElement('div');
+      tag.className = 'tech-tag';
+      tag.setAttribute('data-tech', tech.name.toLowerCase());
+      
+      const dot = document.createElement('span');
+      dot.className = 'tech-dot';
+      dot.style.backgroundColor = tech.color;
+      
+      const name = document.createElement('span');
+      name.className = 'tech-name';
+      name.textContent = tech.name;
+      
+      tag.appendChild(dot);
+      tag.appendChild(name);
+      trackElement.appendChild(tag);
     });
   }
 }
@@ -46,8 +69,8 @@ function populateTechMarquee(trackElement) {
 document.addEventListener("DOMContentLoaded", (event) => {
   // ============================================
   // HERO SECTION ANIMATIONS
-  // ============================================
-  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+// ============================================
+if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
     const homeSection = document.querySelector("#home");
     if (homeSection) {
       const heroTitle = document.querySelector(".hero-title");
@@ -57,177 +80,230 @@ document.addEventListener("DOMContentLoaded", (event) => {
       
       if (heroTitle) {
         gsap.from(heroTitle, {
-          scrollTrigger: {
+    scrollTrigger: {
             trigger: homeSection,
-            start: "top center",
-          },
-          y: 50,
-          opacity: 0,
-          duration: 1,
-          ease: "power4.out"
-        });
+      start: "top center",
+    },
+    y: 50,
+    opacity: 0,
+    duration: 1,
+    ease: "power4.out"
+  });
       }
-      
+  
       if (heroSubtitle) {
         gsap.from(heroSubtitle, {
-          scrollTrigger: {
+    scrollTrigger: {
             trigger: homeSection,
-            start: "top center",
-          },
-          y: 50,
-          opacity: 0,
-          duration: 1,
-          delay: 0.2,
-          ease: "power4.out"
-        });
+      start: "top center",
+    },
+    y: 50,
+    opacity: 0,
+    duration: 1,
+    delay: 0.2,
+    ease: "power4.out"
+  });
       }
-      
+  
       if (heroDescription) {
         gsap.from(heroDescription, {
-          scrollTrigger: {
+    scrollTrigger: {
             trigger: homeSection,
-            start: "top center",
-          },
-          y: 50,
-          opacity: 0,
-          duration: 1,
-          delay: 0.4,
-          ease: "power4.out"
-        });
+      start: "top center",
+    },
+    y: 50,
+    opacity: 0,
+    duration: 1,
+    delay: 0.4,
+    ease: "power4.out"
+  });
       }
-      
+  
       if (heroButtons) {
         gsap.from(heroButtons, {
-          scrollTrigger: {
+    scrollTrigger: {
             trigger: homeSection,
-            start: "top center",
-          },
-          y: 50,
-          opacity: 0,
-          duration: 1,
-          delay: 0.6,
-          ease: "power4.out"
-        });
+      start: "top center",
+    },
+    y: 50,
+    opacity: 0,
+    duration: 1,
+    delay: 0.6,
+    ease: "power4.out"
+  });
       }
     }
-  }
+}
 
-  // ============================================
-  // TECHNOLOGIES MARQUEE ANIMATION
-  // ============================================
-  const homeMarquee = document.getElementById('homeTechMarquee');
-  if (homeMarquee && typeof gsap !== 'undefined') {
-    populateTechMarquee(homeMarquee);
+// ============================================
+// TECHNOLOGIES MARQUEE ANIMATION
+// ============================================
+  
+  // Function to initialize marquee animation
+  function initMarquee(trackId, direction = 'left') {
+    const techMarqueeTrack = document.getElementById(trackId);
+    if (!techMarqueeTrack || typeof gsap === 'undefined') return;
     
-    const items = homeMarquee.querySelectorAll('.tech-marquee__item');
-    const firstSetWidth = Array.from(items).slice(0, technologies.length)
-      .reduce((sum, el) => sum + el.offsetWidth + 36, 0);
+    populateTechMarquee(techMarqueeTrack);
     
-    gsap.to(items, {
+    // Wait for next frame to ensure DOM is updated
+    requestAnimationFrame(() => {
+      const techTags = techMarqueeTrack.querySelectorAll('.tech-tag');
+      if (techTags.length > 0) {
+        // Calculate width of one set of technologies
+        const firstSetWidth = Array.from(techTags).slice(0, technologies.length)
+          .reduce((sum, el) => sum + el.offsetWidth + 16, 0);
+    
+        // Animate the marquee based on direction
+        if (direction === 'left') {
+          // Left to Right (move from negative to positive)
+          gsap.set(techTags, { x: -firstSetWidth });
+          gsap.to(techTags, {
+            x: 0,
+            duration: 30,
+            ease: 'none',
+            repeat: -1
+          });
+        } else {
+          // Right to Left (move from positive to negative)
+          gsap.set(techTags, { x: 0 });
+          gsap.to(techTags, {
       x: -firstSetWidth,
-      duration: 20,
+            duration: 30,
       ease: 'none',
       repeat: -1
     });
   }
+      }
+    });
+  }
   
-  // Handle resize
+  // Initialize Left to Right marquee
+  initMarquee('techMarqueeTrackLeft', 'left');
+  
+  // Initialize Right to Left marquee
+  initMarquee('techMarqueeTrackRight', 'right');
+  
+  // Handle resize for both marquees
   let resizeTimer;
   window.addEventListener('resize', () => {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(() => {
-      if (homeMarquee) {
-        populateTechMarquee(homeMarquee);
-        const items = homeMarquee.querySelectorAll('.tech-marquee__item');
-        const firstSetWidth = Array.from(items).slice(0, technologies.length)
-          .reduce((sum, el) => sum + el.offsetWidth + 36, 0);
+      // Reinitialize both marquees on resize
+      const leftTrack = document.getElementById('techMarqueeTrackLeft');
+      const rightTrack = document.getElementById('techMarqueeTrackRight');
+      
+      if (leftTrack && typeof gsap !== 'undefined') {
+        const leftTags = leftTrack.querySelectorAll('.tech-tag');
+        if (leftTags.length > 0) {
+          const firstSetWidth = Array.from(leftTags).slice(0, technologies.length)
+            .reduce((sum, el) => sum + el.offsetWidth + 16, 0);
+          
+          gsap.killTweensOf(leftTags);
+          gsap.set(leftTags, { x: -firstSetWidth });
+          gsap.to(leftTags, {
+            x: 0,
+            duration: 30,
+            ease: 'none',
+            repeat: -1
+          });
+        }
+      }
+      
+      if (rightTrack && typeof gsap !== 'undefined') {
+        const rightTags = rightTrack.querySelectorAll('.tech-tag');
+        if (rightTags.length > 0) {
+          const firstSetWidth = Array.from(rightTags).slice(0, technologies.length)
+            .reduce((sum, el) => sum + el.offsetWidth + 16, 0);
         
-        gsap.killTweensOf(items);
-        gsap.to(items, {
+          gsap.killTweensOf(rightTags);
+          gsap.set(rightTags, { x: 0 });
+          gsap.to(rightTags, {
           x: -firstSetWidth,
-          duration: 20,
+            duration: 30,
           ease: 'none',
           repeat: -1
         });
+        }
       }
     }, 150);
-  });
+});
 
-  // ============================================
-  // SERVICES SECTION ANIMATIONS
-  // ============================================
-  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+// ============================================
+// SERVICES SECTION ANIMATIONS
+// ============================================
+if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
     const servicesSection = document.querySelector("#services");
     if (servicesSection) {
-      // Services Title
+  // Services Title
       const servicesTitle = document.querySelector(".services-title");
       if (servicesTitle) {
         gsap.from(servicesTitle, {
-          scrollTrigger: {
+    scrollTrigger: {
             trigger: servicesSection,
-            start: "top 80%",
-          },
-          y: 50,
-          opacity: 0,
-          duration: 1,
-          ease: "power4.out"
-        });
+      start: "top 80%",
+    },
+    y: 50,
+    opacity: 0,
+    duration: 1,
+    ease: "power4.out"
+  });
       }
-      
-      // Services Description
+  
+  // Services Description
       const servicesDescription = document.querySelector(".services-description");
       if (servicesDescription) {
         gsap.from(servicesDescription, {
-          scrollTrigger: {
+    scrollTrigger: {
             trigger: servicesSection,
-            start: "top 80%",
-          },
-          y: 30,
-          opacity: 0,
-          duration: 1,
-          delay: 0.2,
-          ease: "power4.out"
-        });
+      start: "top 80%",
+    },
+    y: 30,
+    opacity: 0,
+    duration: 1,
+    delay: 0.2,
+    ease: "power4.out"
+  });
       }
-      
-      // Service Cards
+  
+  // Service Cards
       const serviceCards = document.querySelectorAll(".service-card");
       if (serviceCards.length > 0) {
         gsap.from(serviceCards, {
-          scrollTrigger: {
+    scrollTrigger: {
             trigger: servicesSection,
-            start: "top 80%",
-          },
-          y: 50,
-          opacity: 0,
-          duration: 1,
-          stagger: 0.2,
-          ease: "power4.out"
-        });
+      start: "top 80%",
+    },
+    y: 50,
+    opacity: 0,
+    duration: 1,
+    stagger: 0.2,
+    ease: "power4.out"
+  });
       }
-      
-      // Service Icons
+  
+  // Service Icons
       const serviceIcons = document.querySelectorAll(".service-icon");
       if (serviceIcons.length > 0) {
         gsap.from(serviceIcons, {
-          scrollTrigger: {
+    scrollTrigger: {
             trigger: servicesSection,
-            start: "top 80%",
-          },
-          scale: 0,
-          opacity: 0,
-          duration: 0.8,
-          stagger: 0.15,
-          ease: "back.out(1.7)"
-        });
+      start: "top 80%",
+    },
+    scale: 0,
+    opacity: 0,
+    duration: 0.8,
+    stagger: 0.15,
+    ease: "back.out(1.7)"
+  });
       }
     }
-  }
+}
 
-  // ============================================
-  // CTA SECTION ANIMATIONS
-  // ============================================
-  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+// ============================================
+// CTA SECTION ANIMATIONS
+// ============================================
+if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
     const ctaContainer = document.querySelector(".cta-container");
     if (ctaContainer) {
       const ctaCard = document.querySelector(".cta-card");
@@ -237,64 +313,64 @@ document.addEventListener("DOMContentLoaded", (event) => {
       
       if (ctaCard) {
         gsap.from(ctaCard, {
-          scrollTrigger: {
+    scrollTrigger: {
             trigger: ctaContainer,
-            start: "top 80%",
-          },
-          y: 50,
-          opacity: 0,
-          duration: 1,
-          ease: "power4.out"
-        });
+      start: "top 80%",
+    },
+    y: 50,
+    opacity: 0,
+    duration: 1,
+    ease: "power4.out"
+  });
       }
-      
+  
       if (ctaTitle) {
         gsap.from(ctaTitle, {
-          scrollTrigger: {
+    scrollTrigger: {
             trigger: ctaContainer,
-            start: "top 80%",
-          },
-          y: 30,
-          opacity: 0,
-          duration: 1,
-          delay: 0.2,
-          ease: "power4.out"
-        });
+      start: "top 80%",
+    },
+    y: 30,
+    opacity: 0,
+    duration: 1,
+    delay: 0.2,
+    ease: "power4.out"
+  });
       }
-      
+  
       if (ctaLead) {
         gsap.from(ctaLead, {
-          scrollTrigger: {
+    scrollTrigger: {
             trigger: ctaContainer,
-            start: "top 80%",
-          },
-          y: 30,
-          opacity: 0,
-          duration: 1,
-          delay: 0.4,
-          ease: "power4.out"
-        });
+      start: "top 80%",
+    },
+    y: 30,
+    opacity: 0,
+    duration: 1,
+    delay: 0.4,
+    ease: "power4.out"
+  });
       }
-      
+  
       if (ctaButtons) {
         gsap.from(ctaButtons, {
-          scrollTrigger: {
+    scrollTrigger: {
             trigger: ctaContainer,
-            start: "top 80%",
-          },
-          y: 30,
-          opacity: 0,
-          duration: 1,
-          delay: 0.6,
-          ease: "power4.out"
-        });
+      start: "top 80%",
+    },
+    y: 30,
+    opacity: 0,
+    duration: 1,
+    delay: 0.6,
+    ease: "power4.out"
+  });
       }
     }
-  }
+}
 
-  // ============================================
-  // HOVER ANIMATIONS
-  // ============================================
+// ============================================
+// HOVER ANIMATIONS
+// ============================================
   if (typeof gsap === 'undefined') return;
   
   // Primary Buttons

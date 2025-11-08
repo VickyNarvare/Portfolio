@@ -533,13 +533,20 @@
               <a href="#contact" class="btn btn-secondary">Get In Touch</a>
             </div>
           </div>
-        </div>
-        <!-- Technologies Marquee -->
-        <div class="tech-marquee-section">
+          
+          <!-- Technologies Marquee -->
           <div class="tech-marquee-container">
-            <div class="tech-marquee" aria-label="Technologies marquee">
-              <div class="tech-marquee__track" id="homeTechMarquee">
-                <!-- Technologies will be populated from array via JavaScript -->
+            <!-- Marquee 1: Left to Right -->
+            <div class="tech-marquee-wrapper">
+              <div class="tech-marquee" id="techMarqueeLeft">
+                <div class="tech-marquee-track" id="techMarqueeTrackLeft"></div>
+              </div>
+            </div>
+            
+            <!-- Marquee 2: Right to Left -->
+            <div class="tech-marquee-wrapper">
+              <div class="tech-marquee" id="techMarqueeRight">
+                <div class="tech-marquee-track" id="techMarqueeTrackRight"></div>
               </div>
             </div>
           </div>
@@ -572,24 +579,6 @@
                 projects, or enjoying a good cup of coffee while sketching out new ideas. I'm always eager 
                 to take on new challenges and collaborate with teams to build amazing digital experiences.
               </p>
-              <div class="skills">
-                <h3>Core Technologies</h3>
-                <div class="skill-tags">
-                  <span class="skill-tag">HTML5</span>
-                  <span class="skill-tag">CSS3</span>
-                  <span class="skill-tag">JavaScript</span>
-                  <span class="skill-tag">React</span>
-                  <span class="skill-tag">Next.js</span>
-                  <span class="skill-tag">GSAP</span>
-                  <span class="skill-tag">Tailwind CSS</span>
-                  <span class="skill-tag">SCSS</span>
-                  <span class="skill-tag">Java</span>
-                  <span class="skill-tag">Python</span>
-                  <span class="skill-tag">Git</span>
-                  <span class="skill-tag">Figma</span>
-
-                </div>
-              </div>
             </div>
             <div class="about-image">
               <img 
@@ -624,13 +613,13 @@
               </div>
               <h3 class="skill-card-title">Frontend</h3>
               <div class="skill-tags-container">
-                <span class="skill-tag">HTML5</span>
-                <span class="skill-tag">CSS3</span>
-                <span class="skill-tag">JavaScript</span>
-                <span class="skill-tag">React</span>
-                <span class="skill-tag">Next.js</span>
-                <span class="skill-tag">Tailwind CSS</span>
-                <span class="skill-tag">SCSS</span>
+                <span class="skill-tag" data-skill="html5">HTML5</span>
+                <span class="skill-tag" data-skill="css3">CSS3</span>
+                <span class="skill-tag" data-skill="javascript">JavaScript</span>
+                <span class="skill-tag" data-skill="react">React</span>
+                <span class="skill-tag" data-skill="nextjs">Next.js</span>
+                <span class="skill-tag" data-skill="tailwind">Tailwind CSS</span>
+                <span class="skill-tag" data-skill="scss">SCSS</span>
               </div>
             </div>
 
@@ -641,8 +630,8 @@
               </div>
               <h3 class="skill-card-title">Database</h3>
               <div class="skill-tags-container">
-                <span class="skill-tag">SQL</span>
-                <span class="skill-tag">MySQL</span>
+                <span class="skill-tag" data-skill="sql">SQL</span>
+                <span class="skill-tag" data-skill="mysql">MySQL</span>
               </div>
             </div>
 
@@ -653,8 +642,8 @@
               </div>
               <h3 class="skill-card-title">Animation</h3>
               <div class="skill-tags-container">
-                <span class="skill-tag">GSAP</span>
-                <span class="skill-tag">CSS Animations</span>
+                <span class="skill-tag" data-skill="gsap">GSAP</span>
+                <span class="skill-tag" data-skill="css-animations">CSS Animations</span>
               </div>
             </div>
 
@@ -665,8 +654,8 @@
               </div>
               <h3 class="skill-card-title">Version Control</h3>
               <div class="skill-tags-container">
-                <span class="skill-tag">Git</span>
-                <span class="skill-tag">GitHub</span>
+                <span class="skill-tag" data-skill="git">Git</span>
+                <span class="skill-tag" data-skill="github">GitHub</span>
               </div>
             </div>
 
@@ -677,10 +666,10 @@
               </div>
               <h3 class="skill-card-title">Design & UX</h3>
               <div class="skill-tags-container">
-                  <span class="skill-tag">UI/UX Design</span>
-                  <span class="skill-tag">Responsive Design</span>
-                  <span class="skill-tag">Figma</span>
-                  <span class="skill-tag">Canva</span>
+                  <span class="skill-tag" data-skill="uiux">UI/UX Design</span>
+                  <span class="skill-tag" data-skill="responsive">Responsive Design</span>
+                  <span class="skill-tag" data-skill="figma">Figma</span>
+                  <span class="skill-tag" data-skill="canva">Canva</span>
               </div>
             </div>
 
@@ -691,10 +680,10 @@
               </div>
               <h3 class="skill-card-title">Dev Tools</h3>
               <div class="skill-tags-container">
-                  <span class="skill-tag">VS Code</span>
-                <span class="skill-tag">Sublime Text</span>
-                <span class="skill-tag">Chrome DevTools</span>
-                <span class="skill-tag">NPM/Yarn</span>
+                  <span class="skill-tag" data-skill="vscode">VS Code</span>
+                <span class="skill-tag" data-skill="sublime">Sublime Text</span>
+                <span class="skill-tag" data-skill="devtools">Chrome DevTools</span>
+                <span class="skill-tag" data-skill="npm">NPM/Yarn</span>
               </div>
             </div>
           </div>
