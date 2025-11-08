@@ -9,59 +9,7 @@ if (typeof gsap !== 'undefined') {
 }
 
 // ============================================
-// HERO SECTION ANIMATIONS
-// ============================================
-if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-  gsap.from(".hero-title", {
-    scrollTrigger: {
-      trigger: "#home",
-      start: "top center",
-    },
-    y: 50,
-    opacity: 0,
-    duration: 1,
-    ease: "power4.out"
-  });
-  
-  gsap.from(".hero-subtitle", {
-    scrollTrigger: {
-      trigger: "#home",
-      start: "top center",
-    },
-    y: 50,
-    opacity: 0,
-    duration: 1,
-    delay: 0.2,
-    ease: "power4.out"
-  });
-  
-  gsap.from(".hero-description", {
-    scrollTrigger: {
-      trigger: "#home",
-      start: "top center",
-    },
-    y: 50,
-    opacity: 0,
-    duration: 1,
-    delay: 0.4,
-    ease: "power4.out"
-  });
-  
-  gsap.from(".hero-buttons", {
-    scrollTrigger: {
-      trigger: "#home",
-      start: "top center",
-    },
-    y: 50,
-    opacity: 0,
-    duration: 1,
-    delay: 0.6,
-    ease: "power4.out"
-  });
-}
-
-// ============================================
-// TECHNOLOGIES MARQUEE ANIMATION
+// TECHNOLOGIES MARQUEE DATA
 // ============================================
 const technologies = [
   'CSS3',
@@ -95,8 +43,62 @@ function populateTechMarquee(trackElement) {
   }
 }
 
-// Initialize marquee on load
-window.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", (event) => {
+  // ============================================
+  // HERO SECTION ANIMATIONS
+  // ============================================
+  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+    gsap.from(".hero-title", {
+      scrollTrigger: {
+        trigger: "#home",
+        start: "top center",
+      },
+      y: 50,
+      opacity: 0,
+      duration: 1,
+      ease: "power4.out"
+    });
+    
+    gsap.from(".hero-subtitle", {
+      scrollTrigger: {
+        trigger: "#home",
+        start: "top center",
+      },
+      y: 50,
+      opacity: 0,
+      duration: 1,
+      delay: 0.2,
+      ease: "power4.out"
+    });
+    
+    gsap.from(".hero-description", {
+      scrollTrigger: {
+        trigger: "#home",
+        start: "top center",
+      },
+      y: 50,
+      opacity: 0,
+      duration: 1,
+      delay: 0.4,
+      ease: "power4.out"
+    });
+    
+    gsap.from(".hero-buttons", {
+      scrollTrigger: {
+        trigger: "#home",
+        start: "top center",
+      },
+      y: 50,
+      opacity: 0,
+      duration: 1,
+      delay: 0.6,
+      ease: "power4.out"
+    });
+  }
+
+  // ============================================
+  // TECHNOLOGIES MARQUEE ANIMATION
+  // ============================================
   const homeMarquee = document.getElementById('homeTechMarquee');
   if (homeMarquee && typeof gsap !== 'undefined') {
     populateTechMarquee(homeMarquee);
@@ -134,120 +136,118 @@ window.addEventListener('DOMContentLoaded', () => {
       }
     }, 150);
   });
-});
 
-// ============================================
-// SERVICES SECTION ANIMATIONS
-// ============================================
-if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-  // Services Title
-  gsap.from(".services-title", {
-    scrollTrigger: {
-      trigger: "#services",
-      start: "top 80%",
-    },
-    y: 50,
-    opacity: 0,
-    duration: 1,
-    ease: "power4.out"
-  });
-  
-  // Services Description
-  gsap.from(".services-description", {
-    scrollTrigger: {
-      trigger: "#services",
-      start: "top 80%",
-    },
-    y: 30,
-    opacity: 0,
-    duration: 1,
-    delay: 0.2,
-    ease: "power4.out"
-  });
-  
-  // Service Cards
-  gsap.from(".service-card", {
-    scrollTrigger: {
-      trigger: "#services",
-      start: "top 80%",
-    },
-    y: 50,
-    opacity: 0,
-    duration: 1,
-    stagger: 0.2,
-    ease: "power4.out"
-  });
-  
-  // Service Icons
-  gsap.from(".service-icon", {
-    scrollTrigger: {
-      trigger: "#services",
-      start: "top 80%",
-    },
-    scale: 0,
-    opacity: 0,
-    duration: 0.8,
-    stagger: 0.15,
-    ease: "back.out(1.7)"
-  });
-}
+  // ============================================
+  // SERVICES SECTION ANIMATIONS
+  // ============================================
+  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+    // Services Title
+    gsap.from(".services-title", {
+      scrollTrigger: {
+        trigger: "#services",
+        start: "top 80%",
+      },
+      y: 50,
+      opacity: 0,
+      duration: 1,
+      ease: "power4.out"
+    });
+    
+    // Services Description
+    gsap.from(".services-description", {
+      scrollTrigger: {
+        trigger: "#services",
+        start: "top 80%",
+      },
+      y: 30,
+      opacity: 0,
+      duration: 1,
+      delay: 0.2,
+      ease: "power4.out"
+    });
+    
+    // Service Cards
+    gsap.from(".service-card", {
+      scrollTrigger: {
+        trigger: "#services",
+        start: "top 80%",
+      },
+      y: 50,
+      opacity: 0,
+      duration: 1,
+      stagger: 0.2,
+      ease: "power4.out"
+    });
+    
+    // Service Icons
+    gsap.from(".service-icon", {
+      scrollTrigger: {
+        trigger: "#services",
+        start: "top 80%",
+      },
+      scale: 0,
+      opacity: 0,
+      duration: 0.8,
+      stagger: 0.15,
+      ease: "back.out(1.7)"
+    });
+  }
 
-// ============================================
-// CTA SECTION ANIMATIONS
-// ============================================
-if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-  gsap.from(".cta-card", {
-    scrollTrigger: {
-      trigger: ".cta-container",
-      start: "top 80%",
-    },
-    y: 50,
-    opacity: 0,
-    duration: 1,
-    ease: "power4.out"
-  });
-  
-  gsap.from(".cta-title", {
-    scrollTrigger: {
-      trigger: ".cta-container",
-      start: "top 80%",
-    },
-    y: 30,
-    opacity: 0,
-    duration: 1,
-    delay: 0.2,
-    ease: "power4.out"
-  });
-  
-  gsap.from(".cta-lead", {
-    scrollTrigger: {
-      trigger: ".cta-container",
-      start: "top 80%",
-    },
-    y: 30,
-    opacity: 0,
-    duration: 1,
-    delay: 0.4,
-    ease: "power4.out"
-  });
-  
-  gsap.from(".cta-buttons", {
-    scrollTrigger: {
-      trigger: ".cta-container",
-      start: "top 80%",
-    },
-    y: 30,
-    opacity: 0,
-    duration: 1,
-    delay: 0.6,
-    ease: "power4.out"
-  });
-}
+  // ============================================
+  // CTA SECTION ANIMATIONS
+  // ============================================
+  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+    gsap.from(".cta-card", {
+      scrollTrigger: {
+        trigger: ".cta-container",
+        start: "top 80%",
+      },
+      y: 50,
+      opacity: 0,
+      duration: 1,
+      ease: "power4.out"
+    });
+    
+    gsap.from(".cta-title", {
+      scrollTrigger: {
+        trigger: ".cta-container",
+        start: "top 80%",
+      },
+      y: 30,
+      opacity: 0,
+      duration: 1,
+      delay: 0.2,
+      ease: "power4.out"
+    });
+    
+    gsap.from(".cta-lead", {
+      scrollTrigger: {
+        trigger: ".cta-container",
+        start: "top 80%",
+      },
+      y: 30,
+      opacity: 0,
+      duration: 1,
+      delay: 0.4,
+      ease: "power4.out"
+    });
+    
+    gsap.from(".cta-buttons", {
+      scrollTrigger: {
+        trigger: ".cta-container",
+        start: "top 80%",
+      },
+      y: 30,
+      opacity: 0,
+      duration: 1,
+      delay: 0.6,
+      ease: "power4.out"
+    });
+  }
 
-// ============================================
-// HOVER ANIMATIONS
-// ============================================
-document.addEventListener('DOMContentLoaded', () => {
+  // ============================================
+  // HOVER ANIMATIONS
+  // ============================================
   if (typeof gsap === 'undefined') return;
   
   // Primary Buttons

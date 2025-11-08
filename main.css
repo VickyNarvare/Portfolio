@@ -124,6 +124,7 @@ body.dark {
   width: 100%;
   height: 60px;
   background: rgba(255, 255, 255, 0.05);
+  -webkit-backdrop-filter: blur(20px);
   backdrop-filter: blur(20px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
@@ -281,6 +282,7 @@ body.dark .navbar {
   border: none;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.1);
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   cursor: pointer;
   transition: all 0.3s ease;
@@ -336,6 +338,7 @@ body.dark .sun-icon {
   height: 50px;
   border: none;
   background: rgba(255, 255, 255, 0.1);
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   border-radius: 12px;
   cursor: pointer;
@@ -384,6 +387,7 @@ body.dark .sun-icon {
   width: 100%;
   height: 100vh;
   background: rgba(0, 0, 0, 0.5);
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   z-index: 9999;
   opacity: 0;
@@ -403,6 +407,7 @@ body.dark .sun-icon {
   width: 320px;
   height: 100vh;
   background: rgba(255, 255, 255, 0.95);
+  -webkit-backdrop-filter: blur(20px);
   backdrop-filter: blur(20px);
   border-left: 1px solid rgba(255, 255, 255, 0.2);
   transform: translateX(100%);
@@ -652,6 +657,14 @@ body.dark .dot-mask {
   color: var(--text-color);
 }
 
+.accent-text {
+  color: var(--accent);
+}
+
+.works-section-padding {
+  padding-top: 50px;
+}
+
 /*! ===== HOME SECTION ===== */
 #home {
   background: var(--body-color);
@@ -752,14 +765,14 @@ body.dark .dot-mask {
   overflow: hidden;
   width: 100%;
   margin: 100px auto 0;
-  mask-image: linear-gradient(
+  -webkit-mask-image: linear-gradient(
     90deg,
     transparent,
     #000 10%,
     #000 90%,
     transparent
   );
-  -webkit-mask-image: linear-gradient(
+  mask-image: linear-gradient(
     90deg,
     transparent,
     #000 10%,
@@ -916,8 +929,8 @@ body.dark .skill-tag::after {
   background: rgb(0 0 0 / 10%);
   border-radius: 20px;
   overflow: hidden;
-  backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.2);
   position: relative;
   z-index: 1;
@@ -1167,6 +1180,7 @@ body.dark .skill-tag::after {
 }
 /* Development Process Cards */
 .devSection .card {
+  -webkit-backdrop-filter: blur(20px);
   backdrop-filter: blur(20px);
   border-radius: var(--radius);
   padding: 28px 22px 26px;
@@ -1179,6 +1193,7 @@ body.dark .skill-tag::after {
   flex-direction: column;
   min-height: 200px;
   cursor: pointer;
+  -webkit-backdrop-filter: blur(6px);
   backdrop-filter: blur(6px);
   transform: translateY(14px);
   will-change: transform, opacity;
@@ -1259,6 +1274,7 @@ body.dark .skill-tag::after {
   margin-top: 120px;
 }
 .cta-card {
+  -webkit-backdrop-filter: blur(20px);
   backdrop-filter: blur(20px);
   border: 1px solid var(--card-border);
   border-radius: 14px;
@@ -1388,6 +1404,7 @@ body.dark .skill-tag::after {
   font-size: .9rem;
   background: rgba(255, 255, 255, 0.1);
   color: var(--text-color);
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   resize: none;
 }
@@ -1587,6 +1604,7 @@ body.dark .skill-tag::after {
 /* ===== FOOTER SECTION ===== */
 .footer {
   background: var(--body-color);
+  -webkit-backdrop-filter: blur(20px);
   backdrop-filter: blur(20px);
   border-top: 1px solid var(--accent-rgba-1);
   padding: 60px 0 20px;
@@ -2329,6 +2347,7 @@ body:not(.loading) nav {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: flex;
   flex-direction: column;
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   min-width: 0; /* Allow cards to shrink below content size */
 }
@@ -2633,14 +2652,14 @@ body:not(.loading) nav {
   position: relative;
   overflow: hidden;
   width: 100%;
-  mask-image: linear-gradient(
+  -webkit-mask-image: linear-gradient(
     90deg,
     transparent,
     #000 10%,
     #000 90%,
     transparent
   );
-  -webkit-mask-image: linear-gradient(
+  mask-image: linear-gradient(
     90deg,
     transparent,
     #000 10%,
@@ -2704,12 +2723,12 @@ body:not(.loading) nav {
 @media (max-width: 768px) and (orientation: landscape) {
   #home {
     padding-top: 80px;
-    min-height: auto;
+    min-height: 0;
   }
   
   .section {
     padding: 40px 0;
-    min-height: auto;
+    min-height: 0;
   }
   
   .hero-title {
@@ -2850,6 +2869,7 @@ body:not(.loading) nav {
   padding: 30px 25px;
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   box-shadow: 0 8px 30px rgba(2, 6, 23, 0.06);
 }
