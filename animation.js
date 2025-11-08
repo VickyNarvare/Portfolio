@@ -48,52 +48,68 @@ document.addEventListener("DOMContentLoaded", (event) => {
   // HERO SECTION ANIMATIONS
   // ============================================
   if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-    gsap.from(".hero-title", {
-      scrollTrigger: {
-        trigger: "#home",
-        start: "top center",
-      },
-      y: 50,
-      opacity: 0,
-      duration: 1,
-      ease: "power4.out"
-    });
-    
-    gsap.from(".hero-subtitle", {
-      scrollTrigger: {
-        trigger: "#home",
-        start: "top center",
-      },
-      y: 50,
-      opacity: 0,
-      duration: 1,
-      delay: 0.2,
-      ease: "power4.out"
-    });
-    
-    gsap.from(".hero-description", {
-      scrollTrigger: {
-        trigger: "#home",
-        start: "top center",
-      },
-      y: 50,
-      opacity: 0,
-      duration: 1,
-      delay: 0.4,
-      ease: "power4.out"
-    });
-    
-    gsap.from(".hero-buttons", {
-      scrollTrigger: {
-        trigger: "#home",
-        start: "top center",
-      },
-      y: 50,
-      opacity: 0,
-      duration: 1,
-      delay: 0.6,
-      ease: "power4.out"
-    });
+    const homeSection = document.querySelector("#home");
+    if (homeSection) {
+      const heroTitle = document.querySelector(".hero-title");
+      const heroSubtitle = document.querySelector(".hero-subtitle");
+      const heroDescription = document.querySelector(".hero-description");
+      const heroButtons = document.querySelector(".hero-buttons");
+      
+      if (heroTitle) {
+        gsap.from(heroTitle, {
+          scrollTrigger: {
+            trigger: homeSection,
+            start: "top center",
+          },
+          y: 50,
+          opacity: 0,
+          duration: 1,
+          ease: "power4.out"
+        });
+      }
+      
+      if (heroSubtitle) {
+        gsap.from(heroSubtitle, {
+          scrollTrigger: {
+            trigger: homeSection,
+            start: "top center",
+          },
+          y: 50,
+          opacity: 0,
+          duration: 1,
+          delay: 0.2,
+          ease: "power4.out"
+        });
+      }
+      
+      if (heroDescription) {
+        gsap.from(heroDescription, {
+          scrollTrigger: {
+            trigger: homeSection,
+            start: "top center",
+          },
+          y: 50,
+          opacity: 0,
+          duration: 1,
+          delay: 0.4,
+          ease: "power4.out"
+        });
+      }
+      
+      if (heroButtons) {
+        gsap.from(heroButtons, {
+          scrollTrigger: {
+            trigger: homeSection,
+            start: "top center",
+          },
+          y: 50,
+          opacity: 0,
+          duration: 1,
+          delay: 0.6,
+          ease: "power4.out"
+        });
+      }
+    }
   }
 
   // ============================================
@@ -141,108 +157,139 @@ document.addEventListener("DOMContentLoaded", (event) => {
   // SERVICES SECTION ANIMATIONS
   // ============================================
   if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-    // Services Title
-    gsap.from(".services-title", {
-      scrollTrigger: {
-        trigger: "#services",
-        start: "top 80%",
-      },
-      y: 50,
-      opacity: 0,
-      duration: 1,
-      ease: "power4.out"
-    });
-    
-    // Services Description
-    gsap.from(".services-description", {
-      scrollTrigger: {
-        trigger: "#services",
-        start: "top 80%",
-      },
-      y: 30,
-      opacity: 0,
-      duration: 1,
-      delay: 0.2,
-      ease: "power4.out"
-    });
-    
-    // Service Cards
-    gsap.from(".service-card", {
-      scrollTrigger: {
-        trigger: "#services",
-        start: "top 80%",
-      },
-      y: 50,
-      opacity: 0,
-      duration: 1,
-      stagger: 0.2,
-      ease: "power4.out"
-    });
-    
-    // Service Icons
-    gsap.from(".service-icon", {
-      scrollTrigger: {
-        trigger: "#services",
-        start: "top 80%",
-      },
-      scale: 0,
-      opacity: 0,
-      duration: 0.8,
-      stagger: 0.15,
-      ease: "back.out(1.7)"
-    });
+    const servicesSection = document.querySelector("#services");
+    if (servicesSection) {
+      // Services Title
+      const servicesTitle = document.querySelector(".services-title");
+      if (servicesTitle) {
+        gsap.from(servicesTitle, {
+          scrollTrigger: {
+            trigger: servicesSection,
+            start: "top 80%",
+          },
+          y: 50,
+          opacity: 0,
+          duration: 1,
+          ease: "power4.out"
+        });
+      }
+      
+      // Services Description
+      const servicesDescription = document.querySelector(".services-description");
+      if (servicesDescription) {
+        gsap.from(servicesDescription, {
+          scrollTrigger: {
+            trigger: servicesSection,
+            start: "top 80%",
+          },
+          y: 30,
+          opacity: 0,
+          duration: 1,
+          delay: 0.2,
+          ease: "power4.out"
+        });
+      }
+      
+      // Service Cards
+      const serviceCards = document.querySelectorAll(".service-card");
+      if (serviceCards.length > 0) {
+        gsap.from(serviceCards, {
+          scrollTrigger: {
+            trigger: servicesSection,
+            start: "top 80%",
+          },
+          y: 50,
+          opacity: 0,
+          duration: 1,
+          stagger: 0.2,
+          ease: "power4.out"
+        });
+      }
+      
+      // Service Icons
+      const serviceIcons = document.querySelectorAll(".service-icon");
+      if (serviceIcons.length > 0) {
+        gsap.from(serviceIcons, {
+          scrollTrigger: {
+            trigger: servicesSection,
+            start: "top 80%",
+          },
+          scale: 0,
+          opacity: 0,
+          duration: 0.8,
+          stagger: 0.15,
+          ease: "back.out(1.7)"
+        });
+      }
+    }
   }
 
   // ============================================
   // CTA SECTION ANIMATIONS
   // ============================================
   if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-    gsap.from(".cta-card", {
-      scrollTrigger: {
-        trigger: ".cta-container",
-        start: "top 80%",
-      },
-      y: 50,
-      opacity: 0,
-      duration: 1,
-      ease: "power4.out"
-    });
-    
-    gsap.from(".cta-title", {
-      scrollTrigger: {
-        trigger: ".cta-container",
-        start: "top 80%",
-      },
-      y: 30,
-      opacity: 0,
-      duration: 1,
-      delay: 0.2,
-      ease: "power4.out"
-    });
-    
-    gsap.from(".cta-lead", {
-      scrollTrigger: {
-        trigger: ".cta-container",
-        start: "top 80%",
-      },
-      y: 30,
-      opacity: 0,
-      duration: 1,
-      delay: 0.4,
-      ease: "power4.out"
-    });
-    
-    gsap.from(".cta-buttons", {
-      scrollTrigger: {
-        trigger: ".cta-container",
-        start: "top 80%",
-      },
-      y: 30,
-      opacity: 0,
-      duration: 1,
-      delay: 0.6,
-      ease: "power4.out"
-    });
+    const ctaContainer = document.querySelector(".cta-container");
+    if (ctaContainer) {
+      const ctaCard = document.querySelector(".cta-card");
+      const ctaTitle = document.querySelector(".cta-title");
+      const ctaLead = document.querySelector(".cta-lead");
+      const ctaButtons = document.querySelector(".cta-buttons");
+      
+      if (ctaCard) {
+        gsap.from(ctaCard, {
+          scrollTrigger: {
+            trigger: ctaContainer,
+            start: "top 80%",
+          },
+          y: 50,
+          opacity: 0,
+          duration: 1,
+          ease: "power4.out"
+        });
+      }
+      
+      if (ctaTitle) {
+        gsap.from(ctaTitle, {
+          scrollTrigger: {
+            trigger: ctaContainer,
+            start: "top 80%",
+          },
+          y: 30,
+          opacity: 0,
+          duration: 1,
+          delay: 0.2,
+          ease: "power4.out"
+        });
+      }
+      
+      if (ctaLead) {
+        gsap.from(ctaLead, {
+          scrollTrigger: {
+            trigger: ctaContainer,
+            start: "top 80%",
+          },
+          y: 30,
+          opacity: 0,
+          duration: 1,
+          delay: 0.4,
+          ease: "power4.out"
+        });
+      }
+      
+      if (ctaButtons) {
+        gsap.from(ctaButtons, {
+          scrollTrigger: {
+            trigger: ctaContainer,
+            start: "top 80%",
+          },
+          y: 30,
+          opacity: 0,
+          duration: 1,
+          delay: 0.6,
+          ease: "power4.out"
+        });
+      }
+    }
   }
 
   // ============================================
