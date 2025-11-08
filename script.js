@@ -283,6 +283,47 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ============================================
+// TOAST NOTIFICATION SYSTEM
+// ============================================
+function showToast(message, type = 'success') {
+  const toast = document.getElementById('toast');
+  if (!toast) return;
+  
+  const toastIcon = toast.querySelector('.toast-icon');
+  const toastMessage = toast.querySelector('.toast-message');
+  const toastClose = toast.querySelector('.toast-close');
+  
+  // Set icon based on type
+  if (type === 'success') {
+    toastIcon.innerHTML = '<i class="bx bx-check-circle"></i>';
+    toast.className = 'toast success';
+  } else if (type === 'error') {
+    toastIcon.innerHTML = '<i class="bx bx-error-circle"></i>';
+    toast.className = 'toast error';
+  }
+  
+  toastMessage.textContent = message;
+  toast.classList.add('show');
+  
+  // Auto hide after 5 seconds
+  setTimeout(() => {
+    hideToast();
+  }, 5000);
+  
+  // Close button functionality
+  if (toastClose) {
+    toastClose.onclick = () => hideToast();
+  }
+}
+
+function hideToast() {
+  const toast = document.getElementById('toast');
+  if (toast) {
+    toast.classList.remove('show');
+  }
+}
+
+// ============================================
 // FORM SUBMISSION HANDLING
 // ============================================
 const contactForm = document.querySelector('.contact-form');
@@ -298,31 +339,112 @@ if (contactForm) {
     
     // Validation
     if (!name || !email || !subject || !message) {
-      alert('Please fill in all fields.');
+      showToast('Please fill in all fields.', 'error');
       return;
     }
     
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-      alert('Please enter a valid email address.');
+      showToast('Please enter a valid email address.', 'error');
       return;
     }
     
-    // Submit form (replace with actual API call)
+    // Submit form (replace with actual API call - EmailJS, Formspree, etc.)
     const submitBtn = this.querySelector('.contact_btn');
     const originalText = submitBtn.textContent;
     
     submitBtn.textContent = 'Sending...';
     submitBtn.disabled = true;
     
+    // Simulate form submission (replace with actual API call)
     setTimeout(() => {
-      alert('Thank you for your message! I\'ll get back to you soon.');
+      showToast('Thank you for your message! I\'ll get back to you soon.', 'success');
       this.reset();
       submitBtn.textContent = originalText;
       submitBtn.disabled = false;
     }, 2000);
   });
 }
+
+// ============================================
+// COPY EMAIL TO CLIPBOARD
+// ============================================
+document.addEventListener('DOMContentLoaded', () => {
+  const copyEmailBtn = document.querySelector('.copy-email-btn');
+  
+  if (copyEmailBtn) {
+    copyEmailBtn.addEventListener('click', async () => {
+      const email = copyEmailBtn.getAttribute('data-email') || 'vickynarvare51@gmail.com';
+      const copyText = copyEmailBtn.querySelector('.copy-text');
+      
+      try {
+        // Try modern Clipboard API first
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          await navigator.clipboard.writeText(email);
+          copyEmailBtn.classList.add('copied');
+          if (copyText) {
+            copyText.textContent = 'Copied!';
+          }
+          showToast('Email copied to clipboard!', 'success');
+          
+          // Reset after 3 seconds
+          setTimeout(() => {
+            copyEmailBtn.classList.remove('copied');
+            if (copyText) {
+              copyText.textContent = 'Copy';
+            }
+          }, 3000);
+        } else {
+          throw new Error('Clipboard API not available');
+        }
+      } catch (err) {
+        // Fallback for older browsers using execCommand
+        try {
+          const textArea = document.createElement('textarea');
+          textArea.value = email;
+          textArea.style.position = 'fixed';
+          textArea.style.top = '0';
+          textArea.style.left = '0';
+          textArea.style.width = '2em';
+          textArea.style.height = '2em';
+          textArea.style.padding = '0';
+          textArea.style.border = 'none';
+          textArea.style.outline = 'none';
+          textArea.style.boxShadow = 'none';
+          textArea.style.background = 'transparent';
+          textArea.style.opacity = '0';
+          
+          document.body.appendChild(textArea);
+          textArea.focus();
+          textArea.select();
+          
+          const successful = document.execCommand('copy');
+          document.body.removeChild(textArea);
+          
+          if (successful) {
+            copyEmailBtn.classList.add('copied');
+            if (copyText) {
+              copyText.textContent = 'Copied!';
+            }
+            showToast('Email copied to clipboard!', 'success');
+            
+            setTimeout(() => {
+              copyEmailBtn.classList.remove('copied');
+              if (copyText) {
+                copyText.textContent = 'Copy';
+              }
+            }, 3000);
+          } else {
+            throw new Error('execCommand failed');
+          }
+        } catch (fallbackErr) {
+          // If both methods fail, show error
+          showToast('Failed to copy email. Please copy manually: ' + email, 'error');
+        }
+      }
+    });
+  }
+});
 
 // ============================================
 // GSAP SMOOTH SCROLLING

@@ -4065,5 +4065,201 @@ body.dark .skill-tags-container .skill-tag[data-skill="npm"] {
   }
 }
 
+/* ===== COPY EMAIL BUTTON ===== */
+.copy-email-btn {
+  background: none;
+  border: none;
+  color: var(--accent);
+  cursor: pointer;
+  padding: 0.4rem 0.6rem;
+  margin-left: 0.5rem;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+  font-family: inherit;
+  border: 1px solid transparent;
+}
+
+.copy-email-btn:hover {
+  background: var(--accent-rgba-1);
+  color: var(--accent-2);
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.copy-email-btn:active {
+  transform: translateY(0);
+  scale: 0.98;
+}
+
+.copy-email-btn i {
+  font-size: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.copy-email-btn:hover i {
+  transform: scale(1.1);
+}
+
+.copy-email-btn .copy-text {
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.copy-email-btn.copied {
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.1);
+  border-color: #10b981;
+  animation: pulse 0.3s ease;
+}
+
+.copy-email-btn.copied .copy-text {
+  color: #10b981;
+  font-weight: 600;
+}
+
+.copy-email-btn.copied .copy-text::before {
+  content: "✓ ";
+  margin-right: 0.2rem;
+  font-weight: 700;
+}
+
+.copy-email-btn.copied i {
+  color: #10b981;
+  transform: scale(1.2);
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@media (max-width: 480px) {
+  .copy-email-btn {
+    padding: 0.3rem 0.5rem;
+    font-size: 0.85rem;
+    margin-left: 0.3rem;
+  }
+  
+  .copy-email-btn .copy-text {
+    display: none;
+  }
+  
+  .copy-email-btn.copied {
+    padding: 0.3rem 0.6rem;
+  }
+  
+  .copy-email-btn.copied .copy-text {
+    display: inline;
+  }
+  
+  .copy-email-btn.copied .copy-text::before {
+    content: "✓ ";
+  }
+}
+
+/* ===== TOAST NOTIFICATION ===== */
+.toast {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: var(--card-bg);
+  color: var(--text-color);
+  padding: 1rem 1.5rem;
+  border-radius: var(--radius);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  z-index: 10000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  max-width: 90%;
+  min-width: 300px;
+  border: 1px solid var(--card-border);
+  backdrop-filter: blur(10px);
+}
+
+.toast.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+.toast.success {
+  border-left: 4px solid #10b981;
+}
+
+.toast.error {
+  border-left: 4px solid #ef4444;
+}
+
+.toast-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.toast.success .toast-icon {
+  color: #10b981;
+}
+
+.toast.error .toast-icon {
+  color: #ef4444;
+}
+
+.toast-message {
+  flex: 1;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.toast-close {
+  background: none;
+  border: none;
+  color: var(--text-color);
+  cursor: pointer;
+  font-size: 1.2rem;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: 4px;
+}
+
+.toast-close:hover {
+  opacity: 1;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 480px) {
+  .toast {
+    min-width: 280px;
+    padding: 0.875rem 1.25rem;
+    font-size: 0.9rem;
+    bottom: 20px;
+  }
+  
+  .toast-message {
+    font-size: 0.9rem;
+  }
+}
 
 
