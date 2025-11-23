@@ -4037,6 +4037,10 @@ body.dark .skill-tags-container .skill-tag[data-skill="npm"] {
   animation-delay: 0.4s;
 }
 
+.floating-social-link:nth-child(5) {
+  animation-delay: 0.5s;
+}
+
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -4092,10 +4096,16 @@ body.dark .skill-tags-container .skill-tag[data-skill="npm"] {
   border-color: #1877f2;
 }
 
-.floating-social-link:nth-child(4):hover {
+.floating-social-link:nth-child(5):hover {
   background: #25d366;
   color: white;
   border-color: #25d366;
+}
+
+.floating-social-link:nth-child(4):hover {
+  background: linear-gradient(135deg, #e1306c 0%, #c13584 50%, #833ab4 100%);
+  color: white;
+  border-color: #e1306c;
 }
 
 @media (max-width: 768px) {
@@ -4308,5 +4318,210 @@ body.dark .skill-tags-container .skill-tag[data-skill="npm"] {
 
   .toast-message {
     font-size: 0.9rem;
+  }
+}
+
+/* ===== SOCIAL ICON TOOLTIPS ===== */
+.social-link,
+.floating-social-link {
+  position: relative;
+}
+
+/* Footer social tooltips */
+.social-link::before {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-5px);
+  background: var(--card-bg);
+  color: var(--text-color);
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  border: 1px solid var(--card-border);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 1000;
+}
+
+.social-link::after {
+  content: "";
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  border: 4px solid transparent;
+  border-top-color: var(--card-bg);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  z-index: 1000;
+}
+
+.social-link:hover::before {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+.social-link:hover::after {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Floating social tooltips */
+.floating-social-link::before {
+  content: attr(data-tooltip);
+  position: absolute;
+  right: calc(100% + 12px);
+  top: 50%;
+  transform: translateY(-50%) translateX(5px);
+  background: var(--card-bg);
+  color: var(--text-color);
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  border: 1px solid var(--card-border);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 1000;
+}
+
+.floating-social-link::after {
+  content: "";
+  position: absolute;
+  right: calc(100% + 4px);
+  top: 50%;
+  transform: translateY(-50%);
+  border: 4px solid transparent;
+  border-left-color: var(--card-bg);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  z-index: 1000;
+}
+
+.floating-social-link:hover::before {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(-50%) translateX(0);
+}
+
+.floating-social-link:hover::after {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Platform-specific tooltip colors */
+.social-link[aria-label="GitHub"]:hover::before,
+.floating-social-link[aria-label="GitHub"]:hover::before {
+  background: linear-gradient(135deg, #24292e 0%, #1a1e22 100%);
+  color: white;
+  border-color: #24292e;
+}
+
+.social-link[aria-label="GitHub"]:hover::after {
+  border-top-color: #24292e;
+}
+
+.floating-social-link[aria-label="GitHub"]:hover::after {
+  border-left-color: #24292e;
+}
+
+.social-link[aria-label="LinkedIn"]:hover::before,
+.floating-social-link[aria-label="LinkedIn"]:hover::before {
+  background: linear-gradient(135deg, #0077b5 0%, #005885 100%);
+  color: white;
+  border-color: #0077b5;
+}
+
+.social-link[aria-label="LinkedIn"]:hover::after {
+  border-top-color: #0077b5;
+}
+
+.floating-social-link[aria-label="LinkedIn"]:hover::after {
+  border-left-color: #0077b5;
+}
+
+.social-link[aria-label="WhatsApp"]:hover::before,
+.floating-social-link[aria-label="WhatsApp"]:hover::before {
+  background: linear-gradient(135deg, #25d366 0%, #1da851 100%);
+  color: white;
+  border-color: #25d366;
+}
+
+.social-link[aria-label="WhatsApp"]:hover::after {
+  border-top-color: #25d366;
+}
+
+.floating-social-link[aria-label="WhatsApp"]:hover::after {
+  border-left-color: #25d366;
+}
+
+.social-link[aria-label="Instagram"]:hover::before,
+.floating-social-link[aria-label="Instagram"]:hover::before {
+  background: linear-gradient(135deg, #e1306c 0%, #c13584 50%, #833ab4 100%);
+  color: white;
+  border-color: #e1306c;
+}
+
+.social-link[aria-label="Instagram"]:hover::after {
+  border-top-color: #e1306c;
+}
+
+.floating-social-link[aria-label="Instagram"]:hover::after {
+  border-left-color: #e1306c;
+}
+
+.social-link[aria-label="Facebook"]:hover::before,
+.floating-social-link[aria-label="Facebook"]:hover::before {
+  background: linear-gradient(135deg, #1877f2 0%, #0d5dbf 100%);
+  color: white;
+  border-color: #1877f2;
+}
+
+.social-link[aria-label="Facebook"]:hover::after {
+  border-top-color: #1877f2;
+}
+
+.floating-social-link[aria-label="Facebook"]:hover::after {
+  border-left-color: #1877f2;
+}
+
+/* Responsive tooltips */
+@media (max-width: 768px) {
+
+  .social-link::before,
+  .floating-social-link::before {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+
+  .social-link::after,
+  .floating-social-link::after {
+    border-width: 3px;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .floating-social-link::before,
+  .floating-social-link::after {
+    display: none;
   }
 }
