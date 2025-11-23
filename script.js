@@ -12,9 +12,9 @@
  * @returns {boolean}
  */
 function isMobileDevice() {
-  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 
-         window.innerWidth <= 768 || 
-         ('ontouchstart' in window);
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+    window.innerWidth <= 768 ||
+    ('ontouchstart' in window);
 }
 
 // ============================================
@@ -23,26 +23,26 @@ function isMobileDevice() {
 document.addEventListener('DOMContentLoaded', () => {
   const body = document.body;
   const loadingScreen = document.getElementById('loadingScreen');
-  
+
   if (!loadingScreen || typeof gsap === 'undefined') return;
-  
+
   body.classList.add('loading');
-  
+
   // Get loading elements
   const loadingIcons = loadingScreen.querySelectorAll('.loading-icon-circle');
   const loadingName = loadingScreen.querySelector('.loading-name');
   const loadingTitle = loadingScreen.querySelector('.loading-title');
   const loadingUrl = loadingScreen.querySelector('.loading-url');
-  
+
   // Set initial states
   gsap.set([loadingIcons, loadingName, loadingTitle, loadingUrl], {
     opacity: 0,
     y: 30
   });
-  
+
   // Create animation timeline
   const loadingTL = gsap.timeline();
-  
+
   loadingTL
     .to(loadingIcons, {
       opacity: 1,
@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
       duration: 0.5,
       ease: 'power3.out'
     }, '-=0.3');
-  
+
   // Animate icons pulse
   loadingIcons.forEach((icon, index) => {
     gsap.to(icon, {
@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
       delay: index * 0.1
     });
   });
-  
+
   // Hide loading screen after animation
   setTimeout(() => {
     gsap.to(loadingScreen, {
@@ -107,13 +107,13 @@ let sections = [];
  */
 function setActiveLink() {
   if (navLinks.length === 0 || sections.length === 0) return;
-  
+
   const scrollPosition = window.scrollY;
   const windowHeight = window.innerHeight;
   const documentHeight = document.documentElement.scrollHeight;
   let activeIndex = 0;
   let maxVisibleArea = 0;
-  
+
   sections.forEach((section, index) => {
     if (section) {
       const sectionTop = section.offsetTop;
@@ -121,12 +121,12 @@ function setActiveLink() {
       const visibleTop = Math.max(scrollPosition, sectionTop);
       const visibleBottom = Math.min(scrollPosition + windowHeight, sectionBottom);
       const visibleHeight = Math.max(0, visibleBottom - visibleTop);
-      
+
       if (visibleHeight > maxVisibleArea) {
         maxVisibleArea = visibleHeight;
         activeIndex = index;
       }
-      
+
       // Special cases
       if (scrollPosition < 100) activeIndex = 0;
       if (scrollPosition + windowHeight >= documentHeight - 100) {
@@ -134,7 +134,7 @@ function setActiveLink() {
       }
     }
   });
-  
+
   // Update active class
   navLinks.forEach((link, index) => {
     if (index === activeIndex) {
@@ -153,7 +153,7 @@ window.addEventListener('DOMContentLoaded', () => {
   sections = navLinks
     .map(link => document.querySelector(link.getAttribute('href')))
     .filter(Boolean);
-  
+
   // Restore active link from localStorage
   const savedActiveHref = localStorage.getItem('activeNavHref');
   if (savedActiveHref && navLinks.length > 0) {
@@ -166,14 +166,14 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   }
   setActiveLink();
-  
+
   // Handle nav link clicks
   navLinks.forEach(link => {
-    link.addEventListener('click', function() {
+    link.addEventListener('click', function () {
       navLinks.forEach(l => l.classList.remove('active'));
       this.classList.add('active');
       localStorage.setItem('activeNavHref', this.getAttribute('href'));
-      
+
       // Close mobile menu
       const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
       const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
@@ -199,7 +199,7 @@ window.addEventListener('scroll', () => {
     });
     isScrolling = true;
   }
-  
+
   if (scrollTimeout) clearTimeout(scrollTimeout);
   scrollTimeout = setTimeout(setActiveLink, 50);
 });
@@ -288,11 +288,11 @@ document.addEventListener('DOMContentLoaded', () => {
 function showToast(message, type = 'success') {
   const toast = document.getElementById('toast');
   if (!toast) return;
-  
+
   const toastIcon = toast.querySelector('.toast-icon');
   const toastMessage = toast.querySelector('.toast-message');
   const toastClose = toast.querySelector('.toast-close');
-  
+
   // Set icon based on type
   if (type === 'success') {
     toastIcon.innerHTML = '<i class="bx bx-check-circle"></i>';
@@ -301,15 +301,15 @@ function showToast(message, type = 'success') {
     toastIcon.innerHTML = '<i class="bx bx-error-circle"></i>';
     toast.className = 'toast error';
   }
-  
+
   toastMessage.textContent = message;
   toast.classList.add('show');
-  
+
   // Auto hide after 5 seconds
   setTimeout(() => {
     hideToast();
   }, 5000);
-  
+
   // Close button functionality
   if (toastClose) {
     toastClose.onclick = () => hideToast();
@@ -328,34 +328,34 @@ function hideToast() {
 // ============================================
 const contactForm = document.querySelector('.contact-form');
 if (contactForm) {
-  contactForm.addEventListener('submit', function(e) {
+  contactForm.addEventListener('submit', function (e) {
     e.preventDefault();
-    
+
     const formData = new FormData(this);
     const name = formData.get('name');
     const email = formData.get('email');
     const subject = formData.get('subject');
     const message = formData.get('message');
-    
+
     // Validation
     if (!name || !email || !subject || !message) {
       showToast('Please fill in all fields.', 'error');
       return;
     }
-    
+
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       showToast('Please enter a valid email address.', 'error');
       return;
     }
-    
+
     // Submit form (replace with actual API call - EmailJS, Formspree, etc.)
     const submitBtn = this.querySelector('.contact_btn');
     const originalText = submitBtn.textContent;
-    
+
     submitBtn.textContent = 'Sending...';
     submitBtn.disabled = true;
-    
+
     // Simulate form submission (replace with actual API call)
     setTimeout(() => {
       showToast('Thank you for your message! I\'ll get back to you soon.', 'success');
@@ -371,12 +371,12 @@ if (contactForm) {
 // ============================================
 document.addEventListener('DOMContentLoaded', () => {
   const copyEmailBtn = document.querySelector('.copy-email-btn');
-  
+
   if (copyEmailBtn) {
     copyEmailBtn.addEventListener('click', async () => {
       const email = copyEmailBtn.getAttribute('data-email') || 'vickynarvare51@gmail.com';
       const copyText = copyEmailBtn.querySelector('.copy-text');
-      
+
       try {
         // Try modern Clipboard API first
         if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -386,7 +386,7 @@ document.addEventListener('DOMContentLoaded', () => {
             copyText.textContent = 'Copied!';
           }
           showToast('Email copied to clipboard!', 'success');
-          
+
           // Reset after 3 seconds
           setTimeout(() => {
             copyEmailBtn.classList.remove('copied');
@@ -413,21 +413,21 @@ document.addEventListener('DOMContentLoaded', () => {
           textArea.style.boxShadow = 'none';
           textArea.style.background = 'transparent';
           textArea.style.opacity = '0';
-          
+
           document.body.appendChild(textArea);
           textArea.focus();
           textArea.select();
-          
+
           const successful = document.execCommand('copy');
           document.body.removeChild(textArea);
-          
+
           if (successful) {
             copyEmailBtn.classList.add('copied');
             if (copyText) {
               copyText.textContent = 'Copied!';
             }
             showToast('Email copied to clipboard!', 'success');
-            
+
             setTimeout(() => {
               copyEmailBtn.classList.remove('copied');
               if (copyText) {
@@ -453,15 +453,15 @@ let smoothScrollController = null;
 
 function initSmoothScroll() {
   if (typeof gsap === 'undefined' || isMobileDevice()) return;
-  
+
   let current = 0;
   let target = 0;
   const ease = 0.08;
   const container = document.documentElement || document.body;
-  
+
   current = container.scrollTop;
   target = container.scrollTop;
-  
+
   function smoothScroll() {
     const diff = target - current;
     if (Math.abs(diff) > 0.1) {
@@ -472,19 +472,19 @@ function initSmoothScroll() {
       container.scrollTop = current;
     }
   }
-  
+
   gsap.ticker.add(smoothScroll);
-  
+
   // Handle wheel events
   let isScrolling = false;
-  
+
   function onWheel(e) {
     e.preventDefault();
     const delta = e.deltaY;
     target += delta;
     const maxScroll = container.scrollHeight - window.innerHeight;
     target = Math.max(0, Math.min(target, maxScroll));
-    
+
     if (!isScrolling) {
       isScrolling = true;
       requestAnimationFrame(() => {
@@ -492,12 +492,12 @@ function initSmoothScroll() {
       });
     }
   }
-  
+
   // Handle touch events
   let touchStartY = 0;
   let touchScrollStart = 0;
   let isTouchScrolling = false;
-  
+
   function onTouchStart(e) {
     touchStartY = e.touches[0].clientY;
     touchScrollStart = container.scrollTop;
@@ -505,7 +505,7 @@ function initSmoothScroll() {
     target = touchScrollStart;
     current = touchScrollStart;
   }
-  
+
   function onTouchMove(e) {
     if (!isTouchScrolling) return;
     const touchY = e.touches[0].clientY;
@@ -515,13 +515,13 @@ function initSmoothScroll() {
     target = Math.max(0, Math.min(target, maxScroll));
     container.scrollTop = target;
   }
-  
+
   function onTouchEnd() {
     isTouchScrolling = false;
     current = container.scrollTop;
     target = container.scrollTop;
   }
-  
+
   function syncScroll() {
     if (!isTouchScrolling) {
       const scrollTop = container.scrollTop;
@@ -529,20 +529,20 @@ function initSmoothScroll() {
       current = scrollTop;
     }
   }
-  
+
   // Event listeners
   window.addEventListener('wheel', onWheel, { passive: false });
   window.addEventListener('touchstart', onTouchStart, { passive: true });
   window.addEventListener('touchmove', onTouchMove, { passive: false });
   window.addEventListener('touchend', onTouchEnd, { passive: true });
-  
+
   let scrollTimeout;
   window.addEventListener('scroll', () => {
     if (isTouchScrolling) return;
     clearTimeout(scrollTimeout);
     scrollTimeout = setTimeout(syncScroll, 50);
   }, { passive: true });
-  
+
   // Controller object
   smoothScrollController = {
     scrollTo: (position, duration = 1.2) => {
@@ -565,7 +565,7 @@ function initSmoothScroll() {
       window.removeEventListener('touchend', onTouchEnd);
     }
   };
-  
+
   // Integrate with ScrollTrigger
   if (typeof ScrollTrigger !== 'undefined') {
     const originalUpdate = smoothScroll;
@@ -602,9 +602,9 @@ if (scrollProgress) {
     const scrollPercent = (scrollTop / docHeight) * 100;
     scrollProgress.style.width = scrollPercent + '%';
   }
-  
+
   window.addEventListener('scroll', updateScrollProgress, { passive: true });
-  
+
   if (typeof gsap !== 'undefined') {
     gsap.ticker.add(updateScrollProgress);
   }
@@ -621,7 +621,7 @@ function setupSmoothScrollLinks() {
       if (target) {
         const targetPosition = target.offsetTop - 80;
         const container = document.documentElement || document.body;
-        
+
         if (isMobileDevice()) {
           target.scrollIntoView({
             behavior: 'smooth',
@@ -655,21 +655,21 @@ document.addEventListener('DOMContentLoaded', () => {
   const serviceToggles = document.querySelectorAll('.service-toggle');
   const serviceLinkToggles = document.querySelectorAll('.service-link-toggle');
   const serviceLinkExpands = document.querySelectorAll('.service-link-expand');
-  
+
   serviceToggles.forEach(toggle => {
     toggle.addEventListener('click', () => {
       const serviceCard = toggle.closest('.service-card');
       if (serviceCard) serviceCard.classList.toggle('expanded');
     });
   });
-  
+
   serviceLinkExpands.forEach(expand => {
     expand.addEventListener('click', () => {
       const serviceCard = expand.closest('.service-card');
       if (serviceCard) serviceCard.classList.add('expanded');
     });
   });
-  
+
   serviceLinkToggles.forEach(toggle => {
     toggle.addEventListener('click', () => {
       const serviceCard = toggle.closest('.service-card');
@@ -689,7 +689,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const activeCard = document.querySelector('.projects-carousel-wrapper > .project-preview-card.active');
   const projectDetails = document.querySelectorAll('.project-detail');
   const projectsContainer = document.querySelector('.projects-carousel-wrapper');
-  
+
   // All project images data
   const projectImages = [
     { src: 'Images/project1.webp', alt: 'Weather Application by Vicky Narvare' },
@@ -697,12 +697,12 @@ document.addEventListener('DOMContentLoaded', () => {
     { src: 'Images/project3.webp', alt: 'Kalika Construction Website by Vicky Narvare' },
     { src: 'Images/project4.webp', alt: 'JARVIS AI Platform by Vicky Narvare' }
   ];
-  
+
   let currentProjectIndex = 0; // Start with first project (index 0)
   let autoPlayInterval;
-  const autoPlayDelay =  3000; // 3 seconds between slides
+  const autoPlayDelay = 3000; // 3 seconds between slides
   const totalProjects = projectImages.length;
-  
+
   // Preload all images for smooth switching
   function preloadImages() {
     projectImages.forEach((imgData) => {
@@ -710,18 +710,18 @@ document.addEventListener('DOMContentLoaded', () => {
       img.src = imgData.src;
     });
   }
-  
+
   // Preload images on page load
   preloadImages();
-  
+
   function updateCards() {
     const prevIndex = (currentProjectIndex - 1 + totalProjects) % totalProjects;
     const nextIndex = (currentProjectIndex + 1) % totalProjects;
-    
+
     // Helper function to switch image
     function switchImage(imgElement, newSrc, newAlt) {
       if (!imgElement) return;
-      
+
       // Create new image to preload
       const newImg = new Image();
       newImg.onload = () => {
@@ -731,7 +731,7 @@ document.addEventListener('DOMContentLoaded', () => {
       };
       newImg.src = newSrc;
     }
-    
+
     // Update prev card
     if (sidePrevCard) {
       const prevImg = sidePrevCard.querySelector('img');
@@ -740,7 +740,7 @@ document.addEventListener('DOMContentLoaded', () => {
       sidePrevCard.classList.add('prev');
       sidePrevCard.classList.remove('active', 'next');
     }
-    
+
     // Update active card
     if (activeCard) {
       const activeImg = activeCard.querySelector('img');
@@ -749,7 +749,7 @@ document.addEventListener('DOMContentLoaded', () => {
       activeCard.classList.add('active');
       activeCard.classList.remove('prev', 'next');
     }
-    
+
     // Update next card
     if (sideNextCard) {
       const nextImg = sideNextCard.querySelector('img');
@@ -758,10 +758,10 @@ document.addEventListener('DOMContentLoaded', () => {
       sideNextCard.classList.add('next');
       sideNextCard.classList.remove('active', 'prev');
     }
-    
+
     // No animations - instant switch
   }
-  
+
   function switchProject(index) {
     if (index < 0 || index >= totalProjects) {
       console.error('Invalid project index:', index);
@@ -769,7 +769,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     currentProjectIndex = index;
     updateCards();
-    
+
     // Update project details - no animations
     projectDetails.forEach((detail, i) => {
       if (i === index) {
@@ -778,20 +778,20 @@ document.addEventListener('DOMContentLoaded', () => {
         detail.classList.remove('active');
       }
     });
-    
+
     currentProjectIndex = index;
   }
-  
+
   function nextProject() {
     const nextIndex = (currentProjectIndex + 1) % totalProjects;
     switchProject(nextIndex);
   }
-  
+
   function prevProject() {
     const prevIndex = (currentProjectIndex - 1 + totalProjects) % totalProjects;
     switchProject(prevIndex);
   }
-  
+
   function startAutoPlay() {
     // Clear any existing interval first
     stopAutoPlay();
@@ -799,14 +799,14 @@ document.addEventListener('DOMContentLoaded', () => {
       nextProject();
     }, autoPlayDelay);
   }
-  
+
   function stopAutoPlay() {
     if (autoPlayInterval) {
       clearInterval(autoPlayInterval);
       autoPlayInterval = null;
     }
   }
-  
+
   // Card click handlers
   if (sideNextCard) {
     sideNextCard.addEventListener('click', () => {
@@ -815,7 +815,7 @@ document.addEventListener('DOMContentLoaded', () => {
       startAutoPlay();
     });
   }
-  
+
   if (sidePrevCard) {
     sidePrevCard.addEventListener('click', () => {
       prevProject();
@@ -823,19 +823,19 @@ document.addEventListener('DOMContentLoaded', () => {
       startAutoPlay();
     });
   }
-  
+
   if (activeCard) {
     activeCard.addEventListener('click', () => {
       // Could add functionality here if needed
     });
   }
-  
+
   // Pause auto-play on hover, resume on mouse leave
   if (projectsContainer) {
     projectsContainer.addEventListener('mouseenter', stopAutoPlay);
     projectsContainer.addEventListener('mouseleave', startAutoPlay);
   }
-  
+
   // Keyboard navigation
   document.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowLeft') {
@@ -848,14 +848,14 @@ document.addEventListener('DOMContentLoaded', () => {
       startAutoPlay();
     }
   });
-  
+
   // Initialize cards on page load
   if (sidePrevCard && activeCard && sideNextCard && totalProjects > 0) {
     updateCards();
-    
+
     // Start auto-play when page loads
     startAutoPlay();
-    
+
     console.log('Carousel initialized with', totalProjects, 'projects');
   } else {
     console.error('Carousel elements not found:', {
@@ -873,7 +873,7 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('DOMContentLoaded', () => {
   const typingText = document.getElementById('typing-text');
   if (!typingText) return;
-  
+
   const texts = [
     'Crafting Clean Interfaces',
     'User Experience Designer',
@@ -882,16 +882,16 @@ document.addEventListener('DOMContentLoaded', () => {
   let textIndex = 0;
   let charIndex = 0;
   let isDeleting = false;
-  
+
   function typeText() {
     const currentText = texts[textIndex];
     let typingSpeed = 100;
-    
+
     if (isDeleting) {
       typingText.textContent = currentText.substring(0, charIndex - 1);
       charIndex--;
       typingSpeed = 50;
-      
+
       if (charIndex === 0) {
         isDeleting = false;
         textIndex = (textIndex + 1) % texts.length;
@@ -901,15 +901,15 @@ document.addEventListener('DOMContentLoaded', () => {
       typingText.textContent = currentText.substring(0, charIndex + 1);
       charIndex++;
       typingSpeed = 100;
-      
+
       if (charIndex === currentText.length) {
         typingSpeed = 2000;
         isDeleting = true;
       }
     }
-    
+
     setTimeout(typeText, typingSpeed);
   }
-  
+
   setTimeout(typeText, 500);
 });
