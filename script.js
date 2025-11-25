@@ -17,6 +17,8 @@ function isMobileDevice() {
     ('ontouchstart' in window);
 }
 
+
+
 // ============================================
 // LOADING SCREEN
 // ============================================

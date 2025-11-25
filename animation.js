@@ -8,6 +8,8 @@ if (typeof gsap !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
 
+
+
 // ============================================
 // TECHNOLOGIES DATA FOR MARQUEE
 // ============================================
@@ -43,6 +45,9 @@ function populateTechMarquee(trackElement) {
   if (!trackElement) return;
   
   trackElement.innerHTML = '';
+  
+
+
   
   // Create 3 sets for seamless infinite loop
   for (let i = 0; i < 3; i++) {

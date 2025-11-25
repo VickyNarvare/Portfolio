@@ -3,6 +3,8 @@
   src: url(./PPFragment-SansLight.ttf);
 }
 
+
+
 /* ===== RESET & ROOT ===== */
 :root {
   --body-color: #e4e9f7;
@@ -25,6 +27,7 @@
   --process-min-col: 180px;
   --radius: 14px;
 }
+
 
 * {
   margin: 0;
