@@ -8,6 +8,7 @@ const projectsData = [
     imageAlt: "Weather Application by Vicky Narvare",
     demoLink: "https://weatherappbyvicky.netlify.app",
     codeLink: "https://github.com/VickyNarvare/Weather-webiste",
+    technologies: ["HTML", "CSS", "JavaScript", "Weather API"],
     layout: "left"
   },
   {
@@ -18,6 +19,7 @@ const projectsData = [
     imageAlt: "ElectraX Website by Vicky Narvare",
     demoLink: "https://electraxbyvicky.netlify.app",
     codeLink: "https://github.com/VickyNarvare/Electra-X",
+    technologies: ["HTML", "CSS", "JavaScript", "GSAP", "ScrollTrigger"],
     layout: "right"
   },
   {
@@ -28,6 +30,7 @@ const projectsData = [
     imageAlt: "Kalika Construction Website by Vicky Narvare",
     demoLink: "https://kalikaconstruction2.netlify.app",
     codeLink: "https://github.com/VickyNarvare/Kalika-Website",
+    technologies: ["HTML", "CSS", "JavaScript", "Responsive Design"],
     layout: "left"
   },
   {
@@ -38,19 +41,38 @@ const projectsData = [
     imageAlt: "JARVIS AI Platform by Vicky Narvare",
     demoLink: "https://jarvisbyvicky.netlify.app",
     codeLink: "https://github.com/VickyNarvare/Jarvis-website",
+    technologies: ["HTML", "CSS", "JavaScript"],
     layout: "right"
+  },
+  {
+    id: 5,
+    title: "Coffee Cup - Cafe Website",
+    description: "A full-featured coffee shop website with online ordering system, shopping cart, order tracking, and admin dashboard. Built with React and Vite, featuring a modern UI with Tailwind CSS and complete e-commerce functionality.",
+    image: "Images/project5.webp",
+    imageAlt: "Coffee Cup Cafe Website by Vicky Narvare",
+    demoLink: "https://coffeeap.vercel.app/",
+    codeLink: "https://github.com/VickyNarvare/coffeeapp",
+    technologies: ["React", "Vite", "Tailwind CSS", "JavaScript", "Context API"],
+    layout: "left"
   }
 ];
 
 // Function to create project HTML
 function createProjectHTML(project) {
-  const isLeft = project.layout === "left";
+const isLeft = project.layout === "left";
+  
+  const technologiesHTML = project.technologies.map(tech => 
+    `<span class="tech-tag">${tech}</span>`
+  ).join('');
   
   const contentHTML = `
     <div class="project-content">
       <span class="project-number">PROJECT ${project.id}</span>
       <h3 class="project-title">${project.title}</h3>
       <p class="project-description">${project.description}</p>
+      <div class="project-technologies">
+        ${technologiesHTML}
+      </div>
       <div class="project-links">
         <a href="${project.demoLink}" class="project-btn btn-demo" target="_blank" rel="noopener noreferrer">
           <i class="bx bx-link-external"></i>
