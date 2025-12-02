@@ -358,14 +358,11 @@ if (contactForm) {
     submitBtn.textContent = 'Sending...';
     submitBtn.disabled = true;
 
-    // Simulate form submission (replace with actual API call)
-    setTimeout(() => {
-      showToast('Thank you for your message! I\'ll get back to you soon.', 'success');
-      this.reset();
-      submitBtn.textContent = originalText;
-      submitBtn.disabled = false;
-    }, 2000);
-  });
+    // Show warning toast that contact form is not working
+    showToast('Contact section is not working right now. Please try emailing me instead!', 'error');
+    submitBtn.textContent = originalText;
+    submitBtn.disabled = false;
+  } , 2000);
 }
 
 // ============================================
