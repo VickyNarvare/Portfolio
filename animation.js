@@ -14,27 +14,27 @@ if (typeof gsap !== 'undefined') {
 // TECHNOLOGIES DATA FOR MARQUEE
 // ============================================
 const technologies = [
-  {name: 'HTML5', color: '#E34F26'},
-  { name: 'CSS3', color: '#1572B6' },
-  { name: 'JavaScript', color: '#F7DF1E' },
-  { name: 'SCSS', color: '#CC6699' },
-  { name: 'Tailwind', color: '#06B6D4' },
-  { name: 'Git', color: '#F05032' },
-  { name: 'GitHub', color: '#181717' },
-  { name: 'React', color: '#61DAFB' },
-  { name: 'Next.js', color: '#000000' },
-  {name: 'MySQL', color: '#4479A1'},
-  {name: 'SQL', color: '#4479A1'},
-  {name: 'GSAP', color: '#D9B310'},
-  {name: 'CSS Animations', color: '#000000'},
-  {name: 'UI/UX Design', color: '#000000'},
-  {name: 'Responsive Design', color: '#000000'},
-  {name: 'Figma', color: '#007AFF'},
-  {name: 'Canva', color: '#000000'},  
-  {name: 'VS Code', color: '#007ACC'},
-  {name: 'Sublime Text', color: '#000000'},
-  {name: 'Chrome DevTools', color: '#000000'},
-  {name: 'NPM/Yarn', color: '#000000'}
+  {name: 'HTML5', color: '#E34F26', icon: 'bxl-html5'},
+  { name: 'CSS3', color: '#1572B6', icon: 'bxl-css3' },
+  { name: 'JavaScript', color: '#F7DF1E', icon: 'bxl-javascript' },
+  { name: 'SCSS', color: '#CC6699', icon: 'bxl-sass' },
+  { name: 'Tailwind', color: '#06B6D4', icon: 'bxl-tailwind-css' },
+  { name: 'Git', color: '#F05032', icon: 'bxl-git' },
+  { name: 'GitHub', color: '#181717', icon: 'bxl-github' },
+  { name: 'React', color: '#61DAFB', icon: 'bxl-react' },
+  { name: 'Next.js', color: '#000000', icon: 'bx-code-alt' },
+  {name: 'MySQL', color: '#4479A1', icon: 'bx-data'},
+  {name: 'SQL', color: '#4479A1', icon: 'bx-data'},
+  {name: 'GSAP', color: '#D9B310', icon: 'bx-movie-play'},
+  {name: 'CSS Animations', color: '#000000', icon: 'bx-play-circle'},
+  {name: 'UI/UX Design', color: '#000000', icon: 'bx-palette'},
+  {name: 'Responsive Design', color: '#000000', icon: 'bx-devices'},
+  {name: 'Figma', color: '#007AFF', icon: 'bxl-figma'},
+  {name: 'Canva', color: '#000000', icon: 'bx-image'},  
+  {name: 'VS Code', color: '#007ACC', icon: 'bxl-visual-studio'},
+  {name: 'Sublime Text', color: '#000000', icon: 'bx-code'},
+  {name: 'Chrome DevTools', color: '#000000', icon: 'bxl-chrome'},
+  {name: 'NPM/Yarn', color: '#000000', icon: 'bxl-nodejs'}
 ];
 
 /**
@@ -56,15 +56,24 @@ function populateTechMarquee(trackElement) {
       tag.className = 'tech-tag';
       tag.setAttribute('data-tech', tech.name.toLowerCase());
       
-      const dot = document.createElement('span');
-      dot.className = 'tech-dot';
-      dot.style.backgroundColor = tech.color;
+      // Add icon if available
+      if (tech.icon) {
+        const icon = document.createElement('i');
+        icon.className = `bx ${tech.icon} tech-icon`;
+        icon.style.color = tech.color;
+        tag.appendChild(icon);
+      } else {
+        // Fallback to dot if no icon
+        const dot = document.createElement('span');
+        dot.className = 'tech-dot';
+        dot.style.backgroundColor = tech.color;
+        tag.appendChild(dot);
+      }
       
       const name = document.createElement('span');
       name.className = 'tech-name';
       name.textContent = tech.name;
       
-      tag.appendChild(dot);
       tag.appendChild(name);
       trackElement.appendChild(tag);
     });

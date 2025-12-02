@@ -942,6 +942,12 @@ body.dark .tech-tag:hover {
   display: inline-block;
 }
 
+.tech-icon {
+  font-size: 20px;
+  flex-shrink: 0;
+  display: inline-block;
+}
+
 .tech-name {
   font-size: 14px;
   font-weight: 500;
