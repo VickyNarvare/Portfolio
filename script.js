@@ -128,14 +128,14 @@ function setActiveLink() {
         maxVisibleArea = visibleHeight;
         activeIndex = index;
       }
-
-      // Special cases
-      if (scrollPosition < 100) activeIndex = 0;
-      if (scrollPosition + windowHeight >= documentHeight - 100) {
-        activeIndex = sections.length - 1;
-      }
     }
   });
+
+  // Special cases
+  if (scrollPosition < 100) activeIndex = 0;
+  if (scrollPosition + windowHeight >= documentHeight - 100) {
+    activeIndex = sections.length - 1;
+  }
 
   // Update active class
   navLinks.forEach((link, index) => {
