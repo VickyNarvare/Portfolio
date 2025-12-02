@@ -4676,3 +4676,138 @@ responsive for projects */
     border-width: 2px;
   }
 }
+
+/* ===== Technologies Marquee Styles ===== */
+.tech-marquee-container {
+  width: 100%;
+  margin-top: 4rem;
+  overflow: hidden;
+  padding: 1rem 0;
+}
+
+.tech-marquee-wrapper {
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+  height: 60px;
+  display: flex;
+  align-items: center;
+}
+
+.tech-marquee {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.tech-marquee-track {
+  display: flex;
+  gap: 1rem;
+  white-space: nowrap;
+  align-items: center;
+  height: 100%;
+}
+
+.tech-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  background: var(--container-color);
+  border: 2px solid var(--first-color);
+  border-radius: 50px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-color);
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.tech-tag:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(64, 112, 244, 0.3);
+  border-color: var(--first-color-alt);
+}
+
+.tech-icon {
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.tech-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: inline-block;
+}
+
+.tech-name {
+  font-weight: 600;
+  white-space: nowrap;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+}
+
+/* Dark Theme */
+body.dark-theme .tech-tag {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(64, 112, 244, 0.5);
+}
+
+body.dark-theme .tech-tag:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--first-color);
+}
+
+/* Light Theme */
+body:not(.dark-theme) .tech-tag {
+  background: rgba(64, 112, 244, 0.05);
+  border-color: rgba(64, 112, 244, 0.3);
+}
+
+body:not(.dark-theme) .tech-tag:hover {
+  background: rgba(64, 112, 244, 0.1);
+  border-color: var(--first-color);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .tech-marquee-wrapper {
+    margin-bottom: 1rem;
+    height: 55px;
+  }
+  
+  .tech-tag {
+    padding: 0.6rem 1rem;
+    font-size: 0.85rem;
+    gap: 0.4rem;
+  }
+  
+  .tech-icon {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .tech-marquee-wrapper {
+    height: 50px;
+  }
+  
+  .tech-tag {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.8rem;
+  }
+  
+  .tech-icon {
+    font-size: 1.2rem;
+  }
+}
