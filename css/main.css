@@ -1,10 +1,3 @@
-@font-face {
-  font-family: ppFragment;
-  src: url(./PPFragment-SansLight.ttf);
-}
-
-
-
 /* ===== RESET & ROOT ===== */
 :root {
   --body-color: #e4e9f7;
@@ -33,7 +26,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: ppfragment, sans-serif;
+  font-family: sans-serif;
 }
 
 html {
@@ -726,19 +719,25 @@ body.dark .dot-mask {
 }
 
 @keyframes pulse-badge {
-  0%, 100% {
+
+  0%,
+  100% {
     box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
   }
+
   50% {
     box-shadow: 0 4px 25px rgba(16, 185, 129, 0.5);
   }
 }
 
 @keyframes pulse-dot {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: scale(1);
     opacity: 1;
   }
+
   50% {
     transform: scale(1.2);
     opacity: 0.8;
@@ -1792,10 +1791,13 @@ body.dark .project-item:hover .project-image {
 }
 
 @keyframes pulse-icon {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: scale(1);
     box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
   }
+
   50% {
     transform: scale(1.05);
     box-shadow: 0 0 0 10px rgba(16, 185, 129, 0);
@@ -2860,7 +2862,7 @@ body.dark .project-item:hover .project-image {
   font-weight: 700;
   color: #000000;
   margin: 0;
-  font-family: ppfragment, sans-serif;
+  font-family: sans-serif;
   letter-spacing: -0.5px;
 }
 
@@ -2869,7 +2871,7 @@ body.dark .project-item:hover .project-image {
   font-weight: 700;
   color: #4070f4;
   margin: 0;
-  font-family: ppfragment, sans-serif;
+  font-family: sans-serif;
   letter-spacing: -0.5px;
 }
 
@@ -2882,7 +2884,7 @@ body.dark .project-item:hover .project-image {
   color: #4070f4;
   font-size: 14px;
   font-weight: 500;
-  font-family: ppfragment, sans-serif;
+  font-family: sans-serif;
 }
 
 .loading-url i {
@@ -2982,7 +2984,7 @@ body:not(.loading) nav {
   color: var(--text-color);
   text-align: center;
   margin-bottom: 20px;
-  font-family: ppfragment, sans-serif;
+  font-family: sans-serif;
 }
 
 .services-title span {
@@ -3082,7 +3084,7 @@ body:not(.loading) nav {
   font-weight: 700;
   color: var(--text-color);
   margin-bottom: 12px;
-  font-family: ppfragment, sans-serif;
+  font-family: sans-serif;
 }
 
 .service-description {
@@ -3112,7 +3114,7 @@ body:not(.loading) nav {
   color: var(--accent);
   margin-bottom: 15px;
   margin-top: 10px;
-  font-family: ppfragment, sans-serif;
+  font-family: sans-serif;
 }
 
 .services-list {
@@ -3158,7 +3160,7 @@ body:not(.loading) nav {
   cursor: pointer;
   transition: color 0.3s ease;
   padding: 0;
-  font-family: ppfragment, sans-serif;
+  font-family: sans-serif;
   white-space: nowrap;
 }
 
@@ -3451,7 +3453,7 @@ body:not(.loading) nav {
   color: var(--text-color);
   text-align: center;
   margin-bottom: 10px;
-  font-family: ppfragment, sans-serif;
+  font-family: sans-serif;
 }
 
 .skills-section-title span {
@@ -3523,7 +3525,7 @@ body:not(.loading) nav {
   font-weight: 700;
   color: var(--text-color);
   margin-bottom: 20px;
-  font-family: ppfragment, sans-serif;
+  font-family: sans-serif;
 }
 
 .skill-tags-container {
@@ -4620,6 +4622,7 @@ body.dark .skill-tags-container .skill-tag[data-skill="npm"] {
     display: none;
   }
 }
+
 /* Mobile 
 responsive for projects */
 @media (max-width: 480px) {
@@ -4785,13 +4788,13 @@ body:not(.dark-theme) .tech-tag:hover {
     margin-bottom: 1rem;
     height: 55px;
   }
-  
+
   .tech-tag {
     padding: 0.6rem 1rem;
     font-size: 0.85rem;
     gap: 0.4rem;
   }
-  
+
   .tech-icon {
     font-size: 1.3rem;
   }
@@ -4801,12 +4804,12 @@ body:not(.dark-theme) .tech-tag:hover {
   .tech-marquee-wrapper {
     height: 50px;
   }
-  
+
   .tech-tag {
     padding: 0.5rem 0.8rem;
     font-size: 0.8rem;
   }
-  
+
   .tech-icon {
     font-size: 1.2rem;
   }
