@@ -17,24 +17,24 @@ const technologies = [
   {name: 'HTML5', color: '#E34F26', icon: 'bxl-html5'},
   { name: 'CSS3', color: '#1572B6', icon: 'bxl-css3' },
   { name: 'JavaScript', color: '#F7DF1E', icon: 'bxl-javascript' },
-  {name: 'Sublime Text', color: '#000000', icon: 'bx-code'},
+  {name: 'Sublime Text', color: '#FF9800', icon: 'bx-code'},
   { name: 'SCSS', color: '#CC6699', icon: 'bxl-sass' },
-  {name: 'Chrome DevTools', color: '#000000', icon: 'bxl-chrome'},
+  {name: 'Chrome DevTools', color: '#4285F4', icon: 'bxl-chrome'},
   { name: 'Tailwind', color: '#06B6D4', icon: 'bxl-tailwind-css' },
-  {name: 'CSS Animations', color: '#000000', icon: 'bx-play-circle'},
+  {name: 'CSS Animations', color: '#9C27B0', icon: 'bx-play-circle'},
   { name: 'Git', color: '#F05032', icon: 'bxl-git' },
-  { name: 'GitHub', color: '#181717', icon: 'bxl-github' },
+  { name: 'GitHub', color: '#6e5494', icon: 'bxl-github' },
   { name: 'React', color: '#61DAFB', icon: 'bxl-react' },
-  { name: 'Next.js', color: '#000000', icon: 'bx-code-alt' },
+  { name: 'Next.js', color: '#828282ff', icon: 'bx-code-alt' },
   {name: 'MySQL', color: '#4479A1', icon: 'bx-data'},
-  {name: 'Canva', color: '#000000', icon: 'bx-image'},  
+  {name: 'Canva', color: '#00C4CC', icon: 'bx-image'},  
   {name: 'GSAP', color: '#D9B310', icon: 'bx-movie-play'},
-  {name: 'UI/UX Design', color: '#000000', icon: 'bx-palette'},
+  {name: 'UI/UX Design', color: '#FF6B6B', icon: 'bx-palette'},
   {name: 'SQL', color: '#4479A1', icon: 'bx-data'},
-  {name: 'Responsive Design', color: '#000000', icon: 'bx-devices'},
+  {name: 'Responsive Design', color: '#4CAF50', icon: 'bx-devices'},
   {name: 'Figma', color: '#007AFF', icon: 'bxl-figma'},
   {name: 'VS Code', color: '#007ACC', icon: 'bxl-visual-studio'},
-  {name: 'NPM/Yarn', color: '#000000', icon: 'bxl-nodejs'}
+  {name: 'NPM/Yarn', color: '#CB3837', icon: 'bxl-nodejs'}
 ];
 
 /**
