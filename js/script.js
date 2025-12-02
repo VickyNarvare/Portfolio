@@ -362,7 +362,7 @@ if (contactForm) {
     showToast('Contact section is not working right now. Please try emailing me instead!', 'error');
     submitBtn.textContent = originalText;
     submitBtn.disabled = false;
-  } , 2000);
+  });
 }
 
 // ============================================
