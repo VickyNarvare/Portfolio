@@ -52,7 +52,7 @@ const projectsData = [
     imageAlt: "Coffee Cup Cafe Website by Vicky Narvare",
     demoLink: "https://coffeeap.vercel.app/",
     codeLink: "https://github.com/VickyNarvare/coffeeapp",
-    technologies: ["React", "Vite", "Tailwind CSS", "JavaScript", "Context API"],
+    technologies: ["React v19", "Vite", "Tailwind CSS v4", "JavaScript", "Context API"],
     layout: "left"
   }
 ];
