@@ -1,3 +1,17 @@
+/* ===== Fonts ===== */
+@font-face {
+  font-family: "LatoRegular";
+  src: url("../fonts/Lato/Lato-Regular.woff2") format("woff2");
+}
+@font-face {
+  font-family: "LucyRose";
+  src: url("../fonts/LucyRose/LucyRosePERSONAL-Regular.woff2") format("woff2");
+}
+
+
+
+
+
 /* ===== RESET & ROOT ===== */
 :root {
   --body-color: #e4e9f7;
@@ -26,7 +40,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: sans-serif;
 }
 
 html {
@@ -52,6 +65,7 @@ body {
     background-image 0.6s cubic-bezier(0.4, 0, 0.2, 1),
     color 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   overflow-x: hidden;
+  font-family: "LatoRegular", sans-serif;
 }
 
 /* Loading state - prevent scrolling during load */
@@ -59,7 +73,6 @@ body.loading {
   overflow: hidden;
   height: 100vh;
 }
-
 /* Smooth transitions for main content and navbar */
 main {
   will-change: opacity, transform;
@@ -84,6 +97,12 @@ body.dark {
   --page-bg-top: #0f1112;
   --page-bg-bottom: #18191a;
   --main-color: var(--accent);
+}
+
+::selection{
+  background-color: var(--text-color);
+  color: var(--body-color);
+font-weight: 500;
 }
 
 /* Dark mode project card shadows */
@@ -174,6 +193,7 @@ body.dark .navbar {
   font-weight: 700;
   color: var(--text-color);
   transition: all 0.3s ease;
+  font-family: "LucyRose", serif;
 }
 
 .logo-bracket {
@@ -663,6 +683,7 @@ body.dark .dot-mask {
   text-align: center;
   margin-bottom: 3rem;
   color: var(--text-color);
+  font-family: "LucyRose", serif;
 }
 
 .accent-text {
@@ -764,6 +785,7 @@ body.dark .dot-mask {
   word-wrap: break-word;
   overflow-wrap: break-word;
   max-width: 100%;
+  font-family: "LucyRose", serif;
 }
 
 .highlight {
@@ -1167,6 +1189,7 @@ body.dark .about-image img:hover {
   font-size: 1.5rem;
   margin-bottom: 1rem;
   color: var(--text-color);
+  font-family: "LucyRose", serif;
 }
 
 .skill-tags {
@@ -1265,6 +1288,7 @@ body.dark .skill-tag::after {
   color: var(--text-color);
   margin-bottom: 1.5rem;
   line-height: 1.2;
+  font-family: "LucyRose", serif;
 }
 
 .project-description {
@@ -1584,6 +1608,7 @@ body.dark .project-item:hover .project-image {
   color: var(--text-color);
   margin-bottom: 1rem;
   line-height: 1.2;
+  font-family: "LucyRose", serif;
 }
 
 .devSection .section-title .lead {
@@ -1677,6 +1702,7 @@ body.dark .project-item:hover .project-image {
 .devSection .card h3 {
   margin: 8px 0 8px;
   font-size: 18px;
+  font-family: "LucyRose", serif;
 }
 
 .devSection .card p {
@@ -1707,6 +1733,7 @@ body.dark .project-item:hover .project-image {
   font-size: 2rem;
   margin-bottom: 12px;
   color: var(--text-color);
+  font-family: "LucyRose", serif;
 }
 
 .cta-lead {
@@ -1809,6 +1836,7 @@ body.dark .project-item:hover .project-image {
   font-weight: 700;
   color: #10b981;
   margin-bottom: 0.3rem;
+  font-family: "LucyRose", serif;
 }
 
 .availability-notice-content p {
@@ -1828,6 +1856,7 @@ body.dark .project-item:hover .project-image {
   margin-bottom: 1rem;
   color: var(--text-color);
   position: relative;
+  font-family: "LucyRose", serif;
 }
 
 .contact-info p {
@@ -1903,6 +1932,8 @@ body.dark .project-item:hover .project-image {
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   resize: none;
+  font-family: "LatoRegular";
+  font-weight: 500;
 }
 
 .form-group input:focus,
@@ -2260,6 +2291,7 @@ body.dark .project-item:hover .project-image {
   color: var(--text-color);
   margin-bottom: 1rem;
   display: block;
+  font-family: "LucyRose", serif;
 }
 
 .footer-description {
@@ -2281,6 +2313,7 @@ body.dark .project-item:hover .project-image {
   font-weight: 600;
   margin-bottom: 1rem;
   position: relative;
+  font-family: "LucyRose", serif;
 }
 
 .footer-section h4::after {
@@ -2813,7 +2846,7 @@ body.dark .project-item:hover .project-image {
   visibility: visible;
   border: 2px solid #000;
   box-sizing: border-box;
-  /* GSAP will handle transitions */
+  font-family: "LatoRegular";
 }
 
 .loading-screen.hidden {
@@ -2984,7 +3017,7 @@ body:not(.loading) nav {
   color: var(--text-color);
   text-align: center;
   margin-bottom: 20px;
-  font-family: sans-serif;
+  font-family: "LucyRose", serif;
 }
 
 .services-title span {
@@ -3084,7 +3117,7 @@ body:not(.loading) nav {
   font-weight: 700;
   color: var(--text-color);
   margin-bottom: 12px;
-  font-family: sans-serif;
+  font-family: "LucyRose", serif;
 }
 
 .service-description {
@@ -3114,7 +3147,7 @@ body:not(.loading) nav {
   color: var(--accent);
   margin-bottom: 15px;
   margin-top: 10px;
-  font-family: sans-serif;
+  font-family: "LucyRose", serif;
 }
 
 .services-list {
@@ -3453,7 +3486,7 @@ body:not(.loading) nav {
   color: var(--text-color);
   text-align: center;
   margin-bottom: 10px;
-  font-family: sans-serif;
+  font-family: "LucyRose", serif;
 }
 
 .skills-section-title span {
@@ -3525,7 +3558,7 @@ body:not(.loading) nav {
   font-weight: 700;
   color: var(--text-color);
   margin-bottom: 20px;
-  font-family: sans-serif;
+  font-family: "LucyRose", serif;
 }
 
 .skill-tags-container {
