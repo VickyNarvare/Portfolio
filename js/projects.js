@@ -6,7 +6,7 @@ const projectsData = [
     description: "A modern Weather Application that provides real-time weather information for any location. Features current temperature, humidity, wind speed, and 5-day forecast with beautiful UI.",
     image: "Images/project1.webp",
     imageAlt: "Weather Application by Vicky Narvare",
-    demoLink: "https://weatherappbyvicky.netlify.app",
+    demoLink: "https://weatherwebsite2.vercel.app",
     codeLink: "https://github.com/VickyNarvare/Weather-webiste",
     technologies: ["HTML", "CSS", "JavaScript", "Weather API"],
     layout: "left"
